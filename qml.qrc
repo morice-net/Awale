@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Board.qml</file>
+        <file>Stone.png</file>
+        <file>Hole.qml</file>
+        <file>Hole.png</file>
+        <file>Halve.qml</file>
+        <file>Halve.png</file>
+        <file>Background.png</file>
+        <file>Receipe.qml</file>
+    </qresource>
+</RCC>
