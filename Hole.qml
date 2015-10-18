@@ -3,8 +3,13 @@ import QtQuick 2.3
 //import "QML/JavaScript/Palette.js" as Palette
 //import "QML"
 
-Image {
-    width: halve.width/6
+Item {
+    width: halve.width / 6 - 2
     height: width
-    source: "Hole.png"
+    Image {
+        width: halve.width / 6 - 2
+        height: width
+        anchors.centerIn: parent
+        source: "Hole.png"
+    }
 }

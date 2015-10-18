@@ -6,13 +6,14 @@ import QtQuick 2.3
 Item {
     id: board
     anchors.fill: parent
+    anchors.margins: 5
 
     Receipe {
         anchors.top: parent.top
     }
     Item {
-        height: parent.height * 2 / 3
-        width: parent.width
+        height: width * 2 / 3
+        width: Math.min(parent.width,parent.height) - 6
         anchors.centerIn: parent
         Halve {
             id: halve1
