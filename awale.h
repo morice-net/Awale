@@ -1,10 +1,13 @@
 #ifndef AWALE_H
 #define AWALE_H
 
+#include <QObject>
 #include <QList>
 
-class Awale
+class Awale : public QObject
 {
+	Q_OBJECT
+
 public:
     Awale();
     void initialize();
@@ -26,6 +29,13 @@ public:
 
     int takenHole() const;
     void setTakenHole(int takenHole);
+
+signals:
+	void playerScore1Changed();
+	void playerScore2Changed();
+	void playerHalve1Changed();
+	void playerHalve2Changed();
+	void takenHoleChanged();
 
 private:
     int m_playerScore1;
