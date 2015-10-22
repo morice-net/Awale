@@ -20,6 +20,11 @@ Item {
         width: Math.max(main.width,main.height)
         height: width
         anchors.centerIn: parent
+        Rectangle {
+            color: "black"
+            opacity: 0.3
+            anchors.fill: parent
+        }
     }
 
     Board {
