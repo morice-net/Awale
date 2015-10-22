@@ -13,6 +13,11 @@ Item {
     property int playerScore1: 0
     property int playerScore2: 0
     property int takenHole: 0
+    property var playerHalve1: [0,0,0,0,0,0]
+    property var playerHalve2: [0,0,0,0,0,0]
+
+    signal start()
+    signal takeHole(int player,int index)
 
     Image {
         id: background
@@ -29,5 +34,8 @@ Item {
 
     Board {
         id: board
+    }
+
+    StartPage {
     }
 }

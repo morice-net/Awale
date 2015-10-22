@@ -16,6 +16,7 @@ Image {
         Repeater {
             model: 6
             Hole {
+                numberOfStone: halve.player == 1 ? main.playerHalve1[index] : main.playerHalve2[index]
             }
         }
     }

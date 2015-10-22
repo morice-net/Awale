@@ -9,5 +9,7 @@
         <file>Halve.png</file>
         <file>Background.png</file>
         <file>Receipe.qml</file>
+        <file>Stone.qml</file>
+        <file>StartPage.qml</file>
     </qresource>
 </RCC>

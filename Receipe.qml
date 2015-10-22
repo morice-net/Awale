@@ -12,30 +12,9 @@ Rectangle {
     anchors.horizontalCenter:  parent.horizontalCenter
 
     property int player
-    Image {
-        id: hole
-        height: parent.height - 0.2 * parent.height
-        width: height
-        source: "Stone.png"
-        anchors.centerIn: parent
-        Rectangle {
-            id: textBack
-            height: parent.height /2
-            width: height
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            color: "#88FFFFBB"
-            radius: 10
-            Text {
-                anchors.fill: parent
-                text: player == 1 ? main.playerScore1 : main.playerScore2
-                color: "black"
-                font.pixelSize: height - 2
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
-        }
-
+    Stone {
+        numberOfStone: player == 1 ? main.playerScore1 : main.playerScore2
     }
 
+    transform: Rotation { origin.x: width/2 ; origin.y: height/2; angle: player == 1 ? 0 : 180 }
 }

@@ -2,6 +2,11 @@
 
 Awale::Awale()
 {
+	m_playerHalve1 << 0 << 0 << 0 << 0 << 0 << 0;
+	m_playerHalve2 << 0 << 0 << 0 << 0 << 0 << 0;
+	m_playerScore1 = 0;
+	m_playerScore2 = 0;
+	m_takenHole = 0;
 }
 
 /*!
@@ -10,7 +15,7 @@ Awale::Awale()
 void Awale::initialize()
 {
 	setPlayerHalve1(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
-	setPlayerHalve1(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
+	setPlayerHalve2(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
 	setPlayerScore1(0);
 	setPlayerScore2(0);
 	setTakenHole(0);
