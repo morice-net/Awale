@@ -10,6 +10,7 @@ Item {
 
     Receipe {
         anchors.top: parent.top
+        player: 2
     }
     Item {
         height: width * 2 / 3
@@ -17,13 +18,16 @@ Item {
         anchors.centerIn: parent
         Halve {
             id: halve1
+            player: 2
         }
         Halve {
             id: halve2
             anchors.top: halve1.bottom
+            player: 1
         }
     }
     Receipe {
         anchors.bottom: parent.bottom
+        player: 1
     }
 }

@@ -9,11 +9,11 @@ Awale::Awale()
  */
 void Awale::initialize()
 {
-    m_playerHalve1 << 4 << 4 << 4 << 4 << 4 << 4;
-    m_playerHalve2 << 4 << 4 << 4 << 4 << 4 << 4;
-    m_playerScore1 = 0;
-    m_playerScore2 = 0;
-    m_takenHole = 0;
+	setPlayerHalve1(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
+	setPlayerHalve1(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
+	setPlayerScore1(0);
+	setPlayerScore2(0);
+	setTakenHole(0);
 }
 
 /*!
@@ -33,10 +33,14 @@ void Awale::takeHole(int playerNumber, int holeNumber)
 		QList<int> halve2 = m_playerHalve2;
 		halve2[holeNumber] = 0;
 		setPlayerHalve2(halve2);
-
 	}
 }
 
+/*!
+ * \brief Awale::draw
+ * \param playerNumber
+ * \param holeNumber
+ */
 void Awale::draw(int playerNumber, int holeNumber)
 {
 	// Record help sending step by step holes up and down, it will animate the UI
@@ -87,6 +91,7 @@ void Awale::draw(int playerNumber, int holeNumber)
 	}
 }
 
+/* Getters & Setters */
 
 int Awale::playerScore1() const
 {

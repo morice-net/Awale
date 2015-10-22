@@ -8,6 +8,9 @@ Image {
     source: "Halve.png"
     width: parent.width
     height: parent.height/2
+
+    property int player
+
     Row {
         anchors.centerIn: parent
         Repeater {

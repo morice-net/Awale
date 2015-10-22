@@ -10,6 +10,10 @@ Item {
     width: 800
     height:600
 
+    property int playerScore1: 0
+    property int playerScore2: 0
+    property int takenHole: 0
+
     Image {
         id: background
         source: "Background.png"
