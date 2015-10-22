@@ -9,7 +9,7 @@ Image {
     width: height
     source: "Stone.png"
     anchors.centerIn: parent
-    
+    visible: false
     property int numberOfStone
     Rectangle {
         id: textBack
