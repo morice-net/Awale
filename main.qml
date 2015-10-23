@@ -26,7 +26,7 @@ Item {
         height: width
         anchors.centerIn: parent
         Rectangle {
-            color: "black"
+            color: "white"
             opacity: 0.3
             anchors.fill: parent
         }
