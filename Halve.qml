@@ -1,15 +1,20 @@
 import QtQuick 2.3
+import QtGraphicalEffects 1.0
 
 //import "QML/JavaScript/Palette.js" as Palette
 //import "QML"
 
-Image {
+Item {
     id: halve
-    source: "Halve.png"
     width: parent.width
     height: parent.height/2
 
     property int player
+    Image {
+        id: halveImage
+        source: "Halve.png"
+        anchors.fill: parent
+    }
 
     Row {
         anchors.centerIn: parent

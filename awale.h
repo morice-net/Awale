@@ -30,12 +30,16 @@ public:
     int takenHole() const;
     void setTakenHole(int takenHole);
 
+	int playerTurn() const;
+	void setPlayerTurn(int playerTurn);
+
 signals:
 	void playerScore1Changed();
 	void playerScore2Changed();
 	void playerHalve1Changed();
 	void playerHalve2Changed();
 	void takenHoleChanged();
+	void playerTurnChanged();
 
 private:
     int m_playerScore1;
@@ -43,6 +47,7 @@ private:
     QList<int> m_playerHalve1;
     QList<int> m_playerHalve2;
     int m_takenHole;
+	int m_playerTurn; // 1 or 2 while playing
 };
 
 #endif // AWALE_H

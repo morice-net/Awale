@@ -21,6 +21,15 @@ Item {
     }
     MouseArea {
         anchors.fill: parent
-        onClicked: main.takeHole(player,index)
+        onClicked: {
+            if (main.playerTurn == player && numberOfStone > 0) {
+                main.takeHole(player,index);
+            } else {
+                console.log("No autorized");
+                console.log("playerTurn: "+main.playerTurn);
+                console.log("player: "+player);
+                console.log("numberOfStone: "+numberOfStone);
+            }
+        }
     }
 }

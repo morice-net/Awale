@@ -7,6 +7,7 @@ Awale::Awale()
 	m_playerScore1 = 0;
 	m_playerScore2 = 0;
 	m_takenHole = 0;
+	m_playerTurn = 0;
 }
 
 /*!
@@ -19,6 +20,7 @@ void Awale::initialize()
 	setPlayerScore1(0);
 	setPlayerScore2(0);
 	setTakenHole(0);
+	setPlayerTurn(1);
 }
 
 /*!
@@ -58,11 +60,12 @@ void Awale::draw(int playerNumber, int holeNumber)
 		++holeNumber;
 
         // Are we on the next halve
-		if (holeNumber > 6) {
+		if (holeNumber >= 6) {
 			halveNumber++;
 			if (halveNumber > 2){
 				halveNumber = 1;
             }
+			holeNumber = 0;
         }
 
         // Take the stone from the taken hole
@@ -94,6 +97,10 @@ void Awale::draw(int playerNumber, int holeNumber)
 		}
 		numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
 	}
+
+	// Update the player turn
+	//TODO check nothing in the opponent halve is empty maybe :-)
+	setPlayerTurn(m_playerTurn == 1 ? 2 : 1);
 }
 
 /* Getters & Setters */
@@ -158,6 +165,20 @@ void Awale::setTakenHole(int takenHole)
 		emit takenHoleChanged();
 	}
 }
+int Awale::playerTurn() const
+{
+	return m_playerTurn;
+}
+
+void Awale::setPlayerTurn(int playerTurn)
+{
+	if (m_playerTurn != playerTurn)
+	{
+		m_playerTurn = playerTurn;
+		emit playerTurnChanged();
+	}
+}
+
 
 
 
