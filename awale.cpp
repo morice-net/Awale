@@ -50,7 +50,7 @@ void Awale::takeHole(int playerNumber, int holeNumber)
  * \param halve2
  * \param holeNumber
  */
-void Awale::resetHole(int halveNumber, int holeNumber, QList<int> &halve1, QList<int> &halve2)
+void Awale::resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QList<int> &halve2)
 {
 	if (halveNumber == 1) {
 		halve1[holeNumber] = 0;
@@ -58,6 +58,13 @@ void Awale::resetHole(int halveNumber, int holeNumber, QList<int> &halve1, QList
 	} else {
 		halve2[holeNumber] = 0;
 		setPlayerHalve2(halve2);
+	}
+
+	// This hole is empty, let's go to the previous
+	holeNumber--;
+	if (holeNumber < 0)	{
+		holeNumber = m_playerHalve1.size()-1;
+		halveNumber = (halveNumber == 1 ? 2 : 1);
 	}
 }
 
