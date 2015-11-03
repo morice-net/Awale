@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import QtGraphicalEffects 1.0
 
 //import "QML/JavaScript/Palette.js" as Palette
 //import "QML"
@@ -26,11 +27,12 @@ Item {
         width: Math.max(main.width,main.height)
         height: width
         anchors.centerIn: parent
-        Rectangle {
-            color: "white"
-            opacity: 0.3
-            anchors.fill: parent
-        }
+    }
+
+    FastBlur {
+        anchors.fill: background
+        source: background
+        radius: 16
     }
 
     Board {
