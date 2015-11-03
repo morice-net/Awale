@@ -12,6 +12,7 @@ public:
     Awale();
     void initialize();
     void takeHole(int playerNumber, int holeNumber);
+	void resetHole(int halveNumber, int holeNumber, QList<int> &halve1, QList<int> &halve2);
     void draw(int playerNumber, int holeNumber);
 
     // Getter and Setters

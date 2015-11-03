@@ -44,6 +44,24 @@ void Awale::takeHole(int playerNumber, int holeNumber)
 }
 
 /*!
+ * \brief Awale::resetHole
+ * \param halveNumber
+ * \param halve1
+ * \param halve2
+ * \param holeNumber
+ */
+void Awale::resetHole(int halveNumber, int holeNumber, QList<int> &halve1, QList<int> &halve2)
+{
+	if (halveNumber == 1) {
+		halve1[holeNumber] = 0;
+		setPlayerHalve1(halve1);
+	} else {
+		halve2[holeNumber] = 0;
+		setPlayerHalve2(halve2);
+	}
+}
+
+/*!
  * \brief Awale::draw
  * \param playerNumber
  * \param holeNumber
@@ -86,14 +104,10 @@ void Awale::draw(int playerNumber, int holeNumber)
 	while (numberOfStone == 2 || numberOfStone == 3) {
 		if (playerNumber == 1) {
 			setPlayerScore1(m_playerScore1 + numberOfStone);
-			if (halveNumber == 1) {
-				halve1[holeNumber] = 0;
-				setPlayerHalve1(halve1);
-			} else {
-				halve2[holeNumber] = 0;
-				setPlayerHalve2(halve2);
-
-			}
+			resetHole(halveNumber, holeNumber, halve1, halve2);
+		} else {
+			setPlayerScore2(m_playerScore2 + numberOfStone);
+			resetHole(halveNumber, holeNumber, halve1, halve2);
 		}
 		numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
 	}

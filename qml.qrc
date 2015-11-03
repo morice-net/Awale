@@ -11,5 +11,6 @@
         <file>Receipe.qml</file>
         <file>Stone.qml</file>
         <file>StartPage.qml</file>
+        <file>Star.png</file>
     </qresource>
 </RCC>
