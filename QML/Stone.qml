@@ -16,7 +16,7 @@ Item {
     Image {
         id: stoneImage
         anchors.fill: parent
-        source: "Stone.png"
+        source: "../Images/Stone.png"
     }
     InnerShadow {
         anchors.fill: stoneImage
@@ -49,7 +49,7 @@ Item {
             id: particles
             anchors.fill: parent
             ImageParticle {
-                source: "Star.png"
+                source: "../Images/Star.png"
                 alpha: 0
                 colorVariation: 0.6
             }

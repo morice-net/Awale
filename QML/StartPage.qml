@@ -11,7 +11,7 @@ Item  {
         id: backgrd
         anchors.fill: parent
 
-        source: "Background.png"
+        source: "../Images/Background.png"
         width: Math.max(main.width,main.height)
         height: width
         anchors.centerIn: parent

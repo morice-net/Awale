@@ -23,7 +23,7 @@ Item {
 
     Image {
         id: background
-        source: "Background.png"
+        source: "../Images/Background.png"
         width: Math.max(main.width,main.height)
         height: width
         anchors.centerIn: parent

@@ -12,7 +12,7 @@ Item {
     property int player
     Image {
         id: halveImage
-        source: "Halve.png"
+        source: "../Images/Halve.png"
         anchors.fill: parent
     }
 

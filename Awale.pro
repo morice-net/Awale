@@ -3,8 +3,8 @@ TEMPLATE = app
 QT += qml quick
 
 SOURCES += main.cpp \
-    awale.cpp \
-    game.cpp
+    Core/awale.cpp \
+    Core/game.cpp
 
 RESOURCES += qml.qrc
 
@@ -15,6 +15,6 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    awale.h \
-    game.h
+    Core/awale.h \
+    Core/game.h
 

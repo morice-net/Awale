@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Board.qml</file>
-        <file>Stone.png</file>
-        <file>Hole.qml</file>
-        <file>Hole.png</file>
-        <file>Halve.qml</file>
-        <file>Halve.png</file>
-        <file>Background.png</file>
-        <file>Receipe.qml</file>
-        <file>Stone.qml</file>
-        <file>StartPage.qml</file>
-        <file>Star.png</file>
+        <file>QML/main.qml</file>
+        <file>QML/Board.qml</file>
+        <file>QML/Hole.qml</file>
+        <file>QML/Halve.qml</file>
+        <file>QML/Receipe.qml</file>
+        <file>QML/Stone.qml</file>
+        <file>QML/StartPage.qml</file>
+        <file>Images/Stone.png</file>
+        <file>Images/Hole.png</file>
+        <file>Images/Halve.png</file>
+        <file>Images/Background.png</file>
+        <file>Images/Star.png</file>
     </qresource>
 </RCC>

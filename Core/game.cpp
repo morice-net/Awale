@@ -4,12 +4,12 @@ Game::Game(QObject *parent) :
 	QObject(parent), m_root(0), m_awale()
 {
 	m_awale.initialize();
-	connect( &m_awale, SIGNAL(playerHalve1Changed()), this, SLOT(updateView()));
-	connect( &m_awale, SIGNAL(playerHalve2Changed()), this, SLOT(updateView()));
-	connect( &m_awale, SIGNAL(playerScore1Changed()), this, SLOT(updateView()));
-	connect( &m_awale, SIGNAL(playerScore2Changed()), this, SLOT(updateView()));
-	connect( &m_awale, SIGNAL(takenHoleChanged()), this, SLOT(updateView()));
-	connect( &m_awale, SIGNAL(playerTurnChanged()), this, SLOT(updateView()));
+    connect( &m_awale, &Awale::playerHalve1Changed, this, &Game::updateView);
+    connect( &m_awale, &Awale::playerHalve2Changed, this, &Game::updateView);
+    connect( &m_awale, &Awale::playerScore1Changed, this, &Game::updateView);
+    connect( &m_awale, &Awale::playerScore2Changed, this, &Game::updateView);
+    connect( &m_awale, &Awale::takenHoleChanged, this, &Game::updateView);
+    connect( &m_awale, &Awale::playerTurnChanged, this, &Game::updateView);
 }
 
 

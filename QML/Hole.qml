@@ -13,7 +13,7 @@ Item {
         width: halve.width / 6 - 2
         height: width
         anchors.centerIn: parent
-        source: "Hole.png"
+        source: "../Images/Hole.png"
 
         Stone {
             numberOfStone: hole.numberOfStone

@@ -138,6 +138,7 @@ void Awale::setPlayerScore1(int playerScore1)
 		emit playerScore1Changed();
 	}
 }
+
 int Awale::playerScore2() const
 {
     return m_playerScore2;
@@ -150,6 +151,7 @@ void Awale::setPlayerScore2(int playerScore2)
 		emit playerScore2Changed();
 	}
 }
+
 QList<int> Awale::playerHalve1() const
 {
     return m_playerHalve1;
@@ -162,6 +164,7 @@ void Awale::setPlayerHalve1(const QList<int> &playerHalve1)
 		emit playerHalve1Changed();
 	}
 }
+
 QList<int> Awale::playerHalve2() const
 {
     return m_playerHalve2;
@@ -174,6 +177,7 @@ void Awale::setPlayerHalve2(const QList<int> &playerHalve2)
 		emit playerHalve2Changed();
 	}
 }
+
 int Awale::takenHole() const
 {
     return m_takenHole;
@@ -186,6 +190,7 @@ void Awale::setTakenHole(int takenHole)
 		emit takenHoleChanged();
 	}
 }
+
 int Awale::playerTurn() const
 {
 	return m_playerTurn;
@@ -199,9 +204,3 @@ void Awale::setPlayerTurn(int playerTurn)
 		emit playerTurnChanged();
 	}
 }
-
-
-
-
-
-
