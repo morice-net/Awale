@@ -13,5 +13,7 @@
         <file>Images/Halve.png</file>
         <file>Images/Background.png</file>
         <file>Images/Star.png</file>
+        <file>Images/Title.png</file>
+        <file>QML/MenuButton.qml</file>
     </qresource>
 </RCC>

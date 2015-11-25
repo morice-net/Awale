@@ -16,26 +16,49 @@ Item  {
         height: width
         anchors.centerIn: parent
 
-        Text {
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            text: "Start now !"
-            font.family: "Droid Serif"
-            font.bold: true
-            font.pointSize: 12
+        Image {
+            id: title
+            source: "../Images/Title.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: parent.height * 0.15
+            width: parent.width * 0.7
+            fillMode: Image.PreserveAspectFit
+        }
+        DropShadow {
+            anchors.fill: title
+            horizontalOffset: 2
+            verticalOffset: 1
+            radius: 8.0
+            samples: 16
+            color: "#ffffff"
+            source: title
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                main.start();
-                blurEffect.start()
-                fadeEffect.start()
-            }
+        // Button 1 player
+        MenuButton {
+            id: button1player
+            text: qsTr("1 player");
+            anchors.top: title.bottom
         }
+
+
+        // Button 2 players
+        MenuButton {
+            id: button2player
+            text: qsTr("2 players");
+            anchors.top: button1player.bottom
+        }
+
+        // Button Settings
+        MenuButton {
+            id: buttonSettings
+            text: qsTr("Settings");
+            anchors.top: button2player.bottom
+        }
+
 
     }
+
 
     FastBlur {
         id: blurGraphics
@@ -43,7 +66,7 @@ Item  {
         source: backgrd
         radius: 0
 
-        NumberAnimation on radius { id: blurEffect; running: false; to: 32; duration: 550 }
+        NumberAnimation on radius { id: blurEffect; running: false; to: 4; duration: 1000 }
     }
-    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 600; easing.type: "InCurve"  }
+    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
 }
