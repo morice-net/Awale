@@ -43,7 +43,7 @@ Item  {
         source: backgrd
         radius: 0
 
-        NumberAnimation on radius { id: blurEffect; running: false; to: 32; duration: 550 }
+        NumberAnimation on radius { id: blurEffect; running: false; to: 4; duration: 1000 }
     }
-    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 600; easing.type: "InCurve"  }
+    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
 }

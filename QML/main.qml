@@ -29,12 +29,6 @@ Item {
         anchors.centerIn: parent
     }
 
-    FastBlur {
-        anchors.fill: background
-        source: background
-        radius: 16
-    }
-
     Board {
         id: board
     }
