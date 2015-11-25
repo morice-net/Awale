@@ -6,6 +6,7 @@
         <file>QML/Halve.qml</file>
         <file>QML/Receipe.qml</file>
         <file>QML/Stone.qml</file>
+        <file>QML/StoneParticles.qml</file>
         <file>QML/StartPage.qml</file>
         <file>Images/Stone.png</file>
         <file>Images/Hole.png</file>

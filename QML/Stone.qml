@@ -6,7 +6,7 @@ import QtQuick.Particles 2.0
 //import "QML"
 
 Item {
-    id: hole
+    id: stone
     anchors.centerIn: parent
     height: parent.height - 0.35 * parent.height
     width: height
@@ -45,32 +45,10 @@ Item {
         color: "#88FFFFBB"
         radius: 10
 
-        ParticleSystem {
-            id: particles
-            anchors.fill: parent
-            ImageParticle {
-                source: "../Images/Star.png"
-                alpha: 0
-                colorVariation: 0.6
-            }
-
-            Emitter {
-                id: pulseEmitter
-                x: parent.width/2
-                y: 2*parent.height/3
-                emitRate: 1200
-                lifeSpan: 500
-                enabled: false
-                velocity: AngleDirection{magnitude: 64; angleVariation: 360}
-                size: 15
-                sizeVariation: 8
-            }
-        }
-
         Text {
             id: stoneText
             anchors.fill: parent
-            text: hole.numberOfStone
+            text: stone.numberOfStone
             color: "black"
             font.pixelSize: textSize
             horizontalAlignment: Text.AlignHCenter
@@ -81,20 +59,20 @@ Item {
     SequentialAnimation {
         id: winAnimation
         running: false
-        NumberAnimation { target: hole; property: "textSize"; to: stoneText.height + 10; duration: 300 }
-        NumberAnimation { target: hole; property: "textSize"; to: stoneText.height - 5; duration: 300 }
+        NumberAnimation { target: stone; property: "textSize"; to: stoneText.height + 10; duration: 300 }
+        NumberAnimation { target: stone; property: "textSize"; to: stoneText.height - 5; duration: 300 }
     }
     SequentialAnimation {
         id: takeAnimation
         running: false
-        NumberAnimation { target: hole; property: "textSize"; to: stoneText.height - 10; duration: 300 }
-        NumberAnimation { target: hole; property: "textSize"; to: stoneText.height + 5; duration: 300 }
-        NumberAnimation { target: hole; property: "textSize"; to: stoneText.height - 5; duration: 300 }
+        NumberAnimation { target: stone; property: "textSize"; to: stoneText.height - 10; duration: 300 }
+        NumberAnimation { target: stone; property: "textSize"; to: stoneText.height + 5; duration: 300 }
+        NumberAnimation { target: stone; property: "textSize"; to: stoneText.height - 5; duration: 300 }
     }
     onNumberOfStoneChanged: {
         if ( numberOfStone > 0 ) {
             winAnimation.start();
-            pulseEmitter.pulse(500);
+            particles.pulse(stone);
         } else {
             takeAnimation.start();
         }

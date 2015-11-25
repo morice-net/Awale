@@ -12,6 +12,7 @@ Item {
         anchors.top: parent.top
         player: 2
     }
+
     Item {
         id: halves
         height: width * 2 / 3
@@ -27,6 +28,7 @@ Item {
             player: 1
         }
     }
+
     DropShadow {
         anchors.fill: halves
         horizontalOffset: 10
@@ -37,6 +39,7 @@ Item {
         color: "#60000000"
         source: halves
     }
+
     DropShadow {
         anchors.fill: halves
         horizontalOffset: 10
@@ -47,8 +50,13 @@ Item {
         color: "#80000000"
         source: halves
     }
+
     Receipe {
         anchors.bottom: parent.bottom
         player: 1
+    }
+
+    StoneParticles {
+        id: particles
     }
 }
