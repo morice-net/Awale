@@ -1,14 +1,17 @@
 import QtQuick 2.0
 
 Text {
-    anchors.margins: parent.height * 0.08
+    anchors.margins: parent.height * 0.05
     anchors.horizontalCenter: parent.horizontalCenter
-    horizontalAlignment: Text.AlignHCenter
-    verticalAlignment: Text.AlignVCenter
+
+    color: "#935925"
     font.family: "Droid Serif"
     font.bold: true
     font.pointSize: parent.height * 0.03
-    color: "#935925"
+
+    verticalAlignment: Text.AlignVCenter
+    horizontalAlignment: Text.AlignHCenter
+
     MouseArea {
         anchors.fill: parent
         onClicked: {

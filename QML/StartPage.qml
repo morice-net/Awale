@@ -20,10 +20,11 @@ Item  {
             id: title
             source: "../Images/Title.png"
             anchors.horizontalCenter: parent.horizontalCenter
-            y: parent.height * 0.15
+            y: parent.height * 0.12
             width: parent.width * 0.7
             fillMode: Image.PreserveAspectFit
         }
+
         DropShadow {
             anchors.fill: title
             horizontalOffset: 2
@@ -38,22 +39,21 @@ Item  {
         MenuButton {
             id: button1player
             text: qsTr("1 player");
-            anchors.top: title.bottom
+            anchors.bottom: button2players.top
         }
-
 
         // Button 2 players
         MenuButton {
-            id: button2player
+            id: button2players
             text: qsTr("2 players");
-            anchors.top: button1player.bottom
+            anchors.bottom: buttonSettings.top
         }
 
         // Button Settings
         MenuButton {
             id: buttonSettings
             text: qsTr("Settings");
-            anchors.top: button2player.bottom
+            y: parent.height * 0.8 - height
         }
 
 

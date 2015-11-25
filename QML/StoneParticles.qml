@@ -23,7 +23,7 @@ ParticleSystem {
         lifeSpan: 300
         enabled: false
         velocity: AngleDirection{magnitude: 64; angleVariation: 360}
-        size: 15
+        size: 25
         sizeVariation: 8
     }
 
@@ -41,7 +41,7 @@ ParticleSystem {
 
                var xBurst = obj.x + rotation*item.width/2;
                var yBurst = obj.y + rotation*item.height/2;
-               pulseEmitter.burst(30, xBurst, yBurst);
+               pulseEmitter.burst(10, xBurst, yBurst);
            }
        }
    }
