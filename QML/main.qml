@@ -7,9 +7,8 @@ import QtGraphicalEffects 1.0
 Item {
     id: main
     visible: true
-    anchors.fill: parent
-    width: 800
-    height:600
+    width: 600
+    height:800
 
     property int playerScore1: 0
     property int playerScore2: 0

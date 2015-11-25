@@ -13,7 +13,7 @@ ParticleSystem {
 
     ImageParticle {
         source: "../Images/Star.png"
-        alpha: 0
+        alpha: 0.5
         colorVariation: 0.6
     }
     
