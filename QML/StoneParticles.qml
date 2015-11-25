@@ -28,11 +28,20 @@ ParticleSystem {
     }
 
     Timer {
-       interval: 500; running: true; repeat: true
+       interval: 200; running: true; repeat: true
        onTriggered: {
-           if (next.length === 0) {
-               var obj = mapFromItem(next.shift());
-               pulseEmitter.burst(50, obj.x , obj.y);
+           if (next.length !== 0) {
+               var item = next.shift();
+               var obj = mapFromItem(item);
+               var rotation;
+               if (obj.y > main.height/2)
+                   rotation = 1;
+               else
+                   rotation = -1;
+
+               var xBurst = obj.x + rotation*item.width/2;
+               var yBurst = obj.y + rotation*item.height/2;
+               pulseEmitter.burst(30, xBurst, yBurst);
            }
        }
    }
