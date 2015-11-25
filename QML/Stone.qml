@@ -72,6 +72,7 @@ Item {
             anchors.fill: parent
             text: hole.numberOfStone
             color: "black"
+            font.family: "Droid Serif"
             font.pixelSize: textSize
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
