@@ -31,19 +31,8 @@ Item {
 
     DropShadow {
         anchors.fill: halves
-        horizontalOffset: 10
-        verticalOffset: main.playerTurn == 1 ? -6 : 6
-        spread: 0.5
-        radius:  8.0
-        samples: 16
-        color: "#60000000"
-        source: halves
-    }
-
-    DropShadow {
-        anchors.fill: halves
-        horizontalOffset: 10
-        verticalOffset: main.playerTurn == 1 ? -12 : 12
+        horizontalOffset: 4
+        verticalOffset: main.playerTurn == 1 ? -8 : 8
         spread: 0.5
         radius:  8.0
         samples: 16
