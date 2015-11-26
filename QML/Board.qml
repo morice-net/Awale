@@ -8,9 +8,16 @@ Item {
     anchors.fill: parent
     anchors.margins: 5
 
-    Receipe {
+    Item {
         anchors.top: parent.top
-        player: 2
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: halves.top
+
+        Receipe {
+            anchors.centerIn: parent
+            player: 2
+        }
     }
 
     Item {
@@ -40,9 +47,17 @@ Item {
         source: halves
     }
 
-    Receipe {
+
+    Item {
+        anchors.top: halves.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        player: 1
+
+        Receipe {
+            anchors.centerIn: parent
+            player: 1
+        }
     }
 
     StoneParticles {
