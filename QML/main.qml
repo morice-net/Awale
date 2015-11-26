@@ -17,7 +17,7 @@ Item {
     property var playerHalve2: [0,0,0,0,0,0]
     property int playerTurn: 0 // 1 or 2 when initialized and playing
 
-    signal start()
+    signal start(int mode)
     signal takeHole(int player,int index)
 
     Image {

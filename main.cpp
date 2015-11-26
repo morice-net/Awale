@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	Game game;
 	game.setRoot(root);
 
-    QObject::connect ( root, SIGNAL(start()), &game, SLOT(updateView()) );
+	QObject::connect ( root, SIGNAL(start(int)), &game, SLOT(onStart(int)) );
     QObject::connect ( root, SIGNAL(takeHole(int,int)), &game, SLOT(takeHole(int,int)) );
 
 	view.show();

@@ -11,13 +11,4 @@ Text {
 
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            main.start();
-            blurEffect.start()
-            fadeEffect.start()
-        }
-    }
 }

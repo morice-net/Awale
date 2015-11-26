@@ -40,6 +40,14 @@ Item  {
             id: button1player
             text: qsTr("1 player");
             anchors.bottom: button2players.top
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    main.start(1);
+                    blurEffect.start()
+                    fadeEffect.start()
+                }
+            }
         }
 
         // Button 2 players
@@ -47,6 +55,14 @@ Item  {
             id: button2players
             text: qsTr("2 players");
             anchors.bottom: buttonSettings.top
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    main.start(2);
+                    blurEffect.start()
+                    fadeEffect.start()
+                }
+            }
         }
 
         // Button Settings
@@ -54,6 +70,12 @@ Item  {
             id: buttonSettings
             text: qsTr("Settings");
             y: parent.height * 0.8 - height
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    main.settings();
+                }
+            }
         }
 
 
