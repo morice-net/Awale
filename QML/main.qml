@@ -7,6 +7,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: main
     visible: true
+    focus: true // For the keys listener
     width: 600
     height:800
 
@@ -33,5 +34,22 @@ Item {
     }
 
     StartPage {
+        id: startPage
+    }
+
+    ConfirmPage {
+        id: confirmPage
+    }
+
+    Keys.onPressed: {
+        if (event.key == Qt.Key_Escape) {
+            console.log("Confirm exit ?");
+            if (confirmPage.visible) {
+                confirmPage.visible = false;
+            } else {
+                confirmPage.visible = true;
+            }
+
+        }
     }
 }

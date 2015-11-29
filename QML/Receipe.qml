@@ -4,17 +4,12 @@ import QtQuick 2.3
 //import "QML"
 
 Rectangle {
-    color:"#000000"
+    color: player != main.playerTurn ? "#000000" : "#ecff40"
     radius: 15
     height: halve1.height / 2
-    width: halve1.width / 2
+    width: halve1.width / 3
     anchors.horizontalCenter:  parent.horizontalCenter
-    border {
-        color: player != main.playerTurn ? "#000000" : "#ffffff";
-        onColorChanged: Transition {
-            NumberAnimation { property: "color"; duration: 400 }
-        }
-    }
+    border.color: "#000000"
     border.width: 2
 
     property int player

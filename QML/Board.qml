@@ -8,6 +8,21 @@ Item {
     anchors.fill: parent
     anchors.margins: 5
 
+
+    Image {
+        id: revertButton
+        source: "../Images/RevertButton.png"
+
+        anchors.left: settingsButton.right
+        anchors.margins: 5
+    }
+    Image {
+        id: settingsButton
+        source: "../Images/SettingsButton.png"
+
+        anchors.left: parent.left
+        anchors.margins: 5
+    }
     Item {
         anchors.top: parent.top
         anchors.left: parent.left
@@ -18,6 +33,7 @@ Item {
             anchors.centerIn: parent
             player: 2
         }
+
     }
 
     Item {

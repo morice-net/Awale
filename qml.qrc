@@ -15,5 +15,9 @@
         <file>Images/Star.png</file>
         <file>Images/Title.png</file>
         <file>QML/MenuButton.qml</file>
+        <file>Images/SettingsButton.png</file>
+        <file>Images/RevertButton.png</file>
+        <file>Images/ConfirmBox.png</file>
+        <file>QML/ConfirmPage.qml</file>
     </qresource>
 </RCC>
