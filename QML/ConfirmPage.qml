@@ -35,21 +35,33 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: deactivate()
+        onClicked: parent.visible = false
+    }
+
+    Image {
+        id: validateButton
+        source: "../Images/ValidateButton.png"
+        y: box.y + box.height - height
+        x: box.x + box.width/2  + box.width / 20
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if (startPage.visible) {
+                    Qt.quit();
+                } else {
+                    startPage.init();
+                }
+                confirmPage.visible = false;
+            }
+        }
     }
 
     onVisibleChanged: {
         if (opacity > 0) {
-            deactivate()
+            confirmPage.opacity = 0;
+            box.y = -box.height;
         } else {
             activate.start();
         }
-    }
-
-    function deactivate() {
-        confirmPage.opacity = 0;
-        box.y = -box.height;
-        visible = false;
-        main.forceActiveFocus();
     }
 }

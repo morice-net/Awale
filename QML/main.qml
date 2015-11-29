@@ -8,6 +8,7 @@ Item {
     id: main
     visible: true
     focus: true // For the keys listener
+
     width: 600
     height:800
 

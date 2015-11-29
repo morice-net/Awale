@@ -19,5 +19,6 @@
         <file>Images/RevertButton.png</file>
         <file>Images/ConfirmBox.png</file>
         <file>QML/ConfirmPage.qml</file>
+        <file>Images/ValidateButton.png</file>
     </qresource>
 </RCC>
