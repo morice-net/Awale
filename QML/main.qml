@@ -9,6 +9,7 @@ Item {
     visible: true
     focus: true // For the keys listener
 
+    //anchors.fill: parent
     width: 600
     height:800
 
@@ -41,9 +42,10 @@ Item {
     Image {
         id: settingsButton
         source: "../Images/SettingsButton.png"
-
-        anchors.left: parent.left
-        anchors.top: parent.top
+        width: Math.max(main.width/11.5,main.height/11.5)
+        height: width
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         anchors.margins: 5
     }
 
