@@ -43,7 +43,6 @@ Item  {
                 anchors.fill: parent
                 onClicked: {
                     main.start(1);
-                    blurEffect.start()
                     fadeEffect.start()
                 }
             }
@@ -58,7 +57,6 @@ Item  {
                 anchors.fill: parent
                 onClicked: {
                     main.start(2);
-                    blurEffect.start()
                     fadeEffect.start()
                 }
             }
@@ -76,23 +74,13 @@ Item  {
                 }
             }
         }
-
-
     }
 
     function init() {
-        noBlurEffect.start();
         opacity = 1;
     }
 
-    FastBlur {
-        id: blurGraphics
-        anchors.fill: startPage
-        source: startPage
-        radius: 0
-
-        NumberAnimation on radius { id: blurEffect; running: false; to: 4; duration: 1000 }
-        NumberAnimation on radius { id: noBlurEffect; running: false; to: 0 }
-    }
     NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
+
+
 }

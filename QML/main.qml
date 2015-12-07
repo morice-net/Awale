@@ -38,6 +38,15 @@ Item {
         id: startPage
     }
 
+    Image {
+        id: settingsButton
+        source: "../Images/SettingsButton.png"
+
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 5
+    }
+
     ConfirmPage {
         id: confirmPage
     }
@@ -52,5 +61,9 @@ Item {
             }
 
         }
+    }
+
+    function settings() {
+        console.log(" Settings Called !!!");
     }
 }

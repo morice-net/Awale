@@ -13,14 +13,7 @@ Item {
         id: revertButton
         source: "../Images/RevertButton.png"
 
-        anchors.left: settingsButton.right
-        anchors.margins: 5
-    }
-    Image {
-        id: settingsButton
-        source: "../Images/SettingsButton.png"
-
-        anchors.left: parent.left
+        anchors.right: board.right
         anchors.margins: 5
     }
     Item {
