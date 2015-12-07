@@ -4,7 +4,7 @@ Text {
     anchors.margins: parent.height * 0.05
     anchors.horizontalCenter: parent.horizontalCenter
 
-    color: "#935925"
+    color: "#5c290a"
     font.family: "Droid Serif"
     font.bold: true
     font.pointSize: parent.height * 0.03

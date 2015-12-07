@@ -52,7 +52,7 @@ Item  {
         MenuButton {
             id: button2players
             text: qsTr("2 players");
-            anchors.bottom: buttonSettings.top
+            anchors.bottom: buttonRules.top
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -64,8 +64,8 @@ Item  {
 
         // Button Settings
         MenuButton {
-            id: buttonSettings
-            text: qsTr("Settings");
+            id: buttonRules
+            text: qsTr("Rules");
             y: parent.height * 0.8 - height
             MouseArea {
                 anchors.fill: parent
