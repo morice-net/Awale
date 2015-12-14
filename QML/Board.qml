@@ -8,14 +8,6 @@ Item {
     anchors.fill: parent
     anchors.margins: 5
 
-
-    Image {
-        id: revertButton
-        source: "../Images/RevertButton.png"
-
-        anchors.right: board.right
-        anchors.margins: 5
-    }
     Item {
         anchors.top: parent.top
         anchors.left: parent.left
@@ -72,4 +64,18 @@ Item {
     StoneParticles {
         id: particles
     }
+
+
+    BoardButton {
+        id: revertButton
+        source: "../Images/RevertButton.png"
+        anchors.top: parent.top
+    }
+
+    BoardButton {
+        id: settingsButton
+        source: "../Images/SettingsButton.png"
+        anchors.bottom: parent.bottom
+    }
+
 }

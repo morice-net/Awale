@@ -20,5 +20,7 @@
         <file>Images/ConfirmBox.png</file>
         <file>QML/ConfirmPage.qml</file>
         <file>Images/ValidateButton.png</file>
+        <file>QML/Separator.qml</file>
+        <file>QML/BoardButton.qml</file>
     </qresource>
 </RCC>

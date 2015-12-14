@@ -46,6 +46,8 @@ Item  {
                     fadeEffect.start()
                 }
             }
+            Separator {}
+
         }
 
         // Button 2 players
@@ -60,17 +62,18 @@ Item  {
                     fadeEffect.start()
                 }
             }
+            Separator {}
         }
 
-        // Button Settings
+        // Button Rules
         MenuButton {
             id: buttonRules
             text: qsTr("Rules");
-            y: parent.height * 0.8 - height
+            y: parent.height * 0.8
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    main.settings();
+                    main.rules();
                 }
             }
         }
@@ -81,6 +84,5 @@ Item  {
     }
 
     NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
-
 
 }

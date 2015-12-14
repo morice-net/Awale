@@ -5,12 +5,11 @@ import QtQuick 2.3
 
 Item {
     id: hole
-    width: halve.width / 6 - 2
     height: width
 
     property int numberOfStone
     Image {
-        width: halve.width / 6 - 2
+        width: parent.width
         height: width
         anchors.centerIn: parent
         source: "../Images/Hole.png"

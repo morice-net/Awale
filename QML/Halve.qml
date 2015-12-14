@@ -21,6 +21,7 @@ Item {
         Repeater {
             model: 6
             Hole {
+                width: halve.width / 6 - 2
                 numberOfStone: halve.player == 1 ? main.playerHalve1[index] : main.playerHalve2[index]
             }
         }

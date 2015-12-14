@@ -7,42 +7,31 @@ import QtQuick.Particles 2.0
 
 Item {
     id: stone
-    anchors.centerIn: parent
-    height: parent.height - 0.35 * parent.height
-    width: height
+    anchors.fill: parent
+
     property int numberOfStone
     property int textSize: stoneText.height - 5
+    Repeater {
+        model: numberOfStone
+        Image {
+            id: stoneImage
+            height: 0.25 * stone.height
+            width: height
+            x: { getRandomNumber(stone.height,width) }
+            y: { getRandomNumber(stone.height,width) }
+            source: "../Images/Stone.png"
+        }
+    }
 
-    Image {
-        id: stoneImage
-        anchors.fill: parent
-        source: "../Images/Stone.png"
-    }
-    InnerShadow {
-        anchors.fill: stoneImage
-        radius: 8.0
-        samples: 16
-        horizontalOffset: -3
-        verticalOffset: 3
-        color: "#b0000000"
-        source: stoneImage
-    }
-    DropShadow {
-        anchors.fill: stoneImage
-        horizontalOffset: 2
-        verticalOffset: 1
-        radius: 8.0
-        samples: 16
-        color: "#80000000"
-        source: stoneImage
-    }
     Rectangle {
         id: textBack
-        height: parent.height /2
+        height: parent.height /4
         width: height
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        color: "#88FFFFBB"
+        anchors.margins: -2
+        border.color: "#FFFFFF"
+        color: "#DDFFFFFF"
         radius: 10
 
         Text {
@@ -77,6 +66,20 @@ Item {
         } else {
             takeAnimation.start();
         }
+    }
+    function getRandomNumber(numberMax,width) {
+        numberMax -= (20-numberOfStone);
+        var randomNumber = 0;
+        if (numberMax <= width) {
+            return 0;
+        }
+        while (randomNumber < width/2 || randomNumber > (numberMax-width/2)) {
+            randomNumber = Math.random()*(numberMax)+width/2;
+            if (randomNumber <= 0) {
+                return 0;
+            }
+        }
+        return randomNumber;
     }
 
 }

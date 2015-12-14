@@ -4,6 +4,7 @@ import QtQuick 2.3
 //import "QML"
 
 Rectangle {
+    id: halve
     color: player != main.playerTurn ? "#000000" : "#ecff40"
     radius: 15
     height: halve1.height / 2
@@ -13,7 +14,10 @@ Rectangle {
     border.width: 2
 
     property int player
-    Stone {
+    Hole {
+
+        width: parent.height
+        anchors.centerIn: parent
         numberOfStone: player == 1 ? main.playerScore1 : main.playerScore2
     }
 
