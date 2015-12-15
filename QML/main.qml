@@ -41,6 +41,9 @@ Rectangle {
         id: confirmPage
     }
 
+    KLoading {
+        id: load
+    }
     Keys.onPressed: {
         if (event.key == Qt.Key_Escape || event.key == Qt.Key_Back) {
             console.log("Confirm exit ?");
@@ -55,5 +58,9 @@ Rectangle {
 
     function rules() {
         console.log(" Settings Called !!!");
+    }
+
+    Component.onCompleted: {
+        load.close();
     }
 }

@@ -22,5 +22,8 @@
         <file>Images/ValidateButton.png</file>
         <file>QML/Separator.qml</file>
         <file>QML/BoardButton.qml</file>
+        <file>Images/KGears.png</file>
+        <file>Images/KIco.png</file>
+        <file>QML/KLoading.qml</file>
     </qresource>
 </RCC>
