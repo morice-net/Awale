@@ -9,10 +9,11 @@ Rectangle {
     visible: true
     focus: true // For the keys listener
 
-    anchors.fill: parent
-    //width: 600
-    //height:800
+    width: 600
+    height:800
+    //anchors.fill: parent
 
+    property int winner: 0
     property int playerScore1: 0
     property int playerScore2: 0
     property int takenHole: 0
@@ -37,6 +38,12 @@ Rectangle {
         id: startPage
     }
 
+    WinPage {
+        id: winPage
+        opacity: 0
+        visible: false
+    }
+
     ConfirmPage {
         id: confirmPage
     }
@@ -44,6 +51,7 @@ Rectangle {
     KLoading {
         id: load
     }
+
     Keys.onPressed: {
         if (event.key == Qt.Key_Escape || event.key == Qt.Key_Back) {
             console.log("Confirm exit ?");
@@ -57,10 +65,19 @@ Rectangle {
     }
 
     function rules() {
-        console.log(" Settings Called !!!");
+        console.log(" * Rules Called");
     }
 
     Component.onCompleted: {
         load.close();
+    }
+
+    onWinnerChanged: {
+        if (winner == -1) {
+            return;
+        } else {
+            winPage.visible = true;
+            winPage.start();
+        }
     }
 }

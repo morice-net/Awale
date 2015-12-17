@@ -35,12 +35,11 @@ public:
 	void setPlayerTurn(int playerTurn);
 
 signals:
-	void playerScore1Changed();
-	void playerScore2Changed();
-	void playerHalve1Changed();
-	void playerHalve2Changed();
+	void playerScoreChanged(int player);
+	void playerHalveChanged(int player);
 	void takenHoleChanged();
 	void playerTurnChanged();
+	void awaleDone(int winner);
 
 private:
     int m_playerScore1;

@@ -13,8 +13,8 @@ ParticleSystem {
 
     ImageParticle {
         source: "../Images/Star.png"
-        alpha: 0.5
-        colorVariation: 0.6
+        alpha: 0.8
+        colorVariation: 0.1
     }
     
     Emitter {
@@ -23,8 +23,8 @@ ParticleSystem {
         lifeSpan: 300
         enabled: false
         velocity: AngleDirection{magnitude: 64; angleVariation: 360}
-        size: 25
-        sizeVariation: 8
+        size: 45
+        sizeVariation: 15
     }
 
     Timer {

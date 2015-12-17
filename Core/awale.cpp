@@ -133,10 +133,21 @@ int Awale::playerScore1() const
 
 void Awale::setPlayerScore1(int playerScore1)
 {
-	if (playerScore1 != m_playerScore1) {
-		m_playerScore1 = playerScore1;
-		emit playerScore1Changed();
+	if (playerScore1 == m_playerScore1) {
+		return;
 	}
+	if (playerScore1 >= 25) {
+		emit awaleDone(1);
+		return;
+	}
+
+	if (m_playerScore2 == 24 && playerScore1 == 24 ) {
+		emit awaleDone(0);
+		return;
+	}
+
+	m_playerScore1 = playerScore1;
+	emit playerScoreChanged(1);
 }
 
 int Awale::playerScore2() const
@@ -146,10 +157,21 @@ int Awale::playerScore2() const
 
 void Awale::setPlayerScore2(int playerScore2)
 {
-	if (playerScore2 != m_playerScore2) {
-		m_playerScore2 = playerScore2;
-		emit playerScore2Changed();
+	if (playerScore2 == m_playerScore2) {
+		return;
 	}
+	if (playerScore2 >= 25) {
+		emit awaleDone(2);
+		return;
+	}
+
+	if (m_playerScore1 == 24 && playerScore2 == 24 ) {
+		emit awaleDone(0);
+		return;
+	}
+
+	m_playerScore2 = playerScore2;
+	emit playerScoreChanged(2);
 }
 
 QList<int> Awale::playerHalve1() const
@@ -161,7 +183,7 @@ void Awale::setPlayerHalve1(const QList<int> &playerHalve1)
 {
 	if (playerHalve1 != m_playerHalve1) {
 		m_playerHalve1 = playerHalve1;
-		emit playerHalve1Changed();
+		emit playerHalveChanged(1);
 	}
 }
 
@@ -174,7 +196,7 @@ void Awale::setPlayerHalve2(const QList<int> &playerHalve2)
 {
 	if (playerHalve2 != m_playerHalve2) {
 		m_playerHalve2 = playerHalve2;
-		emit playerHalve2Changed();
+		emit playerHalveChanged(2);
 	}
 }
 

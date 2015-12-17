@@ -4,12 +4,11 @@ Game::Game(QObject *parent) :
 	QObject(parent), m_root(0), m_awale(), m_mode(Versus)
 {
 	m_awale.initialize();
-    connect( &m_awale, &Awale::playerHalve1Changed, this, &Game::updateView);
-    connect( &m_awale, &Awale::playerHalve2Changed, this, &Game::updateView);
-    connect( &m_awale, &Awale::playerScore1Changed, this, &Game::updateView);
-    connect( &m_awale, &Awale::playerScore2Changed, this, &Game::updateView);
+	connect( &m_awale, &Awale::playerHalveChanged, this, &Game::updateView);
+	connect( &m_awale, &Awale::playerScoreChanged, this, &Game::updateView);
     connect( &m_awale, &Awale::takenHoleChanged, this, &Game::updateView);
     connect( &m_awale, &Awale::playerTurnChanged, this, &Game::updateView);
+	connect( &m_awale, &Awale::awaleDone, this, &Game::gameDone);
 }
 
 
@@ -24,6 +23,12 @@ void Game::updateView()
 	m_root->setProperty("playerHalve1", QVariant::fromValue(m_awale.playerHalve1()));
 	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awale.playerHalve2()));
 	m_root->setProperty("playerTurn", QVariant::fromValue(m_awale.playerTurn()));
+	m_root->setProperty("winner", QVariant::fromValue(-1));
+}
+
+void Game::gameDone(int winner)
+{
+	m_root->setProperty("winner", winner);
 }
 
 void Game::onStart(int mode)

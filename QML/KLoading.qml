@@ -6,40 +6,52 @@ Rectangle {
     color: "#0068c6"
     visible: opacity != 0
 
-    Text {
-        id: loading
-        text: qsTr("Loading...")
-        anchors.centerIn: parent
-        color: "white"
-        font.bold: true
-    }
 
     Image {
         id: gears
-        anchors.margins: 40
-        anchors.bottomMargin: 35
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.centerIn: parent
         source: "../Images/KGears.png"
-        NumberAnimation on opacity { id:closingGears; to: 0;duration: 2000 }
 
     }
     Image {
         id: icone
-        anchors.margins: 20
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.centerIn: parent
         source: "../Images/KIco.png"
-        NumberAnimation on opacity { id:closingIco; to: 0;duration: 2000 }
+    }
+    Text {
+        id: loading
+        text: qsTr("Loading...")
+        anchors.top: icone.bottom
+        anchors.margins: 25
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: "white"
+        font.bold: true
     }
 
-    NumberAnimation { target: loading; property: "opacity"; from: 0.9; to: 0;duration: 1300; easing.type: Easing.InQuad; running: true; loops: Animation.Infinite }
+    SequentialAnimation {
+        id: blinking
+        running: true
+        loops: Animation.Infinite
+        NumberAnimation { target: loading; property: "opacity"; from: 0.8; to: 0.2;duration: 900; easing.type: Easing.InQuad; }
+        NumberAnimation { target: loading; property: "opacity"; from: 0.2; to: 0.8;duration: 900; easing.type: Easing.OutQuad; }
+
+    }
+
+    SequentialAnimation {
+        id: closing
+        ParallelAnimation {
+            NumberAnimation { target: gears; property: "opacity"; to: 0; duration: 1500; easing.type: Easing.OutQuad }
+            NumberAnimation { target: icone; property: "opacity"; to: 0; duration: 1500; easing.type: Easing.OutQuad }
+            NumberAnimation { target: loading; property: "opacity"; to: 0; duration: 1600; easing.type: Easing.OutQuad }
+        }
+        NumberAnimation { target: load; property: "opacity"; to: 0; duration: 1000; easing.type: Easing.OutQuad }
+    }
+
     NumberAnimation { target: gears; property: "rotation"; from: 0; to: 360; duration: 2000; running: true; loops: Animation.Infinite }
-    NumberAnimation on opacity { id:closing; to: 0;duration: 4000 }
+
 
     function close() {
-        closingGears.start();
-        closingIco.start();
+        blinking.stop();
         closing.start();
     }
 }

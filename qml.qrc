@@ -25,5 +25,6 @@
         <file>Images/KGears.png</file>
         <file>Images/KIco.png</file>
         <file>QML/KLoading.qml</file>
+        <file>QML/WinPage.qml</file>
     </qresource>
 </RCC>

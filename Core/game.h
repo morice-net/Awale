@@ -25,6 +25,7 @@ signals:
 
 public slots:
 	void updateView();
+	void gameDone(int winner);
 	void onStart(int mode);
 	void takeHole(int player, int holeNumber);
 
