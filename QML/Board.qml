@@ -78,4 +78,14 @@ Item {
         anchors.bottom: parent.bottom
     }
 
+    function resetAnimation() {
+        if (playerTurn == 1) {
+            halve2.alreadyPlayed = false;
+            halve1.alreadyPlayed = true;
+        } else if (playerTurn == 2) {
+            halve1.alreadyPlayed = false;
+            halve2.alreadyPlayed = true;
+        }
+    }
+
 }

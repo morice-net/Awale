@@ -8,6 +8,9 @@ Item {
     height: width
 
     property int numberOfStone
+    property int player: main.playerTurn
+    property bool alreadyPlayed
+
     Image {
         width: parent.width
         height: width
@@ -18,17 +21,21 @@ Item {
             numberOfStone: hole.numberOfStone
         }
     }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            if (main.playerTurn == player && numberOfStone > 0) {
+            if (main.playerTurn != halve.player) {
+                return;
+            }
+
+            if (numberOfStone > 0) {
                 main.takeHole(player,index);
-            } else {
-                console.log("No autorized");
-                console.log("playerTurn: "+main.playerTurn);
-                console.log("player: "+player);
-                console.log("numberOfStone: "+numberOfStone);
             }
         }
+    }
+
+    onPlayerChanged: {
+        alreadyPlayed = false;
     }
 }

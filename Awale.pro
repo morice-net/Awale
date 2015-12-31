@@ -17,4 +17,3 @@ include(deployment.pri)
 HEADERS += \
     Core/awale.h \
     Core/game.h
-

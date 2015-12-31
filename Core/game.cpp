@@ -5,7 +5,7 @@ Game::Game(QObject *parent) :
 {
 	m_awale.initialize();
 	connect( &m_awale, &Awale::playerHalveChanged, this, &Game::updateView);
-	connect( &m_awale, &Awale::playerScoreChanged, this, &Game::updateView);
+    connect( &m_awale, &Awale::playerScoreChanged, this, &Game::updateView);
     connect( &m_awale, &Awale::takenHoleChanged, this, &Game::updateView);
     connect( &m_awale, &Awale::playerTurnChanged, this, &Game::updateView);
 	connect( &m_awale, &Awale::awaleDone, this, &Game::gameDone);
@@ -38,6 +38,7 @@ void Game::onStart(int mode)
 	} else {
 		m_mode = Versus;
 	}
+    m_awale.initialize();
 	updateView();
 }
 

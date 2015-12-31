@@ -24,6 +24,11 @@ Rectangle {
     signal start(int mode)
     signal takeHole(int player,int index)
 
+    FontLoader {
+        id: candyFont
+        source: "../Ressources/CANDY.TTF"
+    }
+
     Image {
         id: background
         source: "../Images/Background.png"
@@ -76,8 +81,10 @@ Rectangle {
         if (winner == -1) {
             return;
         } else {
-            winPage.visible = true;
-            winPage.start();
+            console.log(winner);
+            winPage.start(winner);
         }
     }
+
+    onPlayerTurnChanged: board.resetAnimation()
 }

@@ -7,8 +7,6 @@ Played throughout West Africa and the Caribbean, Oware and its variants have man
 
 # TODO
 
-* Dropshadow linear gradient doit monter un peu et disparait vite
-
 * on mange pas nos graines
 
 * enlever les signaux d'Awa le

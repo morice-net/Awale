@@ -10,6 +10,7 @@ Item {
     height: parent.height/2
 
     property int player
+    property bool alreadyPlayed: false
     Image {
         id: halveImage
         source: "../Images/Halve.png"
@@ -23,6 +24,7 @@ Item {
             Hole {
                 width: halve.width / 6 - 2
                 numberOfStone: halve.player == 1 ? main.playerHalve1[index] : main.playerHalve2[index]
+                alreadyPlayed: halve.alreadyPlayed
             }
         }
     }

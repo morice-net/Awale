@@ -26,5 +26,7 @@
         <file>Images/KIco.png</file>
         <file>QML/KLoading.qml</file>
         <file>QML/WinPage.qml</file>
+        <file>Images/MessageBox.png</file>
+        <file>Ressources/CANDY.TTF</file>
     </qresource>
 </RCC>

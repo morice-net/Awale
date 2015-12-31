@@ -39,6 +39,7 @@ Item  {
             id: button1player
             text: qsTr("1 player");
             anchors.bottom: button2players.top
+            font.family: candyFont.name
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -55,6 +56,7 @@ Item  {
             id: button2players
             text: qsTr("2 players");
             anchors.bottom: buttonRules.top
+            font.family: candyFont.name
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
@@ -70,6 +72,7 @@ Item  {
             id: buttonRules
             text: qsTr("Rules");
             y: parent.height * 0.8
+            font.family: candyFont.name
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
