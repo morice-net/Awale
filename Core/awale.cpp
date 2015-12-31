@@ -59,13 +59,6 @@ void Awale::resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QLi
 		halve2[holeNumber] = 0;
 		setPlayerHalve2(halve2);
 	}
-
-	// This hole is empty, let's go to the previous
-	holeNumber--;
-	if (holeNumber < 0)	{
-		holeNumber = m_playerHalve1.size()-1;
-		halveNumber = (halveNumber == 1 ? 2 : 1);
-	}
 }
 
 /*!
@@ -107,17 +100,22 @@ void Awale::draw(int playerNumber, int holeNumber)
 	}
 
 	// Now we eat the stones, take care it is not exactly takeHole
-	int numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
-	while (numberOfStone == 2 || numberOfStone == 3) {
-		if (playerNumber == 1) {
-			setPlayerScore1(m_playerScore1 + numberOfStone);
-			resetHole(halveNumber, holeNumber, halve1, halve2);
-		} else {
-			setPlayerScore2(m_playerScore2 + numberOfStone);
-			resetHole(halveNumber, holeNumber, halve1, halve2);
-		}
-		numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
-	}
+    if ( halveNumber != m_playerTurn) {
+        int numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
+        while (numberOfStone == 2 || numberOfStone == 3) {
+            if (playerNumber == 1) {
+                setPlayerScore1(m_playerScore1 + numberOfStone);
+                resetHole(halveNumber, holeNumber, halve1, halve2);
+            } else {
+                setPlayerScore2(m_playerScore2 + numberOfStone);
+                resetHole(halveNumber, holeNumber, halve1, halve2);
+            }
+            numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
+            if (holeNumber < 0)	{
+                break;
+            }
+        }
+    }
 
 	// Update the player turn
 	//TODO check nothing in the opponent halve is empty maybe :-)

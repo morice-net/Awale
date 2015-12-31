@@ -7,9 +7,7 @@ Played throughout West Africa and the Caribbean, Oware and its variants have man
 
 # TODO
 
-* on mange pas nos graines
-
-* enlever les signaux d'Awa le
+* enlever les signaux d'Awale
 
 * transformer l'attribut awale en vector d'Awale
 
