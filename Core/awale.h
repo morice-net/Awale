@@ -7,11 +7,18 @@
 class Awale
 {
 public:
+	enum Winner {
+		NoWinner,
+		Player1,
+		Player2,
+		Draw
+	};
+
     Awale();
     void initialize();
     void takeHole(int playerNumber, int holeNumber);
 	void resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QList<int> &halve2);
-    void draw(int playerNumber, int holeNumber);
+	Winner draw(int playerNumber, int holeNumber);
 
     // Getter and Setters
     int playerScore1() const;

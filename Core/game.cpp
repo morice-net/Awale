@@ -21,12 +21,28 @@ void Game::updateView()
 	m_root->setProperty("playerHalve1", QVariant::fromValue(m_awales.last().playerHalve1()));
 	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awales.last().playerHalve2()));
 	m_root->setProperty("playerTurn", QVariant::fromValue(m_awales.last().playerTurn()));
-	m_root->setProperty("winner", QVariant::fromValue(-1));
 }
 
-void Game::gameDone(int winner)
+void Game::gameDone(Awale::Winner winner)
 {
-	m_root->setProperty("winner", winner);
+	int winnerProperty;
+	switch (winner) {
+	case Awale::Player1:
+		winnerProperty = 1;
+		break;
+	case Awale::Player2:
+		winnerProperty = 2;
+		break;
+	case Awale::Draw:
+		winnerProperty = 0;
+		break;
+	case Awale::NoWinner:
+		// Intended fold down
+	default:
+		winnerProperty = -1;
+		break;
+	}
+	m_root->setProperty("winner", winnerProperty);
 }
 
 void Game::onStart(int mode)
@@ -46,6 +62,7 @@ void Game::onStart(int mode)
 	awale.initialize();
 	m_awales.append(awale);
 	updateView();
+	gameDone(Awale::NoWinner);
 }
 
 void Game::takeHole(int player, int holeNumber)
@@ -57,9 +74,13 @@ void Game::takeHole(int player, int holeNumber)
 	Awale newTurn;
 	newTurn = m_awales.last();
 	newTurn.takeHole(player,holeNumber);
-	newTurn.draw(player,holeNumber);
+	Awale::Winner isThereAWinner = newTurn.draw(player,holeNumber);
 	m_awales.append(newTurn);
 	updateView();
+	if (isThereAWinner != Awale::NoWinner)
+	{
+		gameDone(isThereAWinner);
+	}
 }
 
 /* Getters and Setters */

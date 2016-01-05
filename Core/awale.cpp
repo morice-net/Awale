@@ -66,7 +66,7 @@ void Awale::resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QLi
  * \param playerNumber
  * \param holeNumber
  */
-void Awale::draw(int playerNumber, int holeNumber)
+Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 {
 	// Record help sending step by step holes up and down, it will animate the UI
 	int halveNumber = playerNumber;
@@ -120,6 +120,17 @@ void Awale::draw(int playerNumber, int holeNumber)
 	// Update the player turn
 	//TODO check nothing in the opponent halve is empty maybe :-)
 	setPlayerTurn(m_playerTurn == 1 ? 2 : 1);
+
+	if (m_playerScore1 >= 25) {
+		return Player1;
+	} else if (m_playerScore2 >= 25) {
+		return Player2;
+	} else if (m_playerScore1 == 24 && m_playerScore2 == 24) {
+		return Draw;
+	} else {
+		return NoWinner; // Game is not done yet
+	}
+
 }
 
 /* Getters & Setters */
@@ -132,13 +143,6 @@ int Awale::playerScore1() const
 void Awale::setPlayerScore1(int playerScore1)
 {
 	if (playerScore1 == m_playerScore1) {
-		return;
-	}
-	if (playerScore1 >= 25) {
-		return;
-	}
-
-	if (m_playerScore2 == 24 && playerScore1 == 24 ) {
 		return;
 	}
 
