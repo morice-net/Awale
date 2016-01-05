@@ -31,7 +31,7 @@ public slots:
 
 private:
 	QQuickItem *m_root;
-	Awale m_awale;
+	QVector<Awale> m_awales;
 	Mode m_mode;
 
 };
