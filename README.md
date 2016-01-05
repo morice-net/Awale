@@ -7,12 +7,6 @@ Played throughout West Africa and the Caribbean, Oware and its variants have man
 
 # TODO
 
-* transformer l'attribut awale en vector d'Awale
-
-* mettre a jour l'État du monde lorsque un awale est ajouté a la liste onlistchanged last is printed
-
-* ajout d'un awale lorsque le joueur joue un coup append (jouer , mettre a jour les scores, ajout a la liste)
-
 * innershadow pour les coups possible
 qvector bool [6][2] playable holes
 interdit d'affame (jouer le coup sans mettre a jour la liste, sans mettre a jour le score pou tester) ou numberofstone == 0
