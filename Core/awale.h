@@ -4,10 +4,8 @@
 #include <QObject>
 #include <QList>
 
-class Awale : public QObject
+class Awale
 {
-	Q_OBJECT
-
 public:
     Awale();
     void initialize();
