@@ -7,8 +7,6 @@ Played throughout West Africa and the Caribbean, Oware and its variants have man
 
 # TODO
 
-* enlever les signaux d'Awale
-
 * transformer l'attribut awale en vector d'Awale
 
 * mettre a jour l'État du monde lorsque un awale est ajouté a la liste onlistchanged last is printed

@@ -34,13 +34,6 @@ public:
 	int playerTurn() const;
 	void setPlayerTurn(int playerTurn);
 
-signals:
-	void playerScoreChanged(int player);
-	void playerHalveChanged(int player);
-	void takenHoleChanged();
-	void playerTurnChanged();
-	void awaleDone(int winner);
-
 private:
     int m_playerScore1;
     int m_playerScore2;
