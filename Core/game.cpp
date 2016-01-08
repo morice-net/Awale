@@ -18,9 +18,10 @@ void Game::updateView()
 	m_root->setProperty("playerScore1", m_awales.last().playerScore1());
 	m_root->setProperty("playerScore2", m_awales.last().playerScore2());
 	m_root->setProperty("takenHole", m_awales.last().takenHole());
-	m_root->setProperty("playerHalve1", QVariant::fromValue(m_awales.last().playerHalve1()));
-	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awales.last().playerHalve2()));
+	m_root->setProperty("playerHalve1", QVariant::fromValue(m_awales.last().playerHalve1().toList()));
+	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awales.last().playerHalve2().toList()));
 	m_root->setProperty("playerTurn", QVariant::fromValue(m_awales.last().playerTurn()));
+	m_root->setProperty("playable", QVariant::fromValue(m_awales.last().playables().toList()));
 }
 
 void Game::gameDone(Awale::Winner winner)
@@ -65,7 +66,7 @@ void Game::onStart(int mode)
 	gameDone(Awale::NoWinner);
 }
 
-void Game::takeHole(int player, int holeNumber)
+void Game::onTakeHole(int player, int holeNumber)
 {
 	if (m_awales.isEmpty()) {
 		return;
@@ -76,11 +77,23 @@ void Game::takeHole(int player, int holeNumber)
 	newTurn.takeHole(player,holeNumber);
 	Awale::Winner isThereAWinner = newTurn.draw(player,holeNumber);
 	m_awales.append(newTurn);
-	updateView();
-	if (isThereAWinner != Awale::NoWinner)
-	{
+
+	if (isThereAWinner != Awale::NoWinner) {
+		updateView();
 		gameDone(isThereAWinner);
+	} else {
+		newTurn.computePlayable();
+		updateView();
 	}
+}
+
+void Game::onRevert()
+{
+	if (m_awales.isEmpty()) {
+		return;
+	}
+	m_awales.removeLast();
+	updateView();
 }
 
 /* Getters and Setters */

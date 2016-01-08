@@ -14,6 +14,7 @@ Rectangle {
     border.width: 2
 
     property int player
+    property int animRotation: 0
     Text {
         anchors.fill: parent
         text: player == 1 ? main.playerScore1 : main.playerScore2
@@ -24,5 +25,14 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
     }
 
-    transform: Rotation { origin.x: width/2 ; origin.y: height/2; angle: player == 1 ? 0 : 180 }
+    transform: Rotation { origin.x: width/2 ; origin.y: height/2; angle: player == 1 ? 0 + animRotation : 180 + animRotation }
+
+    SequentialAnimation {
+        running: player == main.playerTurn
+        loops: Animation.Infinite
+        PauseAnimation { duration: 3000 }
+        NumberAnimation { target: halve; property: "animRotation"; from: 0; to: -15; easing.type: Easing.InElastic; duration: 700 }
+        NumberAnimation { target: halve; property: "animRotation"; from: -15; to: 10; duration: 100 }
+        NumberAnimation { target: halve; property: "animRotation"; from: 10; to: 0; easing.type: Easing.OutElastic; duration: 600 }
+    }
 }

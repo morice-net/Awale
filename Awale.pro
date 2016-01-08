@@ -4,7 +4,9 @@ QT += qml quick
 
 SOURCES += main.cpp \
     Core/awale.cpp \
-    Core/game.cpp
+    Core/game.cpp \
+    Core/graphbuilder.cpp \
+    Core/holeevaluator.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,4 +18,6 @@ include(deployment.pri)
 
 HEADERS += \
     Core/awale.h \
-    Core/game.h
+    Core/game.h \
+    Core/graphbuilder.h \
+    Core/holeevaluator.h
