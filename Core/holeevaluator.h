@@ -6,6 +6,8 @@
 
 #include "awale.h"
 
+typedef QVector< QVector<int> > AwaleList;
+
 class HoleEvaluator : public QObject
 {
 	Q_OBJECT
@@ -19,7 +21,8 @@ signals:
 public slots:
 
 private:
-	Awale* m_awale;
+	Awale* m_initialAwale;
+	AwaleList m_awale;
 	int m_deep;
 	int m_gain;
 	int m_loss;
