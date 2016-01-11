@@ -19,7 +19,7 @@ Rectangle {
     property int takenHole: 0
     property var playerHalve1: [0,0,0,0,0,0]
     property var playerHalve2: [0,0,0,0,0,0]
-    property var playable: [1,1,1,1,1,1,0,0,0,2,0,0]
+    property var playable: [0,0,0,0,0,0,0,0,0,0,0,0]
     property int playerTurn: 0 // 1 or 2 when initialized and playing
 
     signal start(int mode)

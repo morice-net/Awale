@@ -76,14 +76,14 @@ void Game::onTakeHole(int player, int holeNumber)
 	newTurn = m_awales.last();
 	newTurn.takeHole(player,holeNumber);
 	Awale::Winner isThereAWinner = newTurn.draw(player,holeNumber);
+	if (isThereAWinner == Awale::NoWinner) {
+		newTurn.computePlayable();
+	}
 	m_awales.append(newTurn);
 
+	updateView();
 	if (isThereAWinner != Awale::NoWinner) {
-		updateView();
 		gameDone(isThereAWinner);
-	} else {
-		newTurn.computePlayable();
-		updateView();
 	}
 }
 

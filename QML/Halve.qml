@@ -26,6 +26,7 @@ Item {
                 numberOfStone: halve.player == 1 ? main.playerHalve1[index] : main.playerHalve2[index]
                 alreadyPlayed: halve.alreadyPlayed
                 realIndex: (halve.player-1)*6+index
+                enlightMode: main.playable[realIndex]
             }
         }
     }

@@ -12,7 +12,7 @@ Item {
     property int player: main.playerTurn
     property bool alreadyPlayed
     property int realIndex
-    property int enlightMode: main.playable[realIndex]
+    property bool enlightMode
 
     Image {
         width: parent.width
@@ -29,7 +29,7 @@ Item {
             verticalOffset: 1
             spread: 0.1
             source: parent
-            visible: enlightMode == 1
+            visible: enlightMode
             SequentialAnimation {
                 running: true
                 loops: Animation.Infinite
@@ -47,7 +47,7 @@ Item {
             verticalOffset: 1
             spread: 0.1
             source: parent
-            visible: enlightMode == 2
+            visible: false/*enlightMode == 2*/
         }
 
         Stone {
@@ -70,6 +70,7 @@ Item {
 
     onPlayerChanged: {
         alreadyPlayed = false;
-        enlightMode = main.playable[realIndex];
     }
+
+    onEnlightModeChanged: console.log("EnlightModeChanged: " + enlightMode + " - realIndex: " + realIndex)
 }
