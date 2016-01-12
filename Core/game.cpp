@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include "graphbuilder.h"
+
 Game::Game(QObject *parent) :
 	QObject(parent), m_root(0), m_awales(), m_mode(Versus)
 {
@@ -84,6 +86,9 @@ void Game::onTakeHole(int player, int holeNumber)
 	updateView();
 	if (isThereAWinner != Awale::NoWinner) {
 		gameDone(isThereAWinner);
+	} else if (newTurn.playerTurn() == 2 && m_mode == Solo) {
+		GraphBuilder solution(&newTurn,this);
+		onTakeHole(newTurn.playerTurn(),solution.selectBestHole());
 	}
 }
 

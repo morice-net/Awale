@@ -7,9 +7,11 @@ HoleEvaluator::HoleEvaluator(Awale* awale, QObject* parent) :
 
 int HoleEvaluator::evaluate(int holeNumber)
 {
-	m_elapsed.start();
+	m_elapsed.restart();
 	QVector<int> firstAwale(12);
 	firstAwale << m_initialAwale->playerHalve1() << m_initialAwale->playerHalve2();
+
+	return 1;
 }
 
 qint64 HoleEvaluator::elapsed()

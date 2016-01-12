@@ -10,13 +10,18 @@ class GraphBuilder : public QObject
 {
 	Q_OBJECT
 public:
-	explicit GraphBuilder(QObject *parent = 0);
+	explicit GraphBuilder(Awale* awale, QObject *parent = 0);
+	int selectBestHole();
+
+	Awale *awale() const;
+	void setAwale(Awale *awale);
 
 signals:
 
 public slots:
 
 private:
+	Awale* m_awale;
 };
 
 #endif // GRAPHBUILDER_H
