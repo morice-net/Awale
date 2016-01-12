@@ -40,8 +40,11 @@ public:
 	int playerTurn() const;
 	void setPlayerTurn(int playerTurn);
 
-	QVector<bool> playables() const;
-	void setPlayables(const QVector<bool> &playables);
+	QVector<int> playables() const;
+	void setPlayables(const QVector<int> &playables);
+
+	int lastPlayed() const;
+	void setLastplayed(int lastPlayed);
 
 private:
 	int m_playerScore1;
@@ -50,7 +53,8 @@ private:
 	QVector<int> m_playerHalve2;
     int m_takenHole;
 	int m_playerTurn; // 1 or 2 while playing
-	QVector<bool> m_playables;
+	QVector<int> m_playables;
+	int m_lastPlayed;
 };
 
 #endif // AWALE_H

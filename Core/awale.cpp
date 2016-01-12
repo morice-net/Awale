@@ -8,6 +8,7 @@ Awale::Awale()
 	m_playerScore2 = 0;
 	m_takenHole = 0;
 	m_playerTurn = 0;
+	m_lastPlayed = -1;
 }
 
 /*!
@@ -21,7 +22,7 @@ void Awale::initialize()
 	setPlayerScore2(0);
 	setTakenHole(0);
 	setPlayerTurn(1);
-	setPlayables(QVector<bool>() << true << true << true << true << true << true << false << false << false << false << false << false);
+	setPlayables(QVector<int>() << 1 << 1 << 1 << 1 << 1 << 1 << 0 << 0 << 0 << 0 << 0 << 0);
 }
 
 /*!
@@ -69,6 +70,9 @@ void Awale::resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, Q
  */
 Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 {
+	// Note this the last played
+	m_lastPlayed = holeNumber + (playerNumber - 1) * 6;
+
 	// Record help sending step by step holes up and down, it will animate the UI
 	int halveNumber = playerNumber;
 	QVector<int> halve1 = m_playerHalve1;
@@ -119,7 +123,6 @@ Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 	}
 
 	// Update the player turn
-	//TODO check nothing in the opponent halve is empty maybe :-)
 	setPlayerTurn(m_playerTurn == 1 ? 2 : 1);
 
 	if (m_playerScore1 >= 25) {
@@ -140,16 +143,17 @@ Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 void Awale::computePlayable()
 {
 	// Init the vector
-	QVector<bool> playableVector;
+	QVector<int> playableVector;
 	for (int i = 0; i < 12; ++i) {
-		playableVector << false;
+		playableVector << 0;
 	}
+
 	// Feed the playables
 	if (m_playerTurn == 1) {
 		for (int j = 0; j < 6; ++j) {
 			//TODO hungry check
 			if (m_playerHalve1.at(j) != 0) {
-				playableVector[j] = true;
+				playableVector[j] = 1;
 			}
 		}
 	}
@@ -157,10 +161,17 @@ void Awale::computePlayable()
 		for (int k = 6; k < 12; ++k) {
 			//TODO hungry check
 			if (m_playerHalve2.at(k-6) != 0) {
-				playableVector[k] = true;
+				playableVector[k] = 1;
 			}
 		}
 	}
+
+	// Last played hole
+	if (m_lastPlayed >= 0) {
+		playableVector[m_lastPlayed] = 2;
+	}
+
+	// Update the model
 	setPlayables(playableVector);
 }
 
@@ -242,13 +253,25 @@ void Awale::setPlayerTurn(int playerTurn)
 {
 	m_playerTurn = playerTurn;
 }
-QVector<bool> Awale::playables() const
+
+QVector<int> Awale::playables() const
 {
 	return m_playables;
 }
 
-void Awale::setPlayables(const QVector<bool> &playables)
+void Awale::setPlayables(const QVector<int> &playables)
 {
 	m_playables = playables;
 }
+
+int Awale::lastPlayed() const
+{
+	return m_lastPlayed;
+}
+
+void Awale::setLastplayed(int lastPlayed)
+{
+	m_lastPlayed = lastPlayed;
+}
+
 

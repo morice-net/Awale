@@ -12,7 +12,7 @@ Item {
     property int player: main.playerTurn
     property bool alreadyPlayed
     property int realIndex
-    property bool enlightMode
+    property int enlightMode
 
     Image {
         width: parent.width
@@ -29,7 +29,7 @@ Item {
             verticalOffset: 1
             spread: 0.1
             source: parent
-            visible: enlightMode
+            visible: enlightMode === 1
             SequentialAnimation {
                 running: true
                 loops: Animation.Infinite
@@ -47,7 +47,7 @@ Item {
             verticalOffset: 1
             spread: 0.1
             source: parent
-            visible: false/*enlightMode == 2*/
+            visible: enlightMode === 2
         }
 
         Stone {
