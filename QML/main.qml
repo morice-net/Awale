@@ -17,6 +17,7 @@ Rectangle {
     property int playerScore1: 0
     property int playerScore2: 0
     property int takenHole: 0
+    property int mode: 0
     property var playerHalve1: [0,0,0,0,0,0]
     property var playerHalve2: [0,0,0,0,0,0]
     property var playable: [0,0,0,0,0,0,0,0,0,0,0,0]

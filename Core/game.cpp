@@ -29,6 +29,11 @@ void Game::updateView()
 	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awales.last().playerHalve2().toList()));
 	m_root->setProperty("playerTurn", QVariant::fromValue(m_awales.last().playerTurn()));
 	m_root->setProperty("playable", QVariant::fromValue(m_awales.last().playables().toList()));
+	if (m_mode == Solo) {
+		m_root->setProperty("mode",1);
+	} else if (m_mode == Versus) {
+		m_root->setProperty("mode",2);
+	}
 }
 
 void Game::gameDone(Awale::Winner winner)

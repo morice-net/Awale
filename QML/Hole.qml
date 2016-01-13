@@ -64,7 +64,12 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
+            // Not your turn to play dude, wait for me
             if (main.playerTurn != halve.player) {
+                return;
+            }
+            // CPU turn
+            if (main.playerTurn == 2 && main.mode == 1) {
                 return;
             }
 
