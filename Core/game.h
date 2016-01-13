@@ -29,6 +29,7 @@ public slots:
 	// Callable from view
 	void onStart(int mode);
 	void onTakeHole(int player, int holeNumber);
+	void onCPUTakeHole();
 	void onRevert();
 
 private:

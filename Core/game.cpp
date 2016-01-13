@@ -1,5 +1,10 @@
+// Self
 #include "game.h"
 
+// Qt
+#include <QTimer>
+
+// Solution
 #include "graphbuilder.h"
 
 Game::Game(QObject *parent) :
@@ -87,9 +92,18 @@ void Game::onTakeHole(int player, int holeNumber)
 	if (isThereAWinner != Awale::NoWinner) {
 		gameDone(isThereAWinner);
 	} else if (newTurn.playerTurn() == 2 && m_mode == Solo) {
-		GraphBuilder solution(&newTurn,this);
-		onTakeHole(newTurn.playerTurn(),solution.selectBestHole());
+		QTimer::singleShot( 3500, Qt::PreciseTimer, this, SLOT(onCPUTakeHole()) );
 	}
+}
+
+void Game::onCPUTakeHole()
+{
+	if (m_awales.isEmpty()) {
+		return;
+	}
+
+	GraphBuilder solution(&(m_awales.last()),this);
+	onTakeHole(m_awales.last().playerTurn(),solution.selectBestHole());
 }
 
 void Game::onRevert()
