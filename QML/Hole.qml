@@ -14,44 +14,50 @@ Item {
     property int realIndex
     property int enlightMode
 
+    Glow {
+        id: holePlayable
+        anchors.fill: holeImage
+        radius: 7
+        samples: 16
+        color: "white"
+        source: holeImage
+        visible: enlightMode === 1
+        SequentialAnimation {
+            running: true
+            loops: Animation.Infinite
+            NumberAnimation { target: holePlayable; property: "spread"; duration: 800; to: 0.7 }
+            NumberAnimation { target: holePlayable; property: "spread"; duration: 800; to: 0.3 }
+        }
+    }
+
+    Glow {
+        id: lastPlayed
+        anchors.fill: holeImage
+        radius: 7
+        samples: 16
+        color: "yellow"
+        source: holeImage
+        visible: enlightMode === 2
+    }
+
     Image {
-        width: parent.width
+        id: holeImage
+        width: parent.width*2
         height: width
         anchors.centerIn: parent
         source: "../Images/Hole.png"
-        InnerShadow {
-            id: holePlayable
-            anchors.fill: parent
-            color: "#ffffff"
-            radius: 16
-            samples: 16
-            horizontalOffset: 1
-            verticalOffset: 1
-            spread: 0.1
-            source: parent
-            visible: enlightMode === 1
-            SequentialAnimation {
-                running: true
-                loops: Animation.Infinite
-                ColorAnimation { target: holePlayable; property: "color"; duration: 800; from: "black"; to: "white" }
-                ColorAnimation { target: holePlayable; property: "color"; duration: 800; to: "black"; from: "white" }
-            }
-        }
-        InnerShadow {
-            id: lastPlayed
-            anchors.fill: parent
-            color: "yellow"
-            radius: 16
-            samples: 16
-            horizontalOffset: 1
-            verticalOffset: 1
-            spread: 0.1
-            source: parent
-            visible: enlightMode === 2
-        }
 
         Stone {
+            id: stones
             numberOfStone: hole.numberOfStone
+        }
+
+        Glow {
+            anchors.fill: stones
+            radius: 6
+            samples: 16
+            color: "white"
+            source: stones
         }
     }
 

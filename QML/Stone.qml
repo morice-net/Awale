@@ -7,7 +7,9 @@ import QtQuick.Particles 2.0
 
 Item {
     id: stone
-    anchors.fill: parent
+    anchors.centerIn: parent
+    width: parent.width/2
+    height: width
     property int numberOfStone
     property int oldNumberOfStone
     property int textSize: stoneText.height - 5
@@ -21,32 +23,6 @@ Item {
             x: { getRandomNumber(stone.height,width) }
             y: { getRandomNumber(stone.height,width) }
             source: "../Images/Stone.png"
-
-/*
-            InnerShadow {
-                id: stoneBritghness
-                anchors.fill: parent
-                color: "#ffffff"
-                radius: 16
-                samples: 16
-                horizontalOffset: 1
-                verticalOffset: 1
-                spread: 0.1
-                source: parent
-                SequentialAnimation {
-                    id: stoneBritghnessAnime
-                    running: false
-                    NumberAnimation { target: stoneBritghness; property: "horizontalOffset"; duration: 500; from: 0; to: 10}
-                    NumberAnimation { target: stoneBritghness; property: "horizontalOffset"; duration: 100; from: 10; to: 1}
-                }
-                Timer {
-                    interval: 1000; running: true; repeat: true
-                    onTriggered: {
-                        if (Math.random()*100 <= 1 )
-                            stoneBritghnessAnime.start();
-                    }
-                }
-            }*/
         }
     }
 

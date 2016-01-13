@@ -19,8 +19,10 @@ Item {
 
     Row {
         anchors.centerIn: parent
+        clip: false
         Repeater {
             model: 6
+            clip: false
             Hole {
                 width: halve.width / 6 - 2
                 numberOfStone: halve.player == 1 ? main.playerHalve1[index] : main.playerHalve2[index]
