@@ -31,8 +31,8 @@ Rectangle {
         running: player == main.playerTurn
         loops: Animation.Infinite
         PauseAnimation { duration: 3000 }
-        NumberAnimation { target: halve; property: "animRotation"; from: 0; to: -15; easing.type: Easing.InElastic; duration: 700 }
-        NumberAnimation { target: halve; property: "animRotation"; from: -15; to: 10; duration: 100 }
-        NumberAnimation { target: halve; property: "animRotation"; from: 10; to: 0; easing.type: Easing.OutElastic; duration: 600 }
+        NumberAnimation { target: halve; property: "animRotation"; from: 0; to: -4; easing.type: Easing.InElastic; duration: 700 }
+        NumberAnimation { target: halve; property: "animRotation"; from: -4; to: 5; duration: 100 }
+        NumberAnimation { target: halve; property: "animRotation"; from: 5; to: 0; easing.type: Easing.OutElastic; duration: 600 }
     }
 }
