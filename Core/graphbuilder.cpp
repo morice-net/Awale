@@ -19,7 +19,7 @@ GraphBuilder::GraphBuilder(Awale* awale, QObject *parent) :
 int GraphBuilder::selectBestHole()
 {
 	int bestValue = -1;
-	int bestHole = -1;
+	QVector<int> bestHoles;
 	HoleEvaluator evaluator(m_awale, this);
 	for (int i = 6; i < 12; ++i) {
 		if (!m_awale->playables().at(i))
@@ -28,18 +28,19 @@ int GraphBuilder::selectBestHole()
 		}
 		int holeValue = evaluator.evaluate(i);
 		qDebug() << "Hole" << i << "evaluated in" << evaluator.elapsed() << "ms";
-		if (holeValue == bestValue && bestHole != -1) {
+		if (holeValue > bestValue) {
+			// Init the best value at the first playable hole
 			bestValue = holeValue;
-			bestHole = i;
-		} else if (holeValue >= bestValue) {
-			if (qrand() % 2 == 1) {
-				bestValue = holeValue;
-				bestHole = i;
-			}
+			bestHoles.clear();
+			bestHoles << i;
+		} else if (holeValue == bestValue) {
+			bestHoles << i;
 		}
 	}
 
-	return (bestHole - 6);
+	// Choose a random value between the best already found
+	int randHole = qrand() % bestHoles.size();
+	return (bestHoles[randHole] - 6);
 }
 
 Awale *GraphBuilder::awale() const
