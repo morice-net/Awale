@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: boardButton
     anchors.right: parent.right
-    width: parent.width / 11
+    width: main.width / 11
     height: width
     property string source
 
@@ -21,22 +21,8 @@ Item {
     SequentialAnimation {
         running: true
         loops: Animation.Infinite
-        NumberAnimation {
-            id: bigBoardButton
-            target: buttonPict
-            property: "width"
-            to: boardButton.width
-            easing.type: Easing.InOutElastic
-            duration: 1000
-        }
-        NumberAnimation { id: smallBoardButton; target: buttonPict; property: "width"; to: boardButton.height - 10; easing.type: Easing.InOutElastic; duration: 1000 }
-        PauseAnimation { duration: 5000 }
-    }
-
-    Component.onCompleted: {
-        console.log(boardButton.width)
-    }
-    onWidthChanged: {
-        console.log(boardButton.width)
+        PauseAnimation { duration: 4500 }
+        NumberAnimation { target: buttonPict; property: "width"; from: height; to: height + 8; easing.type: Easing.InElastic; duration: 400 }
+        NumberAnimation { target: buttonPict; property: "width"; from: height + 8; to: height; easing.type: Easing.OutElastic; duration: 600 }
     }*/
 }

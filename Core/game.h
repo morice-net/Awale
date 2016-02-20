@@ -25,13 +25,16 @@ signals:
 
 public slots:
 	void updateView();
-	void gameDone(int winner);
+	void gameDone(Awale::Winner winner);
+	// Callable from view
 	void onStart(int mode);
-	void takeHole(int player, int holeNumber);
+	void onTakeHole(int player, int holeNumber);
+	void onCPUTakeHole();
+	void onRevert();
 
 private:
 	QQuickItem *m_root;
-	Awale m_awale;
+	QVector<Awale> m_awales;
 	Mode m_mode;
 
 };

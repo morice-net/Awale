@@ -70,6 +70,11 @@ Item {
         id: revertButton
         source: "../Images/RevertButton.png"
         anchors.top: parent.top
+
+        MouseArea {
+            anchors.fill: parent
+            onPressed: main.revert()
+        }
     }
 
     BoardButton {

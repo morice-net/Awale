@@ -7,7 +7,9 @@ import QtQuick.Particles 2.0
 
 Item {
     id: stone
-    anchors.fill: parent
+    anchors.centerIn: parent
+    width: parent.width/2
+    height: width
     property int numberOfStone
     property int oldNumberOfStone
     property int textSize: stoneText.height - 5
@@ -23,6 +25,7 @@ Item {
             source: "../Images/Stone.png"
         }
     }
+
 
     Rectangle {
         id: textBack

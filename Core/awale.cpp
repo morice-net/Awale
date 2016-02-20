@@ -8,6 +8,7 @@ Awale::Awale()
 	m_playerScore2 = 0;
 	m_takenHole = 0;
 	m_playerTurn = 0;
+	m_lastPlayed = -1;
 }
 
 /*!
@@ -15,12 +16,13 @@ Awale::Awale()
  */
 void Awale::initialize()
 {
-	setPlayerHalve1(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
-	setPlayerHalve2(QList<int>() << 4 << 4 << 4 << 4 << 4 << 4);
+	setPlayerHalve1(QVector<int>() << 4 << 4 << 4 << 4 << 4 << 4);
+	setPlayerHalve2(QVector<int>() << 4 << 4 << 4 << 4 << 4 << 4);
 	setPlayerScore1(0);
 	setPlayerScore2(0);
 	setTakenHole(0);
 	setPlayerTurn(1);
+	setPlayables(QVector<int>() << 1 << 1 << 1 << 1 << 1 << 1 << 0 << 0 << 0 << 0 << 0 << 0);
 }
 
 /*!
@@ -30,14 +32,14 @@ void Awale::initialize()
  */
 void Awale::takeHole(int playerNumber, int holeNumber)
 {
-    if (playerNumber == 1) {
-        setTakenHole(m_playerHalve1[holeNumber]);
-        QList<int> halve1 = m_playerHalve1;
-        halve1[holeNumber] = 0;
-        setPlayerHalve1(halve1);
+	if (playerNumber == 1) {
+		setTakenHole(m_playerHalve1[holeNumber]);
+		QVector<int> halve1 = m_playerHalve1;
+		halve1[holeNumber] = 0;
+		setPlayerHalve1(halve1);
 	} else {
 		setTakenHole(m_playerHalve2[holeNumber]);
-		QList<int> halve2 = m_playerHalve2;
+		QVector<int> halve2 = m_playerHalve2;
 		halve2[holeNumber] = 0;
 		setPlayerHalve2(halve2);
 	}
@@ -50,7 +52,7 @@ void Awale::takeHole(int playerNumber, int holeNumber)
  * \param halve2
  * \param holeNumber
  */
-void Awale::resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QList<int> &halve2)
+void Awale::resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, QVector<int> &halve2)
 {
 	if (halveNumber == 1) {
 		halve1[holeNumber] = 0;
@@ -66,40 +68,43 @@ void Awale::resetHole(int &halveNumber, int &holeNumber, QList<int> &halve1, QLi
  * \param playerNumber
  * \param holeNumber
  */
-void Awale::draw(int playerNumber, int holeNumber)
+Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 {
+	// Note this the last played
+	m_lastPlayed = holeNumber + (playerNumber - 1) * 6;
+
 	// Record help sending step by step holes up and down, it will animate the UI
 	int halveNumber = playerNumber;
-	QList<int> halve1 = m_playerHalve1;
-	QList<int> halve2 = m_playerHalve2;
+	QVector<int> halve1 = m_playerHalve1;
+	QVector<int> halve2 = m_playerHalve2;
 
-    while (m_takenHole > 0) {
-        // Next stone deposit
+	while (m_takenHole > 0) {
+		// Next stone deposit
 		++holeNumber;
 
-        // Are we on the next halve
+		// Are we on the next halve
 		if (holeNumber >= 6) {
 			halveNumber++;
 			if (halveNumber > 2){
 				halveNumber = 1;
-            }
+			}
 			holeNumber = 0;
-        }
+		}
 
-        // Take the stone from the taken hole
-        setTakenHole(m_takenHole - 1);
+		// Take the stone from the taken hole
+		setTakenHole(m_takenHole - 1);
 
-        // Put it in the next halve stone
+		// Put it in the next halve stone
 		if (halveNumber == 1) {
 			halve1[holeNumber]++;
-            setPlayerHalve1( halve1 );
+			setPlayerHalve1( halve1 );
 		} else {
 			halve2[holeNumber]++;
-            setPlayerHalve2( halve2 );
-        }
+			setPlayerHalve2( halve2 );
+		}
 	}
 
-	// Now we eat the stones, take care it is not exactly takeHole
+    // Now we eat the stones, take care it is not exactly takeHole
     if ( halveNumber != m_playerTurn) {
         int numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
         while (numberOfStone == 2 || numberOfStone == 3) {
@@ -121,15 +126,63 @@ void Awale::draw(int playerNumber, int holeNumber)
     }
 
 	// Update the player turn
-	//TODO check nothing in the opponent halve is empty maybe :-)
 	setPlayerTurn(m_playerTurn == 1 ? 2 : 1);
+
+	if (m_playerScore1 >= 25) {
+		return Player1;
+	} else if (m_playerScore2 >= 25) {
+		return Player2;
+	} else if (m_playerScore1 == 24 && m_playerScore2 == 24) {
+		return Draw;
+	} else {
+		return NoWinner; // Game is not done yet
+	}
+
+}
+
+/*!
+ * \brief Awale::computePlayable
+ */
+void Awale::computePlayable()
+{
+	// Init the vector
+	QVector<int> playableVector;
+	for (int i = 0; i < 12; ++i) {
+		playableVector << 0;
+	}
+
+	// Feed the playables
+	if (m_playerTurn == 1) {
+		for (int j = 0; j < 6; ++j) {
+			//TODO hungry check
+			if (m_playerHalve1.at(j) != 0) {
+				playableVector[j] = 1;
+			}
+		}
+	}
+	if (m_playerTurn == 2) {
+		for (int k = 6; k < 12; ++k) {
+			//TODO hungry check
+			if (m_playerHalve2.at(k-6) != 0) {
+				playableVector[k] = 1;
+			}
+		}
+	}
+
+	// Last played hole
+	if (m_lastPlayed >= 0) {
+		playableVector[m_lastPlayed] = 2;
+	}
+
+	// Update the model
+	setPlayables(playableVector);
 }
 
 /* Getters & Setters */
 
 int Awale::playerScore1() const
 {
-    return m_playerScore1;
+	return m_playerScore1;
 }
 
 void Awale::setPlayerScore1(int playerScore1)
@@ -137,23 +190,13 @@ void Awale::setPlayerScore1(int playerScore1)
 	if (playerScore1 == m_playerScore1) {
 		return;
 	}
-	if (playerScore1 >= 25) {
-		emit awaleDone(1);
-		return;
-	}
-
-	if (m_playerScore2 == 24 && playerScore1 == 24 ) {
-		emit awaleDone(0);
-		return;
-	}
 
 	m_playerScore1 = playerScore1;
-	emit playerScoreChanged(1);
 }
 
 int Awale::playerScore2() const
 {
-    return m_playerScore2;
+	return m_playerScore2;
 }
 
 void Awale::setPlayerScore2(int playerScore2)
@@ -162,56 +205,46 @@ void Awale::setPlayerScore2(int playerScore2)
 		return;
 	}
 	if (playerScore2 >= 25) {
-		emit awaleDone(2);
 		return;
 	}
 
 	if (m_playerScore1 == 24 && playerScore2 == 24 ) {
-		emit awaleDone(0);
 		return;
 	}
 
 	m_playerScore2 = playerScore2;
-	emit playerScoreChanged(2);
 }
 
-QList<int> Awale::playerHalve1() const
+QVector<int> Awale::playerHalve1() const
 {
-    return m_playerHalve1;
+	return m_playerHalve1;
 }
 
-void Awale::setPlayerHalve1(const QList<int> &playerHalve1)
+void Awale::setPlayerHalve1(const QVector<int> &playerHalve1)
 {
 	if (playerHalve1 != m_playerHalve1) {
 		m_playerHalve1 = playerHalve1;
-		emit playerHalveChanged(1);
 	}
 }
 
-QList<int> Awale::playerHalve2() const
+QVector<int> Awale::playerHalve2() const
 {
-    return m_playerHalve2;
+	return m_playerHalve2;
 }
 
-void Awale::setPlayerHalve2(const QList<int> &playerHalve2)
+void Awale::setPlayerHalve2(const QVector<int> &playerHalve2)
 {
-	if (playerHalve2 != m_playerHalve2) {
-		m_playerHalve2 = playerHalve2;
-		emit playerHalveChanged(2);
-	}
+	m_playerHalve2 = playerHalve2;
 }
 
 int Awale::takenHole() const
 {
-    return m_takenHole;
+	return m_takenHole;
 }
 
 void Awale::setTakenHole(int takenHole)
 {
-	if (takenHole != m_takenHole) {
-		m_takenHole = takenHole;
-		emit takenHoleChanged();
-	}
+	m_takenHole = takenHole;
 }
 
 int Awale::playerTurn() const
@@ -221,9 +254,27 @@ int Awale::playerTurn() const
 
 void Awale::setPlayerTurn(int playerTurn)
 {
-	if (m_playerTurn != playerTurn)
-	{
-		m_playerTurn = playerTurn;
-		emit playerTurnChanged();
-	}
+	m_playerTurn = playerTurn;
 }
+
+QVector<int> Awale::playables() const
+{
+	return m_playables;
+}
+
+void Awale::setPlayables(const QVector<int> &playables)
+{
+	m_playables = playables;
+}
+
+int Awale::lastPlayed() const
+{
+	return m_lastPlayed;
+}
+
+void Awale::setLastplayed(int lastPlayed)
+{
+	m_lastPlayed = lastPlayed;
+}
+
+
