@@ -110,6 +110,9 @@ void Awale::draw(int playerNumber, int holeNumber)
                 setPlayerScore2(m_playerScore2 + numberOfStone);
                 resetHole(halveNumber, holeNumber, halve1, halve2);
             }
+
+            // This hole is empty, let's go to the previous
+            holeNumber--;
             numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
             if (holeNumber < 0)	{
                 break;

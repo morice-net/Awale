@@ -9,9 +9,9 @@ Rectangle {
     visible: true
     focus: true // For the keys listener
 
-    width: 600
-    height:800
-    //anchors.fill: parent
+    //width: 600
+    //height:800
+    anchors.fill: parent
 
     property int winner: 0
     property int playerScore1: 0
