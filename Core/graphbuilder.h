@@ -9,9 +9,17 @@
 class GraphBuilder : public QObject
 {
 	Q_OBJECT
+
 public:
-	explicit GraphBuilder(Awale* awale, QObject *parent = 0);
-	int selectBestHole();
+    enum Method {
+        Random,
+        Graph,
+        Learning
+    };
+
+public:
+    explicit GraphBuilder(Awale* awale, Method method, QObject *parent = 0);
+    int selectBestHole();
 
 	Awale *awale() const;
 	void setAwale(Awale *awale);
@@ -22,6 +30,7 @@ public slots:
 
 private:
 	Awale* m_awale;
+    Method m_method;
 };
 
 #endif // GRAPHBUILDER_H

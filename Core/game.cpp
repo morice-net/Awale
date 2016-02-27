@@ -3,17 +3,22 @@
 
 // Qt
 #include <QTimer>
+#include <QDebug>
 
-// Solution
+// Awale
 #include "graphbuilder.h"
 
 Game::Game(QObject *parent) :
-	QObject(parent), m_root(0), m_awales(), m_mode(Versus)
+    QObject(parent), m_root(0), m_awales(), m_plays(), m_mode(Versus), m_feeder(this), m_isThereAWinner(Awale::NoWinner)
 {
 }
 
 void Game::updateView()
 {
+    if (m_mode == Learning) {
+        return;
+    }
+
 	if (! m_root) {
 		return;
 	}
@@ -63,12 +68,16 @@ void Game::onStart(int mode)
 	// Record the type of user choosen game
 	if (mode == 1) {
 		m_mode = Solo;
-	} else {
-		m_mode = Versus;
+    } else if (mode == 2) {
+        m_mode = Versus;
+    } else {
+        m_mode = Learning;
 	}
 
 	// Up for a new round
 	m_awales.clear();
+    m_plays.clear();
+    m_isThereAWinner = Awale::NoWinner;
 
 	// Initialize the begin of the game
 	Awale awale;
@@ -76,6 +85,10 @@ void Game::onStart(int mode)
 	m_awales.append(awale);
 	updateView();
 	gameDone(Awale::NoWinner);
+
+    if (m_mode == Learning) {
+        playRandom();
+    }
 }
 
 void Game::onTakeHole(int player, int holeNumber)
@@ -83,19 +96,28 @@ void Game::onTakeHole(int player, int holeNumber)
 	if (m_awales.isEmpty()) {
 		return;
 	}
+    if (holeNumber == -1) {
+        if (player == 1) {
+            m_isThereAWinner = Awale::Player2;
+        } else {
+            m_isThereAWinner = Awale::Player1;
+        }
+        return;
+    }
 
 	Awale newTurn;
 	newTurn = m_awales.last();
 	newTurn.takeHole(player,holeNumber);
-	Awale::Winner isThereAWinner = newTurn.draw(player,holeNumber);
-	if (isThereAWinner == Awale::NoWinner) {
+    m_isThereAWinner = newTurn.draw(player,holeNumber);
+    if (m_isThereAWinner == Awale::NoWinner) {
 		newTurn.computePlayable();
 	}
 	m_awales.append(newTurn);
+    m_plays.append(holeNumber);
 
 	updateView();
-	if (isThereAWinner != Awale::NoWinner) {
-		gameDone(isThereAWinner);
+    if (m_isThereAWinner != Awale::NoWinner) {
+        gameDone(m_isThereAWinner);
 	} else if (newTurn.playerTurn() == 2 && m_mode == Solo) {
 		QTimer::singleShot( 3500, Qt::PreciseTimer, this, SLOT(onCPUTakeHole()) );
 	}
@@ -107,8 +129,8 @@ void Game::onCPUTakeHole()
 		return;
 	}
 
-	GraphBuilder solution(&(m_awales.last()),this);
-	onTakeHole(m_awales.last().playerTurn(),solution.selectBestHole());
+    GraphBuilder solution(&(m_awales.last()), GraphBuilder::Random, this);
+    onTakeHole(m_awales.last().playerTurn(),solution.selectBestHole());
 }
 
 void Game::onRevert()
@@ -120,6 +142,27 @@ void Game::onRevert()
 	updateView();
 }
 
+void Game::playRandom()
+{
+    while(m_isThereAWinner == Awale::NoWinner) {
+        onCPUTakeHole();
+    }
+    if (m_isThereAWinner == Awale::Player1) {
+        m_feeder.addExample(m_awales,m_plays,false);
+    } else if (m_isThereAWinner == Awale::Player2) {
+        m_feeder.addExample(m_awales,m_plays,true);
+    }
+    QString winnerString = "draw";
+    if (m_isThereAWinner == Awale::Player1) {
+        winnerString = "player 1";
+    } else if (m_isThereAWinner == Awale::Player2) {
+        winnerString = "player 2";
+    }
+    qDebug() << "Winner is" << winnerString;
+    onStart(3);
+}
+
+
 /* Getters and Setters */
 QQuickItem *Game::root() const
 {
@@ -128,7 +171,7 @@ QQuickItem *Game::root() const
 
 void Game::setRoot(QQuickItem *root)
 {
-	m_root = root;
+    m_root = root;
 }
 
 

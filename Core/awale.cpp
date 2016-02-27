@@ -118,10 +118,10 @@ Awale::Winner Awale::draw(int playerNumber, int holeNumber)
 
             // This hole is empty, let's go to the previous
             holeNumber--;
-            numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
             if (holeNumber < 0)	{
                 break;
             }
+            numberOfStone = halveNumber == 1 ? halve1[holeNumber] : halve2[holeNumber];
         }
     }
 

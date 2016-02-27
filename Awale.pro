@@ -6,7 +6,8 @@ SOURCES += main.cpp \
     Core/awale.cpp \
     Core/game.cpp \
     Core/graphbuilder.cpp \
-    Core/holeevaluator.cpp
+    Core/holeevaluator.cpp \
+    Core/examplefeeder.cpp
 
 RESOURCES += qml.qrc
 
@@ -20,7 +21,8 @@ HEADERS += \
     Core/awale.h \
     Core/game.h \
     Core/graphbuilder.h \
-    Core/holeevaluator.h
+    Core/holeevaluator.h \
+    Core/examplefeeder.h
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
