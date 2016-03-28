@@ -9,36 +9,8 @@
 #include "graphbuilder.h"
 
 Game::Game(QObject *parent) :
-    QObject(parent), m_root(0), m_awales(), m_plays(), m_mode(Versus), m_feeder(this), m_isThereAWinner(Awale::NoWinner)
+    QObject(parent), m_awales(), m_plays(), m_mode(Versus)/*, m_feeder(this)*/, m_isThereAWinner(Awale::NoWinner)
 {
-}
-
-void Game::updateView()
-{
-    if (m_mode == Learning) {
-        return;
-    }
-
-	if (! m_root) {
-		return;
-	}
-
-	if (m_awales.isEmpty()) {
-		return;
-	}
-
-	m_root->setProperty("playerScore1", m_awales.last().playerScore1());
-	m_root->setProperty("playerScore2", m_awales.last().playerScore2());
-	m_root->setProperty("takenHole", m_awales.last().takenHole());
-	m_root->setProperty("playerHalve1", QVariant::fromValue(m_awales.last().playerHalve1().toList()));
-	m_root->setProperty("playerHalve2", QVariant::fromValue(m_awales.last().playerHalve2().toList()));
-	m_root->setProperty("playerTurn", QVariant::fromValue(m_awales.last().playerTurn()));
-	m_root->setProperty("playable", QVariant::fromValue(m_awales.last().playables().toList()));
-	if (m_mode == Solo) {
-		m_root->setProperty("mode",1);
-	} else if (m_mode == Versus) {
-		m_root->setProperty("mode",2);
-	}
 }
 
 void Game::gameDone(Awale::Winner winner)
@@ -59,8 +31,7 @@ void Game::gameDone(Awale::Winner winner)
 	default:
 		winnerProperty = -1;
 		break;
-	}
-	m_root->setProperty("winner", winnerProperty);
+    }
 }
 
 void Game::onStart(int mode)
@@ -82,8 +53,7 @@ void Game::onStart(int mode)
 	// Initialize the begin of the game
 	Awale awale;
 	awale.initialize();
-	m_awales.append(awale);
-	updateView();
+    m_awales.append(awale);
 	gameDone(Awale::NoWinner);
 
     if (m_mode == Learning) {
@@ -115,11 +85,10 @@ void Game::onTakeHole(int player, int holeNumber)
 	m_awales.append(newTurn);
     m_plays.append(holeNumber);
 
-	updateView();
     if (m_isThereAWinner != Awale::NoWinner) {
         gameDone(m_isThereAWinner);
 	} else if (newTurn.playerTurn() == 2 && m_mode == Solo) {
-		QTimer::singleShot( 3500, Qt::PreciseTimer, this, SLOT(onCPUTakeHole()) );
+        QTimer::singleShot( 500, this, SLOT(onCPUTakeHole()) );
 	}
 }
 
@@ -138,8 +107,7 @@ void Game::onRevert()
 	if (m_awales.isEmpty()) {
 		return;
 	}
-	m_awales.removeLast();
-	updateView();
+    m_awales.remove(m_awales.size()-1);
 }
 
 void Game::playRandom()
@@ -148,9 +116,9 @@ void Game::playRandom()
         onCPUTakeHole();
     }
     if (m_isThereAWinner == Awale::Player1) {
-        m_feeder.addExample(m_awales,m_plays,false);
+        //m_feeder.addExample(m_awales,m_plays,false);
     } else if (m_isThereAWinner == Awale::Player2) {
-        m_feeder.addExample(m_awales,m_plays,true);
+        //m_feeder.addExample(m_awales,m_plays,true);
     }
     QString winnerString = "draw";
     if (m_isThereAWinner == Awale::Player1) {
@@ -160,18 +128,6 @@ void Game::playRandom()
     }
     qDebug() << "Winner is" << winnerString;
     onStart(3);
-}
-
-
-/* Getters and Setters */
-QQuickItem *Game::root() const
-{
-	return m_root;
-}
-
-void Game::setRoot(QQuickItem *root)
-{
-    m_root = root;
 }
 
 
