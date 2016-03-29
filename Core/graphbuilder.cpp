@@ -7,8 +7,8 @@
 #include "holeevaluator.h"
 
 
-GraphBuilder::GraphBuilder(Awale* awale, QObject *parent) :
-	QObject(parent), m_awale(awale)
+GraphBuilder::GraphBuilder(Awale* awale, Method method, QObject *parent) :
+    QObject(parent), m_awale(awale), m_method(method)
 {
 }
 
@@ -19,9 +19,11 @@ GraphBuilder::GraphBuilder(Awale* awale, QObject *parent) :
 int GraphBuilder::selectBestHole()
 {
 	int bestValue = -1;
+    int playerTurn = m_awale->playerTurn();
 	QVector<int> bestHoles;
 	HoleEvaluator evaluator(m_awale, this);
-	for (int i = 6; i < 12; ++i) {
+    int firstHole = (playerTurn - 1) * 6;
+    for (int i = firstHole; i < firstHole + 6; ++i) {
 		if (!m_awale->playables().at(i))
 		{
 			continue;
@@ -38,9 +40,12 @@ int GraphBuilder::selectBestHole()
 		}
 	}
 
+    if (bestHoles.isEmpty()) {
+        return -1;
+    }
 	// Choose a random value between the best already found
 	int randHole = qrand() % bestHoles.size();
-	return (bestHoles[randHole] - 6);
+    return (bestHoles[randHole] - firstHole);
 }
 
 Awale *GraphBuilder::awale() const

@@ -79,6 +79,21 @@ Item  {
                     main.rules();
                 }
             }
+            Separator {}
+        }
+
+        // Button Learning
+        MenuButton {
+            id: buttonLearning
+            text: qsTr("Learning");
+            anchors.top: buttonRules.bottom
+            font.family: candyFont.name
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    main.start(3);
+                }
+            }
         }
     }
 
