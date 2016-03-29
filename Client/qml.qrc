@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Ressources/CANDY.TTF</file>
+        <file>Images/Background.png</file>
+        <file>Images/ConfirmBox.png</file>
+        <file>Images/Halve.png</file>
+        <file>Images/Hole.png</file>
+        <file>Images/Icon.png</file>
+        <file>Images/KGears.png</file>
+        <file>Images/KIco.png</file>
+        <file>Images/MessageBox.png</file>
+        <file>Images/RevertButton.png</file>
+        <file>Images/SettingsButton.png</file>
+        <file>Images/Star.png</file>
+        <file>Images/Stone.png</file>
+        <file>Images/Title.png</file>
+        <file>Images/ValidateButton.png</file>
+        <file>QML/Board.qml</file>
+        <file>QML/BoardButton.qml</file>
+        <file>QML/ConfirmPage.qml</file>
+        <file>QML/Halve.qml</file>
+        <file>QML/Hole.qml</file>
+        <file>QML/KLoading.qml</file>
+        <file>QML/Awale.qml</file>
+        <file>QML/MenuButton.qml</file>
+        <file>QML/Receipe.qml</file>
+        <file>QML/Separator.qml</file>
+        <file>QML/StartPage.qml</file>
+        <file>QML/Stone.qml</file>
+        <file>QML/StoneParticles.qml</file>
+        <file>QML/WinPage.qml</file>
+    </qresource>
+</RCC>
