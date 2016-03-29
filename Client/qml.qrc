@@ -30,5 +30,6 @@
         <file>QML/Stone.qml</file>
         <file>QML/StoneParticles.qml</file>
         <file>QML/WinPage.qml</file>
+        <file>QML/AwaleSocket.qml</file>
     </qresource>
 </RCC>

@@ -56,6 +56,10 @@ Rectangle {
         id: confirmPage
     }
 
+    AwaleSocket {
+        id: webSocket
+    }
+
     KLoading {
         id: load
     }
