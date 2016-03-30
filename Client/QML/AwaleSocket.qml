@@ -3,9 +3,12 @@ import Qt.WebSockets 1.0
 
 Item {
 
+    anchors.fill: parent
+    property string serverAddres: "localhost:1234"
+
     WebSocket {
         id: socket
-        url: "ws://echo.websocket.org"
+        url: "ws://" + serverAddres
         onTextMessageReceived: {
             messageBox.text = messageBox.text + "\nReceived message: " + message
         }
@@ -21,7 +24,7 @@ Item {
 
     WebSocket {
         id: secureWebSocket
-        url: "wss://echo.websocket.org"
+        url: "wss://" + serverAddres
         onTextMessageReceived: {
             messageBox.text = messageBox.text + "\nReceived secure message: " + message
         }
