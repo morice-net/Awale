@@ -15,7 +15,7 @@ Item {
         onStatusChanged: if (socket.status == WebSocket.Error) {
                              console.log("Error: " + socket.errorString)
                          } else if (socket.status == WebSocket.Open) {
-                             socket.sendTextMessage("Hello World")
+                             socket.sendTextMessage("Socket2")
                          } else if (socket.status == WebSocket.Closed) {
                              messageBox.text += "\nSocket closed"
                          }
@@ -46,8 +46,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            socket.active = !socket.active
-            secureWebSocket.active =  !secureWebSocket.active;
+            if(!socket.active) socket.active = true;
             //Qt.quit();
         }
     }
