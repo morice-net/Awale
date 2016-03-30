@@ -19,7 +19,7 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt5Core)
 find_package(Qt5WebSockets)
 
-add_executable (awaleserver main.cpp awaleserver.cpp)
+add_executable (awaleserver main.cpp awaleserver.cpp account.cpp)
 
 # Make sure the compiler can find include files for our Hello library
 # when other libraries or executables link to Hello
