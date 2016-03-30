@@ -7,15 +7,11 @@ Played throughout West Africa and the Caribbean, Oware and its variants have man
 
 # TODO
 
-* innershadow pour les coups possible
-qvector bool [6][2] playable holes
-interdit d'affame (jouer le coup sans mettre a jour la liste, sans mettre a jour le score pou tester) ou numberofstone == 0
+* qvector bool [6][2] playable holes
+
+* cannot eat all opponents stones (or yes, also have to add activation in settings, or make a choice)
 
 * tous les 1 et 2 a remplacer par des tableaux deux dimensions (a réfléchir suite au playable holes et peut être pas important si un seul signal onlistchanged)
-
-* annule le dernier coup en cliquant sur '<<'
-
-* Innershadow pour a qui est le tour
 
 * Settings page :
 Retourner l'écran
@@ -25,3 +21,5 @@ Nom 1
 Nom 2
 
 * L'ia
+
+* Multithread
