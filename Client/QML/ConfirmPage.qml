@@ -46,10 +46,10 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                if (startPage.visible) {
+                if (menu.visible) {
                     Qt.quit();
                 } else {
-                    startPage.init();
+                    menu.init();
                 }
                 confirmPage.visible = false;
             }

@@ -24,6 +24,7 @@
         <file>QML/KLoading.qml</file>
         <file>QML/Awale.qml</file>
         <file>QML/MenuButton.qml</file>
+        <file>QML/MenuBackground.qml</file>
         <file>QML/Receipe.qml</file>
         <file>QML/Separator.qml</file>
         <file>QML/StartPage.qml</file>
@@ -31,5 +32,11 @@
         <file>QML/StoneParticles.qml</file>
         <file>QML/WinPage.qml</file>
         <file>QML/AwaleSocket.qml</file>
+        <file>QML/AccountCreationPage.qml</file>
+        <file>QML/LaunchGamePage.qml</file>
+        <file>QML/OpponentListPage.qml</file>
+        <file>QML/Page.qml</file>
+        <file>QML/MenuBackground.qml</file>
+        <file>QML/LoginPage.qml</file>
     </qresource>
 </RCC>

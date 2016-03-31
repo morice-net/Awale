@@ -37,18 +37,5 @@ Item {
                          }
         active: false
     }
-    Text {
-        id: messageBox
-        text: socket.status == WebSocket.Open ? qsTr("Sending...") : qsTr("Welcome!")
-        anchors.centerIn: parent
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            if(!socket.active) socket.active = true;
-            //Qt.quit();
-        }
-    }
 }
 

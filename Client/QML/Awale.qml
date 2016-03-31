@@ -42,8 +42,8 @@ Rectangle {
         id: board
     }
 
-    StartPage {
-        id: startPage
+    MenuBackground {
+        id: menu
     }
 
     WinPage {
