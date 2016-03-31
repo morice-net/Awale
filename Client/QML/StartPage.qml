@@ -9,13 +9,13 @@ Page  {
         id: playButton
         text: qsTr("Play !");
         anchors.centerIn: parent
-        font.family: candyFont.name
-        font.pointSize: parent.height * 0.1
+        anchors.margins: parent.height * 0.2
+        font.pointSize: parent.height * 0.05
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                main.start(1);
-                fadeEffect.start()
+                loginPage.init();
+                startPage.close();
             }
         }
         Separator {}
@@ -26,13 +26,11 @@ Page  {
     MenuButton {
         id: exitButton
         text: qsTr("Exit");
-        anchors.top: playButton.bottom
-        font.family: candyFont.name
+        anchors.bottom: parent.bottom
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                main.start(2);
-                fadeEffect.start()
+                confirmPage.visible = true;
             }
         }
     }

@@ -38,5 +38,6 @@
         <file>QML/Page.qml</file>
         <file>QML/MenuBackground.qml</file>
         <file>QML/LoginPage.qml</file>
+        <file>QML/TextField.qml</file>
     </qresource>
 </RCC>
