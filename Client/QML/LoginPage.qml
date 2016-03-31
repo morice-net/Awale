@@ -6,11 +6,14 @@ Page {
     TextField {
         id: loginField
         label: qsTr("Login")
+        anchors.centerIn: parent
     }
 
     TextField {
         id: passField
         label: qsTr("Password")
+        hideText: true
+        anchors.top: loginField.bottom
     }
 
     // Button connect

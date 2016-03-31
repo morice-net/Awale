@@ -24,7 +24,6 @@
         <file>QML/KLoading.qml</file>
         <file>QML/Awale.qml</file>
         <file>QML/MenuButton.qml</file>
-        <file>QML/MenuBackground.qml</file>
         <file>QML/Receipe.qml</file>
         <file>QML/Separator.qml</file>
         <file>QML/StartPage.qml</file>
@@ -39,5 +38,6 @@
         <file>QML/MenuBackground.qml</file>
         <file>QML/LoginPage.qml</file>
         <file>QML/TextField.qml</file>
+        <file>Images/TextBackground.png</file>
     </qresource>
 </RCC>
