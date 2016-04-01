@@ -7,12 +7,13 @@ Item{
     visible: opacity > 0
 
     function init() {
-        opacity = 1;
+        appearFadeEffect.start();
     }
 
     function close() {
-        opacity = 0;
+        leaveFadeEffect.start();
     }
 
-    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
+    NumberAnimation on opacity { id: appearFadeEffect; running: false; to: 1; duration: 900; easing.type: "OutCurve"  }
+    NumberAnimation on opacity { id: leaveFadeEffect; running: false; to: 0; duration: 900; easing.type: "InCurve"  }
 }

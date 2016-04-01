@@ -20,11 +20,27 @@ Page {
     MenuButton {
         id: connectButton
         text: qsTr("Connect");
-        anchors.bottom: parent.bottom
+        anchors.top: passField.bottom
         MouseArea {
             anchors.fill: parent
             onClicked: {
 
+            }
+        }
+        Separator {}
+    }
+
+    // Button create account
+    MenuButton {
+        id: createAccountButton
+        text: qsTr("Create account");
+        anchors.bottom: parent.bottom
+        font.pointSize: parent.height * 0.015
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                accountCreationPage.init();
+                loginPage.close();
             }
         }
     }
