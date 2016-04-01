@@ -66,12 +66,17 @@ Rectangle {
 
     Keys.onPressed: {
         if (event.key == Qt.Key_Escape || event.key == Qt.Key_Back) {
-            console.log("Confirm exit ?");
-            if (confirmPage.visible) {
-                confirmPage.visible = false;
+            if (menu.isStartPage()) {
+                console.log("Confirm exit ?");
+                if (confirmPage.visible) {
+                    confirmPage.visible = false;
+                } else {
+                    confirmPage.visible = true;
+                }
             } else {
-                confirmPage.visible = true;
+                menu.setStartPage();
             }
+
             event.accepted = true;
         }
     }

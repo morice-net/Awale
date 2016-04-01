@@ -55,6 +55,18 @@ Item  {
         }
     }
 
+    function isStartPage() {
+        return (startPage.visible > 0);
+    }
+
+    function setStartPage() {
+        loginPage.close();
+        accountCreationPage.close();
+        launchGamePage.close();
+        opponentListPage.close();
+        startPage.init();
+    }
+
     function init() {
         opacity = 1;
     }
@@ -62,7 +74,7 @@ Item  {
     NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
 
     Component.onCompleted: {
-        startPage.init();
+        setStartPage();
     }
 
 }
