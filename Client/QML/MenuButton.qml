@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 
 Text {
     anchors.margins: parent.height * 0.1
