@@ -9,8 +9,16 @@
 // Awale
 #include "graphbuilder.h"
 
+static int gameNumber;
 Game::Game(QObject *parent) :
-    QObject(parent), m_awales(), m_plays(), m_mode(Versus)/*, m_feeder(this)*/, m_isThereAWinner(Awale::NoWinner)
+	QObject(parent),
+	m_awales(),
+	m_plays(),
+	m_mode(Versus),
+	m_isThereAWinner(Awale::NoWinner),
+	m_id(gameNumber++),
+	m_player1(0),
+	m_player2(0)
 {
 }
 
@@ -35,7 +43,7 @@ void Game::gameDone(Awale::Winner winner)
     }
 }
 
-void Game::onStart(int mode)
+void Game::start(int mode)
 {
 	// Record the type of user choosen game
 	if (mode == 1) {
@@ -109,25 +117,45 @@ void Game::onRevert()
 	}
     m_awales.remove(m_awales.size()-1);
 }
+Account *Game::player2() const
+{
+	return m_player2;
+}
+
+void Game::setPlayer2(Account *player2)
+{
+	m_player2 = player2;
+}
+
+Account *Game::player1() const
+{
+	return m_player1;
+}
+
+void Game::setPlayer1(Account *player1)
+{
+	m_player1 = player1;
+}
+
 
 void Game::playRandom()
 {
-    while(m_isThereAWinner == Awale::NoWinner) {
-        onCPUTakeHole();
-    }
-    if (m_isThereAWinner == Awale::Player1) {
+	while(m_isThereAWinner == Awale::NoWinner) {
+		onCPUTakeHole();
+	}
+	if (m_isThereAWinner == Awale::Player1) {
         //m_feeder.addExample(m_awales,m_plays,false);
     } else if (m_isThereAWinner == Awale::Player2) {
         //m_feeder.addExample(m_awales,m_plays,true);
     }
     QString winnerString = "draw";
     if (m_isThereAWinner == Awale::Player1) {
-        winnerString = "player 1";
+		winnerString = m_player1->login();
     } else if (m_isThereAWinner == Awale::Player2) {
-        winnerString = "player 2";
+		winnerString = m_player2->login();
     }
     qDebug() << "Winner is" << winnerString;
-	onStart(3);
+	start(3);
 }
 
 QString Game::stateOfTheWorld()
@@ -137,7 +165,11 @@ QString Game::stateOfTheWorld()
 		return "Error";
 	}
 
-	QString result = m_awales.last()->xmlState();
+	QString result;
+	result.append(QString("<Game>%1</Game>").arg(m_id));
+	result.append(m_player1->xmlState());
+	result.append(m_player2->xmlState());
+	result.append(m_awales.last()->xmlState());
 	qDebug() << result;
 	return result;
 }

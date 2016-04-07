@@ -12,7 +12,13 @@ void GameMaker::onLoggedIn(const QString &login)
 
 	if (m_waitingAccount) {
 		Game* game = new Game(this);
-		emit newGame(game, m_waitingAccount, newAccount);
+		game->setPlayer1(m_waitingAccount);
+		game->setPlayer2(newAccount);
+		game->start(2);
+
+		m_games << game;
+	} else {
+		m_waitingAccount = newAccount;
 	}
 }
 

@@ -1,8 +1,16 @@
 #include "account.h"
 
+#include "xmltools.h"
+
 Account::Account(QObject *parent) :
 	QObject(parent)
 {
+}
+
+QString Account::xmlState()
+{
+	XmlTools tool;
+	return tool.xmlFromValue("Login",m_login);
 }
 
 QString Account::login() const
