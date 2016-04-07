@@ -1,5 +1,9 @@
 #include "awale.h"
 
+// Qt
+#include <QStringList>
+
+// Awale
 #include "xmltools.h"
 
 Awale::Awale(QObject *parent)

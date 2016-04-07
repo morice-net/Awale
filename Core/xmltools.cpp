@@ -1,5 +1,8 @@
 #include "xmltools.h"
 
+// Qt
+#include <QStringList>
+
 XmlTools::XmlTools()
 {
 
