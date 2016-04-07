@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 
 Text {
     anchors.margins: parent.height * 0.1
@@ -11,12 +11,4 @@ Text {
 
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
-
-
-    // Should be opacity 1 but animation rules
-    opacity: 0
-    NumberAnimation on opacity { id: appearEffect; running: false; to: 1; duration: 1500; easing.type: "InCurve"  }
-    Component.onCompleted: {
-        appearEffect.start();
-    }
 }

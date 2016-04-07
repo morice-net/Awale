@@ -13,6 +13,7 @@ class Account : public QObject
 
 public:
 	explicit Account(QObject *parent = 0);
+	QString xmlState();
 
 	QString login() const;
 	void setLogin(const QString &login);

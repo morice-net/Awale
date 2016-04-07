@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 
 Item {
     width: 363
@@ -28,19 +28,17 @@ Item {
                     text = text.substring(0, text.length - suffix.length);
                 }
 
-                if (text == "" && !focus) {
-                    text = label;
-                }
-
                 if (text == label) {
                     color = "#ded7bd";
                 }
             }
 
             onFocusChanged: {
-                if (focus) {
+                if (focus && text == label) {
                     text = "";
                     color = "white";
+                } else if (text == "") {
+                    text = label;
                 }
             }
         }
