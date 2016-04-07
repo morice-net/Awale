@@ -4,7 +4,7 @@ import Qt.WebSockets 1.0
 Item {
 
     anchors.fill: parent
-    property string serverAddres: "localhost:1234" // "81.56.85.184:1234"
+    property string serverAddres: "81.56.85.184:80" // "localhost:1234"
 
     WebSocket {
         id: socket
