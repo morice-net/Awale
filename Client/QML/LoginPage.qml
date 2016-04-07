@@ -21,7 +21,7 @@ Page {
         id: connectButton
         text: qsTr("Connect");
 
-        anchors.top: passField.bottom
+        anchors.top: loginField.bottom
         
         MouseArea {
             anchors.fill: parent
@@ -30,9 +30,9 @@ Page {
                 console.log("Let's play, " + loginField.value());
             }
         }
-        Separator {}
+        //Separator {}
     }
-
+/*
     // Button create account
     MenuButton {
         id: createAccountButton
@@ -47,4 +47,5 @@ Page {
             }
         }
     }
+    */
 }
