@@ -13,6 +13,7 @@ Item {
         source: "../Images/TextBackground.png"
 
         TextInput {
+            id: inputValue
             anchors.fill: parent
             anchors.margins: 25
             font.family: candyFont.name
@@ -43,5 +44,9 @@ Item {
                 }
             }
         }
+    }
+
+    function value() {
+        return inputValue.displayText;
     }
 }

@@ -22,6 +22,7 @@ Item  {
             y: parent.height * 0.12
             width: parent.width * 0.7
             fillMode: Image.PreserveAspectFit
+            visible: startPage.opacity > 0
         }
 
         DropShadow {
@@ -36,6 +37,7 @@ Item  {
 
         StartPage {
             id: startPage
+            anchors.bottomMargin: parent.height*0.1
         }
 
         LoginPage {

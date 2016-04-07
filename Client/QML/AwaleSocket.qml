@@ -4,38 +4,28 @@ import Qt.WebSockets 1.0
 Item {
 
     anchors.fill: parent
-    property string serverAddres: "localhost:1234"
+    property string serverAddres: "localhost:80" // "81.56.85.184:1234"
 
     WebSocket {
         id: socket
         url: "ws://" + serverAddres
-        onTextMessageReceived: {
-            messageBox.text = messageBox.text + "\nReceived message: " + message
-        }
+        onTextMessageReceived: messageBox.showMessage("Received message:\n" + message)
         onStatusChanged: if (socket.status == WebSocket.Error) {
-                             console.log("Error: " + socket.errorString)
+                             messageBox.showError("Error: " + socket.errorString)
                          } else if (socket.status == WebSocket.Open) {
-                             socket.sendTextMessage("Socket2")
+                             messageBox.showMessage("Connection succeeded");
                          } else if (socket.status == WebSocket.Closed) {
-                             messageBox.text += "\nSocket closed"
+                             messageBox.showError("Socket closed");
                          }
         active: false
     }
 
-    WebSocket {
-        id: secureWebSocket
-        url: "wss://" + serverAddres
-        onTextMessageReceived: {
-            messageBox.text = messageBox.text + "\nReceived secure message: " + message
-        }
-        onStatusChanged: if (secureWebSocket.status == WebSocket.Error) {
-                             console.log("Error: " + secureWebSocket.errorString)
-                         } else if (secureWebSocket.status == WebSocket.Open) {
-                             secureWebSocket.sendTextMessage("Hello Secure World")
-                         } else if (secureWebSocket.status == WebSocket.Closed) {
-                             messageBox.text += "\nSecure socket closed"
-                         }
-        active: false
+    function connect() {
+        socket.active = true;
+    }
+
+    function sendMessage(message) {
+        socket.sendTextMessage(message);
     }
 }
 

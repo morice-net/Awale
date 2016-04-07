@@ -39,5 +39,7 @@
         <file>QML/LoginPage.qml</file>
         <file>QML/TextField.qml</file>
         <file>Images/TextBackground.png</file>
+        <file>QML/MessageBox.qml</file>
+        <file>Images/CancelButton.png</file>
     </qresource>
 </RCC>

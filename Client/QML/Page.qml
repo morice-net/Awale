@@ -5,6 +5,7 @@ Item{
     anchors.fill: parent
     opacity: 0
     visible: opacity > 0
+    anchors.bottomMargin: parent.height*0.35
 
     function init() {
         opacity = 1;
@@ -14,5 +15,5 @@ Item{
         opacity = 0;
     }
 
-    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 1000; easing.type: "InCurve"  }
+    NumberAnimation on opacity { id: fadeEffect; running: false; to: 0; duration: 2000; easing.type: "InCurve"  }
 }

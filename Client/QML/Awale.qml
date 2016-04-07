@@ -56,6 +56,10 @@ Rectangle {
         id: confirmPage
     }
 
+    MessageBox {
+        id: messageBox
+    }
+
     AwaleSocket {
         id: webSocket
     }
