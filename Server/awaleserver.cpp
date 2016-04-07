@@ -3,6 +3,8 @@
 #include <QWebSocketServer>
 #include <QWebSocket>
 
+#include "gamemaker.h"
+
 AwaleServer::AwaleServer(quint16 port, QObject *parent) :
 	QObject(parent),
 	m_pWebSocketServer(new QWebSocketServer(QStringLiteral("Echo Server"),
@@ -21,7 +23,7 @@ AwaleServer::AwaleServer(quint16 port, QObject *parent) :
 AwaleServer::~AwaleServer()
 {
 	m_pWebSocketServer->close();
-	qDeleteAll(m_clients.begin(), m_clients.end());
+    qDeleteAll(m_clients.begin(), m_clients.end());
 }
 
 void AwaleServer::onNewConnection()
@@ -39,9 +41,27 @@ void AwaleServer::processTextMessage(QString message)
 {
 	QWebSocket *client = qobject_cast<QWebSocket *>(sender());
 	qDebug() << "Message received:" << message;
-	if (client) {
-		client->sendTextMessage(message);
-	}
+    if (!client) {
+        return;
+    }
+
+    // Connect message case
+    QString connect("connect|");
+    if (connect == message.left(connect.length())) {
+        GameMaker *maker = qobject_cast<GameMaker*>(parent());
+        QString playerLogin = message.right(message.length()-connect.length());
+        int gameId = maker->onLoggedIn(playerLogin, client);
+        if (gameId >= 0) {
+            Game* game = maker->gameById(gameId);
+            if (!game) {
+                return;
+            }
+            qobject_cast<QWebSocket *>(game->player1()->parent())->sendTextMessage(game->stateOfTheWorld());
+            client->sendTextMessage(game->stateOfTheWorld());
+        } else {
+            client->sendTextMessage("waiting");
+        }
+    }
 }
 
 void AwaleServer::processBinaryMessage(QByteArray message)

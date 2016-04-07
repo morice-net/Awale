@@ -29,10 +29,11 @@ public:
 	Account *player2() const;
 	void setPlayer2(Account *player2);
 
-signals:
+    int id() const;
+    void setId(int id);
 
 public slots:
-	void gameDone(Awale::Winner winner);
+    void gameDone(Awale::Winner winner);
 	// Callable from view
 	void onTakeHole(int player, int holeNumber);
 	void onCPUTakeHole();

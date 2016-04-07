@@ -34,7 +34,7 @@ public slots:
 private:
 	QString m_login;
 	QString m_password;
-	QString m_email;
+    QString m_email;
 
 };
 

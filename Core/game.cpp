@@ -117,9 +117,19 @@ void Game::onRevert()
 	}
     m_awales.remove(m_awales.size()-1);
 }
+int Game::id() const
+{
+    return m_id;
+}
+
+void Game::setId(int id)
+{
+    m_id = id;
+}
+
 Account *Game::player2() const
 {
-	return m_player2;
+    return m_player2;
 }
 
 void Game::setPlayer2(Account *player2)

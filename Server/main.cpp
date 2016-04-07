@@ -10,6 +10,7 @@
 
 // Awale
 #include "awaleserver.h"
+#include "gamemaker.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,10 +27,10 @@ int main(int argc, char *argv[])
 	parser.process(app);
 	int port = parser.value(portOption).toInt();
 
-	AwaleServer *server = new AwaleServer(port);
+    GameMaker *gameMaker = new GameMaker();
+    AwaleServer *server = new AwaleServer(port,gameMaker);
 
 	QObject::connect(server, &AwaleServer::closed, &app, &QCoreApplication::quit);
-
 
 	qDebug() << "Server started";
 

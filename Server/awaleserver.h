@@ -15,7 +15,7 @@ public:
 
 Q_SIGNALS:
 	void closed();
-
+    void loggedIn(const QString &login);
 
 private Q_SLOTS:
 	void onNewConnection();
