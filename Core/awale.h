@@ -4,8 +4,19 @@
 #include <QObject>
 #include <QVector>
 
-class Awale
+class Awale : public QObject
 {
+	Q_OBJECT
+
+	Q_PROPERTY(int playerScore1 READ playerScore1 WRITE setPlayerScore1)
+	Q_PROPERTY(int playerScore2 READ playerScore2 WRITE setPlayerScore2)
+	Q_PROPERTY(QVector<int> playerHalve1 READ playerHalve1 WRITE setPlayerHalve1)
+	Q_PROPERTY(QVector<int> playerHalve2 READ playerHalve2 WRITE setPlayerHalve2)
+	Q_PROPERTY(int takenHole READ takenHole WRITE setTakenHole)
+	Q_PROPERTY(int playerTurn READ playerTurn WRITE setPlayerTurn)
+	Q_PROPERTY(QVector<int> playables READ playables WRITE setPlayables)
+	Q_PROPERTY(int lastPlayed READ lastPlayed WRITE setLastPlayed)
+
 public:
 	enum Winner {
 		NoWinner,
@@ -14,12 +25,13 @@ public:
 		Draw
 	};
 
-    Awale();
+	Awale(QObject* parent = 0);
     void initialize();
     void takeHole(int playerNumber, int holeNumber);
 	void resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, QVector<int> &halve2);
 	Winner draw(int playerNumber, int holeNumber);
 	void computePlayable();
+	QString xmlState();
 
     // Getter and Setters
     int playerScore1() const;
@@ -44,7 +56,7 @@ public:
 	void setPlayables(const QVector<int> &playables);
 
 	int lastPlayed() const;
-	void setLastplayed(int lastPlayed);
+	void setLastPlayed(int lastPlayed);
 
 private:
 	int m_playerScore1;

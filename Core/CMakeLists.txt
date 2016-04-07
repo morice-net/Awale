@@ -17,7 +17,7 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt5Core)
 
-add_library (awalelib awale.cpp  game.cpp  graphbuilder.cpp  holeevaluator.cpp simplecrypt.cpp objectstorage.cpp)
+add_library (awalelib awale.cpp  game.cpp  graphbuilder.cpp  holeevaluator.cpp simplecrypt.cpp objectstorage.cpp xmltools.cpp)
 
 # Make sure the compiler can find include files for our Hello library
 # when other libraries or executables link

@@ -19,6 +19,7 @@ public:
 	explicit Game(QObject *parent = 0);
 
     void playRandom();
+	QString stateOfTheWorld();
 
 signals:
 
@@ -31,11 +32,13 @@ public slots:
 	void onRevert();
 
 private:
-	QVector<Awale> m_awales;
+	QVector<Awale*> m_awales;
     QVector<int> m_plays;
     Mode m_mode;
     //ExampleFeeder m_feeder;
     Awale::Winner m_isThereAWinner;
+	QString m_player1login;
+	QString m_player2login;
 
 };
 

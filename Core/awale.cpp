@@ -1,6 +1,9 @@
 #include "awale.h"
 
-Awale::Awale()
+#include "xmltools.h"
+
+Awale::Awale(QObject *parent)
+	: QObject(parent)
 {
 	m_playerHalve1 << 0 << 0 << 0 << 0 << 0 << 0;
 	m_playerHalve2 << 0 << 0 << 0 << 0 << 0 << 0;
@@ -178,6 +181,28 @@ void Awale::computePlayable()
 	setPlayables(playableVector);
 }
 
+/*!
+ * \brief Awale::xmlState
+ * \return xml of the properties as a string
+ */
+QString Awale::xmlState()
+{
+	QStringList xmlCurrentState;
+	XmlTools tool;
+	xmlCurrentState << tool.xmlFromValue("playerScore1",m_playerScore1);
+	xmlCurrentState << tool.xmlFromValue("playerScore2",m_playerScore2);
+
+	xmlCurrentState << tool.xmlFromValue("playerHalve1",m_playerHalve1);
+	xmlCurrentState << tool.xmlFromValue("playerHalve2",m_playerHalve2);
+
+	xmlCurrentState << tool.xmlFromValue("takenHole",m_takenHole);
+	xmlCurrentState << tool.xmlFromValue("playerTurn",m_playerTurn);
+	xmlCurrentState << tool.xmlFromValue("playables",m_playables);
+	xmlCurrentState << tool.xmlFromValue("lastPlayed",m_lastPlayed);
+
+	return xmlCurrentState.join("");
+}
+
 /* Getters & Setters */
 
 int Awale::playerScore1() const
@@ -272,7 +297,7 @@ int Awale::lastPlayed() const
 	return m_lastPlayed;
 }
 
-void Awale::setLastplayed(int lastPlayed)
+void Awale::setLastPlayed(int lastPlayed)
 {
 	m_lastPlayed = lastPlayed;
 }

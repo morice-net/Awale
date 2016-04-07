@@ -17,7 +17,7 @@ public:
 	virtual bool createTable(QString tableName, QVector<QString> columnNames, QVector<QString> columnTypes) = 0;
 	virtual QString getStringFromType(QVariant::Type type) = 0;
 
-	void createTableFromObject(QObject* dataRow);
+	bool createTableFromObject(QObject* dataRow);
 	bool insertObject(QObject* dataRow);
 
 	QVector<QObject *> dataTableObjects(const QString& tableName) const;

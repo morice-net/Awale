@@ -31,6 +31,14 @@ int main(int argc, char *argv[])
 	AwaleServer *server = new AwaleServer(port);
 	QObject::connect(server, &AwaleServer::closed, &app, &QCoreApplication::quit);
 
+
+	QObject::connect(server, &AwaleServer::closed, &app, &QCoreApplication::quit);
+
 	qDebug() << "Server started";
+
+	Game game;
+	game.onStart(1);
+	game.stateOfTheWorld();
+
 	return app.exec();
 }
