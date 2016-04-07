@@ -6,7 +6,7 @@ Page {
     TextField {
         id: loginField
         label: qsTr("Choose a login")
-        anchors.centerIn: parent
+        y: parent.height/2 + parent.height*0.06
     }
 
     /*TextField {
@@ -27,7 +27,6 @@ Page {
             anchors.fill: parent
             onClicked: {
                 webSocket.sendMessage("connect|" + loginField.value());
-                console.log("Let's play, " + loginField.value());
             }
         }
         //Separator {}
