@@ -41,5 +41,6 @@
         <file>Images/TextBackground.png</file>
         <file>QML/MessageBox.qml</file>
         <file>Images/CancelButton.png</file>
+        <file>QML/PictureChooser.qml</file>
     </qresource>
 </RCC>

@@ -9,22 +9,19 @@ Page {
     }
 
     TextField {
-        id: mailField
-        label: qsTr("eMail@address")
-        anchors.top: loginField.bottom
-    }
-
-    TextField {
         id: passField
         label: qsTr("Password")
         hideText: true
         anchors.top: mailField.bottom
+    }
+
+    PictureChooser {
 
     }
 
     MenuButton {
         id: validateAccountCreation
-        text: qsTr("Create account");
+        text: qsTr("Validate");
         anchors.top: passField.bottom
         MouseArea {
             anchors.fill: parent
