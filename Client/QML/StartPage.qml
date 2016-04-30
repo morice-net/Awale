@@ -14,10 +14,8 @@ Page  {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                title.opacity = 0;
-                startPage.close();
-                loginPage.init();
                 webSocket.connect();
+                startPage.close();
             }
         }
         Separator {}

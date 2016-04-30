@@ -9,19 +9,19 @@ Page {
         y: parent.height/2 + parent.height*0.06
     }
 
-    /*TextField {
+    TextField {
         id: passField
         label: qsTr("Password")
         hideText: true
         anchors.top: loginField.bottom
-    }*/
+    }
 
     // Button connect
     MenuButton {
         id: connectButton
         text: qsTr("Connect");
 
-        anchors.top: loginField.bottom
+        anchors.top: passField.bottom
         
         MouseArea {
             anchors.fill: parent
@@ -29,14 +29,14 @@ Page {
                 webSocket.sendMessage("connect|" + loginField.value());
             }
         }
-        //Separator {}
+        Separator {}
     }
-/*
+
     // Button create account
     MenuButton {
         id: createAccountButton
         text: qsTr("Create account");
-        anchors.bottom: parent.bottom
+        anchors.top: connectButton.bottom
         font.pointSize: parent.height * 0.015
         MouseArea {
             anchors.fill: parent
@@ -46,5 +46,4 @@ Page {
             }
         }
     }
-    */
 }

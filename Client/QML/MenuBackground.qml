@@ -8,6 +8,7 @@ Item  {
     visible: opacity > 0
 
     Image {
+        id: menu
         anchors.fill: parent
 
         source: "../Images/Background.png"
@@ -22,7 +23,7 @@ Item  {
             y: parent.height * 0.12
             width: parent.width * 0.7
             fillMode: Image.PreserveAspectFit
-            visible: startPage.opacity > 0
+            visible: false
         }
 
         DropShadow {
@@ -33,6 +34,7 @@ Item  {
             samples: 16
             color: "#ffffff"
             source: title
+            visible: startPage.opacity > 0
         }
 
         StartPage {
@@ -57,6 +59,9 @@ Item  {
         }
     }
 
+
+
+
     function isStartPage() {
         return (startPage.visible > 0);
     }
@@ -67,6 +72,14 @@ Item  {
         launchGamePage.close();
         opponentListPage.close();
         startPage.init();
+    }
+
+    function setLoginPage() {
+        startPage.close();
+        accountCreationPage.close();
+        launchGamePage.close();
+        opponentListPage.close();
+        loginPage.init();
     }
 
     function init() {

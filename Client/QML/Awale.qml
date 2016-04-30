@@ -64,10 +64,6 @@ Rectangle {
         id: webSocket
     }
 
-    KLoading {
-        id: load
-    }
-
     Keys.onPressed: {
         if (event.key == Qt.Key_Escape || event.key == Qt.Key_Back) {
             if (menu.isStartPage()) {
@@ -89,9 +85,9 @@ Rectangle {
         console.log(" * Rules Called");
     }
 
-    Component.onCompleted: {
+    /*Component.onCompleted: {
         load.close();
-    }
+    }*/
 
     onWinnerChanged: {
         if (winner == -1) {

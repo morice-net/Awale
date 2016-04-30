@@ -12,17 +12,21 @@ Page {
         id: passField
         label: qsTr("Password")
         hideText: true
-        anchors.top: mailField.bottom
+        anchors.top: loginField.bottom
+        anchors.margins: 20
     }
 
     PictureChooser {
-
+        id: pictChooser
+        anchors.top: passField.bottom
+        anchors.margins: 20
     }
 
     MenuButton {
         id: validateAccountCreation
         text: qsTr("Validate");
-        anchors.top: passField.bottom
+        anchors.top: pictChooser.bottom
+        anchors.margins: 55
         MouseArea {
             anchors.fill: parent
             onClicked: {
