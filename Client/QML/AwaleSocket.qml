@@ -13,7 +13,7 @@ Item {
         onStatusChanged: if (socket.status == WebSocket.Error) {
                              errorReceived(socket.errorString);
                          } else if (socket.status == WebSocket.Open) {
-                             messageBox.showMessage("Connection succeeded");
+                             //messageBox.showMessage("Connection succeeded");
                              menu.setLoginPage();
                          } else if (socket.status == WebSocket.Closed) {
                              errorReceived("Socket closed");

@@ -30,7 +30,7 @@ Page {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                main.start(1);
+                webSocket.sendMessage("createAccount|"+loginField.label+"|"+passField.label+"|"+pictChooser.value())
                 fadeEffect.start()
             }
         }
