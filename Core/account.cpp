@@ -39,16 +39,16 @@ void Account::setPassword(const QString &password)
 	}
 }
 
-QString Account::email() const
+QString Account::iconUrl() const
 {
-	return m_email;
+    return m_iconUrl;
 }
 
-void Account::setEmail(const QString &email)
+void Account::setIconUrl(const QString &email)
 {
-	if (email != m_email) {
-		m_email = email;
-		emit emailChanged();
+    if (email != m_iconUrl) {
+        m_iconUrl = email;
+        emit iconUrlChanged();
 	}
 }
 

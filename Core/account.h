@@ -9,7 +9,7 @@ class Account : public QObject
 
 	Q_PROPERTY(QString login READ login WRITE setLogin NOTIFY loginChanged)
 	Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
-	Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
+    Q_PROPERTY(QString iconUrl READ iconUrl WRITE setIconUrl NOTIFY iconUrlChanged)
 
 public:
 	explicit Account(QObject *parent = 0);
@@ -21,20 +21,20 @@ public:
 	QString password() const;
 	void setPassword(const QString &password);
 
-	QString email() const;
-	void setEmail(const QString &email);
+    QString iconUrl() const;
+    void setIconUrl(const QString &iconUrl);
 
 signals:
 	void loginChanged();
 	void passwordChanged();
-	void emailChanged();
+    void iconUrlChanged();
 
 public slots:
 
 private:
 	QString m_login;
 	QString m_password;
-    QString m_email;
+    QString m_iconUrl;
 
 };
 
