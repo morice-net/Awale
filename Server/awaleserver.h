@@ -5,6 +5,7 @@
 
 QT_FORWARD_DECLARE_CLASS(QWebSocketServer)
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
+class MessageListener;
 
 class AwaleServer : public QObject
 {
@@ -16,6 +17,7 @@ public:
 Q_SIGNALS:
 	void closed();
     void loggedIn(const QString &login);
+    void newMessageReceived(QWebSocket* client, QString message);
 
 private Q_SLOTS:
 	void onNewConnection();
@@ -25,7 +27,7 @@ private Q_SLOTS:
 
 private:
 	QWebSocketServer *m_pWebSocketServer;
-	QList<QWebSocket *> m_clients;
+    QList<QWebSocket *> m_clients;
 	bool m_debug;
 
 

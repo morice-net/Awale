@@ -7,7 +7,7 @@ GameMaker::GameMaker(QObject *parent) :
 {
 }
 
-int GameMaker::onLoggedIn(const QString &login, QObject* communicator)
+int GameMaker::createGame(const QString &login, QObject* communicator)
 {
     Account *newAccount = new Account(communicator);
     newAccount->setLogin(login);

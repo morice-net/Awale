@@ -3,8 +3,7 @@
 #include <QWebSocketServer>
 #include <QWebSocket>
 
-#include "gamemaker.h"
-#include "accountcreator.h"
+#include "messagelistener.h"
 
 AwaleServer::AwaleServer(quint16 port, QObject *parent) :
 	QObject(parent),
@@ -46,31 +45,7 @@ void AwaleServer::processTextMessage(QString message)
         return;
     }
 
-    QStringList commands = message.split("|");
-
-    // Connect message case
-    ;
-    if (commands.first() == QStringLiteral("connect")) {
-        GameMaker *maker = qobject_cast<GameMaker*>(parent());
-        QString playerLogin = commands.at(1);
-        int gameId = maker->onLoggedIn(playerLogin, client);
-        if (gameId >= 0) {
-            Game* game = maker->gameById(gameId);
-            if (!game) {
-                return;
-            }
-            qobject_cast<QWebSocket *>(game->player1()->parent())->sendTextMessage(game->stateOfTheWorld());
-            client->sendTextMessage(game->stateOfTheWorld());
-        } else {
-            client->sendTextMessage("waiting");
-        }
-    }
-
-    // Account creation
-    if (commands.first() == QStringLiteral("accountCreation")) {
-        AccountCreator accountCreator(this);
-        accountCreator.createAccount(commands.at(1),commands.at(2),commands.at(3));
-    }
+    emit newMessageReceived(client, message);
 }
 
 void AwaleServer::processBinaryMessage(QByteArray message)

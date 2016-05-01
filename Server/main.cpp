@@ -11,6 +11,7 @@
 // Awale
 #include "awaleserver.h"
 #include "gamemaker.h"
+#include "messagelistener.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,9 +28,12 @@ int main(int argc, char *argv[])
 	parser.process(app);
 	int port = parser.value(portOption).toInt();
 
-    GameMaker *gameMaker = new GameMaker();
-    AwaleServer *server = new AwaleServer(port,gameMaker);
 
+    GameMaker *gameMaker = new GameMaker();
+    MessageListener* messageListener = new MessageListener(gameMaker);
+    AwaleServer *server = new AwaleServer(port);
+
+    QObject::connect(server, SIGNAL(newMessageReceived(QWebSocket*,QString)), messageListener, SLOT(onMessageReceived(QWebSocket*,QString)));
 	QObject::connect(server, &AwaleServer::closed, &app, &QCoreApplication::quit);
 
 	qDebug() << "Server started";
