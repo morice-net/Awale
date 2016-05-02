@@ -1,7 +1,7 @@
 #include "messagelistener.h"
 
 // Qt
-#include <QWebSocket>x
+#include <QWebSocket>
 
 // Server
 #include "gamemaker.h"

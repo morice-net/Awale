@@ -29,12 +29,11 @@ int main(int argc, char *argv[])
 	int port = parser.value(portOption).toInt();
 
 
-    GameMaker *gameMaker = new GameMaker();
-    MessageListener* messageListener = new MessageListener(gameMaker);
-    AwaleServer *server = new AwaleServer(port);
+	AwaleServer *server = new AwaleServer(port);
+	GameMaker *gameMaker = new GameMaker(server);
+	MessageListener* messageListener = new MessageListener(server);
 
-    QObject::connect(server, SIGNAL(newMessageReceived(QWebSocket*,QString)), messageListener, SLOT(onMessageReceived(QWebSocket*,QString)));
-	QObject::connect(server, &AwaleServer::closed, &app, &QCoreApplication::quit);
+	QObject::connect(server, SIGNAL(newMessageReceived(QWebSocket*,QString)), messageListener, SLOT(onMessageReceived(QWebSocket*,QString)), Qt::QueuedConnection);
 
 	qDebug() << "Server started";
 

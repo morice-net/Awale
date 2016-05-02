@@ -24,4 +24,4 @@ add_library (awalelib awale.cpp account.cpp game.cpp  graphbuilder.cpp  holeeval
 target_include_directories (awalelib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-qt5_use_modules(awalelib Core)
+qt5_use_modules(awalelib Core WebSockets)

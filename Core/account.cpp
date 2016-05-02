@@ -1,5 +1,7 @@
 #include "account.h"
 
+#include <QWebSocket>
+
 #include "xmltools.h"
 
 Account::Account(QObject *parent) :

@@ -2,6 +2,8 @@
 #define ACCOUNT_H
 
 #include <QObject>
+QT_FORWARD_DECLARE_CLASS(QWebSocket)
+
 
 class Account : public QObject
 {
@@ -35,6 +37,7 @@ private:
 	QString m_login;
 	QString m_password;
     QString m_iconUrl;
+	QWebSocket *m_clients;
 
 };
 
