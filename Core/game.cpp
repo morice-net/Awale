@@ -56,36 +56,47 @@ void Game::sendStateOfTheWorld()
 	m_player2->client()->sendTextMessage(state);
 }
 
-void Game::onTakeHole(int player, int holeNumber)
+void Game::takeHole(Account *account, int holeNumber)
+{
+	int player = 0;
+	if (account == m_player1) {
+		player = 1;
+	} else if (account == m_player2) {
+		player = 2;
+	}
+	takeHole(player, holeNumber);
+}
+
+void Game::takeHole(int player, int holeNumber)
 {
 	if (m_awales.isEmpty()) {
 		return;
 	}
-    if (holeNumber == -1) {
-        if (player == 1) {
-            m_isThereAWinner = Awale::Player2;
-        } else {
-            m_isThereAWinner = Awale::Player1;
-        }
-        return;
-    }
+	if (holeNumber == -1) {
+		if (player == 1) {
+			m_isThereAWinner = Awale::Player2;
+		} else {
+			m_isThereAWinner = Awale::Player1;
+		}
+		return;
+	}
 
 	Awale *newTurn = m_awales.last();
 	newTurn->takeHole(player,holeNumber);
 	m_isThereAWinner = newTurn->draw(player,holeNumber);
-    if (m_isThereAWinner == Awale::NoWinner) {
+	if (m_isThereAWinner == Awale::NoWinner) {
 		newTurn->computePlayable();
 	}
 	m_awales.append(newTurn);
-    m_plays.append(holeNumber);
+	m_plays.append(holeNumber);
 
-    if (m_isThereAWinner != Awale::NoWinner) {
-		//TODO game is ended ?
+	if (m_isThereAWinner != Awale::NoWinner) {
+		emit gameDone();
 	} else if (newTurn->playerTurn() == 2 && m_mode == Solo) {
-		//TODO send state of world ?
-        QTimer::singleShot( 500, this, SLOT(onCPUTakeHole()) );
+		sendStateOfTheWorld();
+		QTimer::singleShot( 500, this, SLOT(onCPUTakeHole()) );
 	}
-	//TODO send state of world ?
+	sendStateOfTheWorld();
 }
 
 void Game::onCPUTakeHole()
@@ -95,7 +106,7 @@ void Game::onCPUTakeHole()
 	}
 
 	GraphBuilder solution(m_awales.last(), GraphBuilder::Random, this);
-	onTakeHole(m_awales.last()->playerTurn(),solution.selectBestHole());
+	takeHole(m_awales.last()->playerTurn(),solution.selectBestHole());
 }
 
 void Game::onRevert()

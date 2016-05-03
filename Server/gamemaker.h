@@ -14,10 +14,11 @@ public:
 	explicit GameMaker(QObject *parent = 0);
 	int createGame(Account* account);
 	QVector<Game *> accountGames(Account* account);
+	void takeHole(int id, Account* account, int hole);
 
 private:
 	Account* m_waitingAccount;
-	QVector<Game*> m_games;
+	QMap<int,Game*> m_games;
 };
 
 #endif // WAITINGGAMES_H

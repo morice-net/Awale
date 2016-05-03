@@ -22,6 +22,8 @@ public:
 	void start(int mode);
     void playRandom();
 	void sendStateOfTheWorld();
+	void takeHole(Account* account, int holeNumber);
+	void takeHole(int player, int holeNumber);
 
 	Account *player1() const;
 	void setPlayer1(Account *player1);
@@ -34,7 +36,6 @@ public:
 
 public slots:
 	// Callable from view
-	void onTakeHole(int player, int holeNumber);
 	void onCPUTakeHole();
 	void onRevert();
 

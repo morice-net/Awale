@@ -24,6 +24,14 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 		}
 	}
 
+	// A player has taken a hole
+	if (commands.first() == QStringLiteral("takeHole")) {
+		Account* account = m_accountCreator.accountFromLogin(commands.at(2));
+		if (account != NULL) {
+			m_gameMaker.takeHole(commands.at(1).toInt(), account, commands.at(3).toInt());
+		}
+	}
+
 	// Client connection
 	if (commands.first() == QStringLiteral("clientConnection")) {
 		m_accountCreator.connectClient(commands.at(1), commands.at(2), client);

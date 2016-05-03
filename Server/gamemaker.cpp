@@ -1,6 +1,5 @@
 #include "gamemaker.h"
 
-#include <QVector>
 #include <QWebSocket>
 
 #include "awaleserver.h"
@@ -16,7 +15,7 @@ int GameMaker::createGame(Account *account)
         Game *game = new Game(this);
 		game->setPlayer1(m_waitingAccount);
 		game->setPlayer2(account);
-		m_games << game;
+		m_games.insert(game->id(),game);
 
         m_waitingAccount = 0;
         game->start(2);
@@ -29,10 +28,21 @@ int GameMaker::createGame(Account *account)
 	}
 }
 
+void GameMaker::takeHole(int id, Account *account, int hole)
+{
+	Game *game = m_games.value(id);
+	if (game == NULL) {
+		return;
+	}
+
+	game->takeHole(account, hole);
+}
+
 QVector<Game *> GameMaker::accountGames(Account *account)
 {
+
 	QVector<Game *> games;
-	foreach(Game *game, m_games) {
+	foreach(Game *game, m_games.values()) {
 		if (game->player1() == account || game->player2() == account) {
 			games << game;
 		}
