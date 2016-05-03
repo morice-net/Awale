@@ -20,9 +20,7 @@ int GameMaker::createGame(Account *account)
 
         m_waitingAccount = 0;
         game->start(2);
-
-		game->player1()->client()->sendTextMessage(game->stateOfTheWorld());
-		game->player2()->client()->sendTextMessage(game->stateOfTheWorld());
+		game->sendStateOfTheWorld();
 
 	} else {
 		m_waitingAccount = account;

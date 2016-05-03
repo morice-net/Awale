@@ -21,7 +21,7 @@ public:
 
 	void start(int mode);
     void playRandom();
-	QString stateOfTheWorld();
+	void sendStateOfTheWorld();
 
 	Account *player1() const;
 	void setPlayer1(Account *player1);
@@ -33,11 +33,13 @@ public:
     void setId(int id);
 
 public slots:
-    void gameDone(Awale::Winner winner);
 	// Callable from view
 	void onTakeHole(int player, int holeNumber);
 	void onCPUTakeHole();
 	void onRevert();
+
+signals:
+	void gameDone();
 
 private:
 	QVector<Awale*> m_awales;
@@ -49,6 +51,8 @@ private:
 	Account *m_player1;
 	Account *m_player2;
 
+	// Intern methods
+	QString stateOfTheWorld() const;
 };
 
 #endif // GAME_H

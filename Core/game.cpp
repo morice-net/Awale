@@ -3,6 +3,7 @@
 
 // Qt
 #include <QTimer>
+#include <QWebSocket>
 #include <QMetaProperty>
 #include <QDebug>
 
@@ -20,27 +21,6 @@ Game::Game(QObject *parent) :
 	m_player1(0),
 	m_player2(0)
 {
-}
-
-void Game::gameDone(Awale::Winner winner)
-{
-	int winnerProperty;
-	switch (winner) {
-	case Awale::Player1:
-		winnerProperty = 1;
-		break;
-	case Awale::Player2:
-		winnerProperty = 2;
-		break;
-	case Awale::Draw:
-		winnerProperty = 0;
-		break;
-	case Awale::NoWinner:
-		// Intended fold down
-	default:
-		winnerProperty = -1;
-		break;
-    }
 }
 
 void Game::start(int mode)
@@ -62,12 +42,18 @@ void Game::start(int mode)
 	// Initialize the begin of the game
 	Awale *awale = new Awale();
 	awale->initialize();
-    m_awales.append(awale);
-	gameDone(Awale::NoWinner);
+	m_awales.append(awale);
 
     if (m_mode == Learning) {
         playRandom();
     }
+}
+
+void Game::sendStateOfTheWorld()
+{
+	const QString& state = stateOfTheWorld();
+	m_player1->client()->sendTextMessage(state);
+	m_player2->client()->sendTextMessage(state);
 }
 
 void Game::onTakeHole(int player, int holeNumber)
@@ -94,10 +80,12 @@ void Game::onTakeHole(int player, int holeNumber)
     m_plays.append(holeNumber);
 
     if (m_isThereAWinner != Awale::NoWinner) {
-        gameDone(m_isThereAWinner);
+		//TODO game is ended ?
 	} else if (newTurn->playerTurn() == 2 && m_mode == Solo) {
+		//TODO send state of world ?
         QTimer::singleShot( 500, this, SLOT(onCPUTakeHole()) );
 	}
+	//TODO send state of world ?
 }
 
 void Game::onCPUTakeHole()
@@ -168,11 +156,12 @@ void Game::playRandom()
 	start(3);
 }
 
-QString Game::stateOfTheWorld()
+QString Game::stateOfTheWorld() const
 {
 	if (m_awales.isEmpty()) {
-		qDebug() << "Error";
-		return "Error";
+		QString err("Error");
+		qDebug() << err;
+		return err;
 	}
 
 	QString result;
@@ -180,7 +169,6 @@ QString Game::stateOfTheWorld()
 	result.append(m_player1->xmlState());
 	result.append(m_player2->xmlState());
 	result.append(m_awales.last()->xmlState());
-	qDebug() << result;
 	return result;
 }
 
