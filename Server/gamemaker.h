@@ -12,7 +12,7 @@ class GameMaker : public QObject
 	Q_OBJECT
 public:
 	explicit GameMaker(QObject *parent = 0);
-    int createGame(const QString& login, QObject *communicator);
+	int createGame(Account* account, QWebSocket *client);
     Game *gameById(int gameId);
 
 private:

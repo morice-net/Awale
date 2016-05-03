@@ -46,3 +46,17 @@ void AccountCreator::connectClient(const QString &login, const QString &password
 	}
 }
 
+Account *AccountCreator::accountFromLogin(const QString &login)
+{
+	for (QObject *accountObj: children()) {
+		Account* account = qobject_cast<Account*>(accountObj);
+		if (account == NULL) {
+			continue;
+		}
+		if (account->login() == login) {
+			return account;
+		}
+	}
+	return NULL;
+}
+

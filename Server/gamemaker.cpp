@@ -1,5 +1,7 @@
 #include "gamemaker.h"
 
+#include <QWebSocket>
+
 #include "awaleserver.h"
 
 GameMaker::GameMaker(QObject *parent) :
@@ -7,25 +9,25 @@ GameMaker::GameMaker(QObject *parent) :
 {
 }
 
-int GameMaker::createGame(const QString &login, QObject* communicator)
+int GameMaker::createGame(Account *account, QWebSocket* client)
 {
-    Account *newAccount = new Account(communicator);
-    newAccount->setLogin(login);
-
 	if (m_waitingAccount) {
         Game *game = new Game(this);
 		game->setPlayer1(m_waitingAccount);
-		game->setPlayer2(newAccount);
+		game->setPlayer2(account);
         m_games.insert(game->id(),game);
 
         m_waitingAccount = 0;
         game->start(2);
-        return game->id();
+
+		game->player1()->client()->sendTextMessage(game->stateOfTheWorld());
+		game->player2()->client()->sendTextMessage(game->stateOfTheWorld());
 
 	} else {
-		m_waitingAccount = newAccount;
+		m_waitingAccount = account;
+		client->sendTextMessage("waiting");
         return -1;
-    }
+	}
 }
 
 Game *GameMaker::gameById(int gameId)
