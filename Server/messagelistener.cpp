@@ -6,7 +6,7 @@
 // Server
 #include "gamemaker.h"
 
-MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this)
+MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this), m_gameMaker(this)
 {
 
 }
@@ -16,14 +16,12 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 
     QStringList commands = message.split("|");
 
-    // Connect message case
-    ;
+	// Connect message case
     if (commands.first() == QStringLiteral("createGame")) {
-        GameMaker *maker = qobject_cast<GameMaker*>(parent());
         QString playerLogin = commands.at(1);
-        int gameId = maker->createGame(playerLogin, client);
+		int gameId = m_gameMaker.createGame(playerLogin, client);
         if (gameId >= 0) {
-            Game* game = maker->gameById(gameId);
+			Game* game = m_gameMaker.gameById(gameId);
             if (!game) {
                 return;
             }
