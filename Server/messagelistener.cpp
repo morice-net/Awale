@@ -5,9 +5,8 @@
 
 // Server
 #include "gamemaker.h"
-#include "accountcreator.h"
 
-MessageListener::MessageListener(QObject *parent) : QObject(parent)
+MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this)
 {
 
 }
@@ -35,10 +34,18 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
         }
     }
 
+	// Client connection
+	if (commands.first() == QStringLiteral("clientConnection")) {
+		foreach(Account* account, m_accountCreator.accounts()) {
+
+		}
+
+		m_accountCreator.createAccount(commands.at(1), commands.at(2), commands.at(3), client);
+	}
+
     // Account creation
     if (commands.first() == QStringLiteral("accountCreation")) {
-        AccountCreator accountCreator(this);
-        accountCreator.createAccount(commands.at(1),commands.at(2),commands.at(3));
+		m_accountCreator.createAccount(commands.at(1), commands.at(2), commands.at(3), client);
     }
 }
 

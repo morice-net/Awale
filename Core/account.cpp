@@ -11,14 +11,23 @@ Account::Account(QObject *parent) :
 {
 }
 
+void Account::sendStateMessage()
+{
+	if (m_client == NULL) {
+		return;
+	}
+
+	m_client->sendTextMessage(xmlState());
+}
+
 QString Account::xmlState()
 {
 	QString fullXml;
 	XmlTools tool;
 
 	for (int i = 1; i < metaObject()->propertyCount(); ++i) {
-		qDebug() << metaObject()->property(i).name();
-		qDebug() << metaObject()->property(i).read(this).toString();
+		QMetaProperty propertyi = metaObject()->property(i);
+		fullXml.append(tool.xmlFromValue(propertyi.name(),propertyi.read(this).toString()));
 	}
 
 	return fullXml;
@@ -52,7 +61,7 @@ void Account::addGameResult(bool win, int adversaryElo)
 
 		m_elo -= elo;
 	}
-	xmlState();
+	sendStateMessage();
 }
 
 void Account::disconnected()

@@ -18,6 +18,7 @@ class Account : public QObject
 
 public:
 	explicit Account(QObject *parent = 0);
+	void sendStateMessage();
 	QString xmlState();
 	void addGameResult(bool win, int adversaryElo);
 	void disconnected();

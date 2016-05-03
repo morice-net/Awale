@@ -6,6 +6,8 @@
 
 QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
+#include "accountcreator.h"
+
 class MessageListener : public QObject
 {
     Q_OBJECT
@@ -24,6 +26,7 @@ public slots:
 
 protected:
     QStringList m_messages;
+	AccountCreator m_accountCreator;
 };
 
 #endif // MESSAGELISTENER_H
