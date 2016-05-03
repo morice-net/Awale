@@ -37,11 +37,5 @@ int main(int argc, char *argv[])
 
 	qDebug() << "Server started";
 
-	Account* newPlayer = new Account();
-	newPlayer->setLogin("login");
-	newPlayer->setPassword("password");
-	newPlayer->setIconUrl("iconUrl");
-	newPlayer->addGameResult(false, 2500);
-
 	return app.exec();
 }
