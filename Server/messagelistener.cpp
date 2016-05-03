@@ -20,7 +20,7 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 	if (commands.first() == QStringLiteral("createGame")) {
 		Account* account = m_accountCreator.accountFromLogin(commands.at(1));
 		if (account != NULL) {
-			m_gameMaker.createGame(account, client);
+			m_gameMaker.createGame(account);
 		}
 	}
 
