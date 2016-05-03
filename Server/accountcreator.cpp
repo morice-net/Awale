@@ -31,16 +31,18 @@ void AccountCreator::createAccount(const QString &login, const QString &password
 	newPlayer->sendStateMessage();
 }
 
-QVector<Account *> AccountCreator::accounts()
+void AccountCreator::connectClient(const QString &login, const QString &password, QWebSocket *client)
 {
-	QVector<Account *> accounts;
 	for (QObject *accountObj: children()) {
 		Account* account = qobject_cast<Account*>(accountObj);
 		if (account == NULL) {
 			continue;
 		}
-		accounts << account;
+		if (account->login() == login && account->password() == password) {
+			account->setClient(client);
+			account->sendStateMessage();
+			return;
+		}
 	}
-	return accounts;
 }
 

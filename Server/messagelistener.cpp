@@ -36,11 +36,7 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 
 	// Client connection
 	if (commands.first() == QStringLiteral("clientConnection")) {
-		foreach(Account* account, m_accountCreator.accounts()) {
-
-		}
-
-		m_accountCreator.createAccount(commands.at(1), commands.at(2), commands.at(3), client);
+		m_accountCreator.connectClient(commands.at(1), commands.at(2), client);
 	}
 
     // Account creation

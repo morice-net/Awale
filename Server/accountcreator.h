@@ -12,7 +12,7 @@ class AccountCreator : public QObject
 public:
     explicit AccountCreator(QObject *parent = 0);
 	void createAccount(const QString &login, const QString &password, const QString &iconUrl, QWebSocket *client);
-	QVector<Account *> accounts();
+	void connectClient(const QString &login, const QString &password, QWebSocket *client);
 };
 
 #endif // ACCOUNTCREATOR_H
