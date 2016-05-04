@@ -46,7 +46,7 @@ void AccountCreator::connectClient(const QString &login, const QString &password
 		}
 	}
 	// No returns, so error
-	client->sendTextMessage("Error|Login and/or password is wrong");
+	client->sendTextMessage("Error|Login or password is wrong");
 }
 
 Account *AccountCreator::accountFromLogin(const QString &login)
