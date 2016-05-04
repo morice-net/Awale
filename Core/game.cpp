@@ -28,25 +28,35 @@ void Game::start(int mode)
 	// Record the type of user choosen game
 	if (mode == 1) {
 		m_mode = Solo;
-    } else if (mode == 2) {
-        m_mode = Versus;
-    } else {
-        m_mode = Learning;
+	} else if (mode == 2) {
+		m_mode = Versus;
+	} else {
+		m_mode = Learning;
 	}
 
 	// Up for a new round
 	m_awales.clear();
-    m_plays.clear();
-    m_isThereAWinner = Awale::NoWinner;
+	m_plays.clear();
+	m_isThereAWinner = Awale::NoWinner;
 
 	// Initialize the begin of the game
 	Awale *awale = new Awale();
 	awale->initialize();
 	m_awales.append(awale);
 
-    if (m_mode == Learning) {
-        playRandom();
-    }
+	if (m_mode == Learning) {
+		playRandom();
+	}
+}
+
+void Game::abort(Account *account)
+{
+	if (account == m_player1) {
+		m_isThereAWinner = Awale::Player2;
+	} else {
+		m_isThereAWinner = Awale::Player1;
+	}
+	emit gameDone();
 }
 
 void Game::sendStateOfTheWorld()
@@ -125,21 +135,21 @@ void Game::onRevert()
 	if (m_awales.isEmpty()) {
 		return;
 	}
-    m_awales.remove(m_awales.size()-1);
+	m_awales.remove(m_awales.size()-1);
 }
 int Game::id() const
 {
-    return m_id;
+	return m_id;
 }
 
 void Game::setId(int id)
 {
-    m_id = id;
+	m_id = id;
 }
 
 Account *Game::player2() const
 {
-    return m_player2;
+	return m_player2;
 }
 
 void Game::setPlayer2(Account *player2)
@@ -164,17 +174,17 @@ void Game::playRandom()
 		onCPUTakeHole();
 	}
 	if (m_isThereAWinner == Awale::Player1) {
-        //m_feeder.addExample(m_awales,m_plays,false);
-    } else if (m_isThereAWinner == Awale::Player2) {
-        //m_feeder.addExample(m_awales,m_plays,true);
-    }
-    QString winnerString = "draw";
-    if (m_isThereAWinner == Awale::Player1) {
+		//m_feeder.addExample(m_awales,m_plays,false);
+	} else if (m_isThereAWinner == Awale::Player2) {
+		//m_feeder.addExample(m_awales,m_plays,true);
+	}
+	QString winnerString = "draw";
+	if (m_isThereAWinner == Awale::Player1) {
 		winnerString = m_player1->login();
-    } else if (m_isThereAWinner == Awale::Player2) {
+	} else if (m_isThereAWinner == Awale::Player2) {
 		winnerString = m_player2->login();
-    }
-    qDebug() << "Winner is" << winnerString;
+	}
+	qDebug() << "Winner is" << winnerString;
 	start(3);
 }
 

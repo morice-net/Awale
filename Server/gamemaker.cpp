@@ -28,7 +28,7 @@ int GameMaker::createGame(Account *account)
 	}
 }
 
-int GameMaker::launchGame(Account *account)
+void GameMaker::launchGame(Account *account)
 {
 	Game *game = new Game(this);
 	game->setPlayer1(account);
@@ -36,6 +36,16 @@ int GameMaker::launchGame(Account *account)
 
 	m_waitingAccount = 0;
 	game->start(1);
+	game->sendStateOfTheWorld();
+}
+
+void GameMaker::abortGame(int gameId, Account *account)
+{
+	Game *game = m_games.value(gameId);
+	if (game == NULL) {
+		return;
+	}
+	game->abort(account);
 	game->sendStateOfTheWorld();
 }
 

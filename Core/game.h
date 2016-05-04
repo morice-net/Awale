@@ -20,6 +20,7 @@ public:
 	explicit Game(QObject *parent = 0);
 
 	void start(int mode);
+	void abort(Account* account);
     void playRandom();
 	void sendStateOfTheWorld();
 	void takeHole(Account* account, int holeNumber);

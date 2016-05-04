@@ -32,6 +32,14 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 		}
 	}
 
+	// Cancel game
+	if (commands.first() == QStringLiteral("abortGame")) {
+		Account* account = m_accountCreator.accountFromLogin(commands.at(2));
+		if (account != NULL) {
+			m_gameMaker.abortGame(commands.at(1).toInt(), account);
+		}
+	}
+
 	// A player has taken a hole
 	if (commands.first() == QStringLiteral("takeHole")) {
 		Account* account = m_accountCreator.accountFromLogin(commands.at(2));

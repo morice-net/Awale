@@ -12,10 +12,13 @@ class GameMaker : public QObject
 	Q_OBJECT
 public:
 	explicit GameMaker(QObject *parent = 0);
+
 	int createGame(Account* account);
-	int launchGame(Account* account);
-	QVector<Game *> accountGames(Account* account);
+	void launchGame(Account* account);
+	void abortGame(int gameId, Account* account);
 	void takeHole(int id, Account* account, int hole);
+
+	QVector<Game *> accountGames(Account* account);
 
 private:
 	Account* m_waitingAccount;
