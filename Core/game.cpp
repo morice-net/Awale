@@ -21,6 +21,7 @@ Game::Game(QObject *parent) :
 	m_player1(NULL),
 	m_player2(NULL)
 {
+	connect(this, &Game::gameDone, &Game::onGameDone);
 }
 
 void Game::start(int mode)
@@ -136,6 +137,35 @@ void Game::onRevert()
 		return;
 	}
 	m_awales.remove(m_awales.size()-1);
+}
+
+void Game::onGameDone()
+{
+	// We first close the game
+	if (m_player1->client() != NULL) {
+		m_player1->client()->sendTextMessage(QString("gameDone|%1").arg(m_id));
+	}
+
+	// No elo against the computer
+	if (m_player2 == NULL) {
+		deleteLater();
+		return;
+	}
+
+	if (m_player2->client() != NULL) {
+		m_player2->client()->sendTextMessage(QString("gameDone|%1").arg(m_id));
+	}
+
+	// We compute the elo of each player
+	if (m_isThereAWinner == Awale::Player1) {
+		m_player1->addGameResult(true, m_player2->elo());
+		m_player2->addGameResult(false, m_player1->elo());
+	} else {
+		m_player1->addGameResult(false, m_player2->elo());
+		m_player2->addGameResult(true, m_player1->elo());
+	}
+
+	deleteLater();
 }
 int Game::id() const
 {

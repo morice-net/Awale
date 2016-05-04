@@ -39,6 +39,7 @@ public slots:
 	// Callable from view
 	void onCPUTakeHole();
 	void onRevert();
+	void onGameDone();
 
 signals:
 	void gameDone();
