@@ -16,6 +16,14 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 
 	QStringList commands = message.split("|");
 
+	// Launch game
+	if (commands.first() == QStringLiteral("launchGame")) {
+		Account* account = m_accountCreator.accountFromLogin(commands.at(1));
+		if (account != NULL) {
+			m_gameMaker.launchGame(account);
+		}
+	}
+
 	// Create game
 	if (commands.first() == QStringLiteral("createGame")) {
 		Account* account = m_accountCreator.accountFromLogin(commands.at(1));

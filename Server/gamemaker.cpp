@@ -28,6 +28,17 @@ int GameMaker::createGame(Account *account)
 	}
 }
 
+int GameMaker::launchGame(Account *account)
+{
+	Game *game = new Game(this);
+	game->setPlayer1(account);
+	m_games.insert(game->id(),game);
+
+	m_waitingAccount = 0;
+	game->start(1);
+	game->sendStateOfTheWorld();
+}
+
 void GameMaker::takeHole(int id, Account *account, int hole)
 {
 	Game *game = m_games.value(id);
@@ -40,7 +51,6 @@ void GameMaker::takeHole(int id, Account *account, int hole)
 
 QVector<Game *> GameMaker::accountGames(Account *account)
 {
-
 	QVector<Game *> games;
 	foreach(Game *game, m_games.values()) {
 		if (game->player1() == account || game->player2() == account) {

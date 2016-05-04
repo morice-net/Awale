@@ -13,6 +13,7 @@ class GameMaker : public QObject
 public:
 	explicit GameMaker(QObject *parent = 0);
 	int createGame(Account* account);
+	int launchGame(Account* account);
 	QVector<Game *> accountGames(Account* account);
 	void takeHole(int id, Account* account, int hole);
 
