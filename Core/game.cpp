@@ -18,8 +18,8 @@ Game::Game(QObject *parent) :
 	m_mode(Versus),
 	m_isThereAWinner(Awale::NoWinner),
 	m_id(gameNumber++),
-	m_player1(0),
-	m_player2(0)
+	m_player1(NULL),
+	m_player2(NULL)
 {
 }
 
@@ -52,8 +52,19 @@ void Game::start(int mode)
 void Game::sendStateOfTheWorld()
 {
 	const QString& state = stateOfTheWorld();
-	m_player1->client()->sendTextMessage(state);
-	m_player2->client()->sendTextMessage(state);
+	// Player1 cannot be NULL because game would not exists
+	QWebSocket* socket1 = m_player1->client();
+	if (socket1 != NULL) {
+		socket1->sendTextMessage(state);
+	}
+	// If the player plays alone against the AI
+	if (m_player2 == NULL) {
+		return;
+	}
+	QWebSocket* socket2 = m_player2->client();
+	if (socket2 != NULL) {
+		socket2->sendTextMessage(state);
+	}
 }
 
 void Game::takeHole(Account *account, int holeNumber)
