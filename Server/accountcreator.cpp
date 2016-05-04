@@ -11,6 +11,7 @@ AccountCreator::AccountCreator(QObject *parent) : QObject(parent)
 
 void AccountCreator::createAccount(const QString &login, const QString &password, const QString &iconUrl, QWebSocket* client)
 {
+	// First check: login already exists
 	for (QObject *accountObj: children()) {
 		Account* account = qobject_cast<Account*>(accountObj);
 		if (account == NULL) {
@@ -44,6 +45,8 @@ void AccountCreator::connectClient(const QString &login, const QString &password
 			return;
 		}
 	}
+	// No returns, so error
+	client->sendTextMessage("Error|Login and/or password is wrong");
 }
 
 Account *AccountCreator::accountFromLogin(const QString &login)
