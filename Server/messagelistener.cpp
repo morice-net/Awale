@@ -49,12 +49,12 @@ void MessageListener::onMessageReceived(QWebSocket *client, QString message)
 	}
 
 	// Client connection
-	if (commands.first() == QStringLiteral("clientConnection")) {
+    if (commands.first() == QStringLiteral("connectClient")) {
 		m_accountCreator.connectClient(commands.at(1), commands.at(2), client);
 	}
 
 	// Account creation
-	if (commands.first() == QStringLiteral("accountCreation")) {
+    if (commands.first() == QStringLiteral("createAccount")) {
 		m_accountCreator.createAccount(commands.at(1), commands.at(2), commands.at(3), client);
 	}
 }
