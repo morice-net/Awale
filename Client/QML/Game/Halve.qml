@@ -13,7 +13,7 @@ Item {
     property bool alreadyPlayed: false
     Image {
         id: halveImage
-        source: "../Images/Halve.png"
+        source: "../../Images/Halve.png"
         anchors.fill: parent
     }
 

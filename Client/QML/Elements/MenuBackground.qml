@@ -1,8 +1,9 @@
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
 
-//import "QML/JavaScript/Palette.js" as Palette
-//import "QML"
+import "../Elements"
+import "../Menu"
+
 Item  {
     anchors.fill: parent
     visible: opacity > 0
@@ -11,14 +12,14 @@ Item  {
         id: menu
         anchors.fill: parent
 
-        source: "../Images/Background.png"
+        source: "../../Images/Background.png"
         width: Math.max(main.width,main.height)
         height: width
         anchors.centerIn: parent
 
         Image {
             id: title
-            source: "../Images/Title.png"
+            source: "../../Images/Title.png"
             anchors.horizontalCenter: parent.horizontalCenter
             y: parent.height * 0.12
             width: parent.width * 0.7
@@ -49,14 +50,6 @@ Item  {
         AccountCreationPage {
             id: accountCreationPage
         }
-
-        LaunchGamePage {
-            id: launchGamePage
-        }
-
-        OpponentListPage {
-            id: opponentListPage
-        }
     }
 
 
@@ -69,16 +62,12 @@ Item  {
     function setStartPage() {
         loginPage.close();
         accountCreationPage.close();
-        launchGamePage.close();
-        opponentListPage.close();
         startPage.init();
     }
 
     function setLoginPage() {
         startPage.close();
         accountCreationPage.close();
-        launchGamePage.close();
-        opponentListPage.close();
         loginPage.init();
     }
 

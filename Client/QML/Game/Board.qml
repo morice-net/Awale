@@ -1,7 +1,8 @@
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
 //import "QML/JavaScript/Palette.js" as Palette
-//import "QML"
+
+import "../Elements"
 
 Item {
     id: board
@@ -68,7 +69,7 @@ Item {
 
     BoardButton {
         id: revertButton
-        source: "../Images/RevertButton.png"
+        source: "../../Images/RevertButton.png"
         anchors.top: parent.top
 
         MouseArea {
@@ -79,7 +80,7 @@ Item {
 
     BoardButton {
         id: settingsButton
-        source: "../Images/SettingsButton.png"
+        source: "../../Images/SettingsButton.png"
         anchors.bottom: parent.bottom
     }
 

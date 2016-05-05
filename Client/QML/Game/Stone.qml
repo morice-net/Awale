@@ -22,7 +22,7 @@ Item {
             width: height
             x: { getRandomNumber(stone.height,width) }
             y: { getRandomNumber(stone.height,width) }
-            source: "../Images/Stone.png"
+            source: "../../Images/Stone.png"
         }
     }
 

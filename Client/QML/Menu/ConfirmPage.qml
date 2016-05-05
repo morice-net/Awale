@@ -9,7 +9,7 @@ Rectangle {
 
     Image {
         id: box
-        source: "../Images/ConfirmBox.png"
+        source: "../../Images/ConfirmBox.png"
         y: -height
         anchors.horizontalCenter: parent.horizontalCenter
     }
@@ -40,7 +40,7 @@ Rectangle {
 
     Image {
         id: validateButton
-        source: "../Images/ValidateButton.png"
+        source: "../../Images/ValidateButton.png"
         y: box.y + box.height - height
         x: box.x + box.width/2  + box.width / 20
         MouseArea {

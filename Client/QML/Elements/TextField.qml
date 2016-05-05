@@ -10,7 +10,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "../Images/TextBackground.png"
+        source: "../../Images/TextBackground.png"
 
         TextInput {
             id: inputValue

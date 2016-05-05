@@ -10,13 +10,13 @@ Rectangle {
     Image {
         id: gears
         anchors.centerIn: parent
-        source: "../Images/KGears.png"
+        source: "../../Images/KGears.png"
 
     }
     Image {
         id: icone
         anchors.centerIn: parent
-        source: "../Images/KIco.png"
+        source: "../../Images/KIco.png"
     }
     Text {
         id: loading

@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>Ressources/CANDY.TTF</file>
         <file>Images/Background.png</file>
         <file>Images/ConfirmBox.png</file>
@@ -16,31 +15,31 @@
         <file>Images/Stone.png</file>
         <file>Images/Title.png</file>
         <file>Images/ValidateButton.png</file>
-        <file>QML/Board.qml</file>
-        <file>QML/BoardButton.qml</file>
-        <file>QML/ConfirmPage.qml</file>
-        <file>QML/Halve.qml</file>
-        <file>QML/Hole.qml</file>
-        <file>QML/KLoading.qml</file>
-        <file>QML/Awale.qml</file>
-        <file>QML/MenuButton.qml</file>
-        <file>QML/Receipe.qml</file>
-        <file>QML/Separator.qml</file>
-        <file>QML/StartPage.qml</file>
-        <file>QML/Stone.qml</file>
-        <file>QML/StoneParticles.qml</file>
-        <file>QML/WinPage.qml</file>
-        <file>QML/AwaleSocket.qml</file>
-        <file>QML/AccountCreationPage.qml</file>
-        <file>QML/LaunchGamePage.qml</file>
-        <file>QML/OpponentListPage.qml</file>
-        <file>QML/Page.qml</file>
-        <file>QML/MenuBackground.qml</file>
-        <file>QML/LoginPage.qml</file>
-        <file>QML/TextField.qml</file>
         <file>Images/TextBackground.png</file>
-        <file>QML/MessageBox.qml</file>
-        <file>Images/CancelButton.png</file>
-        <file>QML/PictureChooser.qml</file>
+        <file>Images/CancelButton.png</file>        
+	<file>main.qml</file>
+        <file>QML/Awale.qml</file>
+        <file>QML/AwaleSocket.qml</file>
+        <file>QML/Elements/BoardButton.qml</file>
+        <file>QML/Elements/KLoading.qml</file>
+        <file>QML/Elements/MenuBackground.qml</file>
+        <file>QML/Elements/MenuButton.qml</file>
+        <file>QML/Elements/MessageBox.qml</file>
+        <file>QML/Elements/Page.qml</file>
+        <file>QML/Elements/PictureChooser.qml</file>
+        <file>QML/Elements/Separator.qml</file>
+        <file>QML/Elements/TextField.qml</file>
+	<file>QML/Menu/ConfirmPage.qml</file>
+        <file>QML/Menu/AccountCreationPage.qml</file>
+        <file>QML/Menu/LoginPage.qml</file>
+        <file>QML/Menu/StartPage.qml</file>
+	<file>QML/Game/Halve.qml</file>
+        <file>QML/Game/Hole.qml</file>
+        <file>QML/Game/Receipe.qml</file>
+	<file>QML/Game/Board.qml</file>
+        <file>QML/Game/Stone.qml</file>
+        <file>QML/Game/StoneParticles.qml</file>
+        <file>QML/Game/WinPage.qml</file>
+        <file>QML/Game/LaunchGamePage.qml</file>
     </qresource>
 </RCC>

@@ -12,7 +12,7 @@ ParticleSystem {
     property var next: []
 
     ImageParticle {
-        source: "../Images/Star.png"
+        source: "../../Images/Star.png"
         alpha: 0.8
         colorVariation: 0.1
     }

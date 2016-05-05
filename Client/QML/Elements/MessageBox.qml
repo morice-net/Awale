@@ -12,7 +12,7 @@ Rectangle {
 
     Image {
         id: box
-        source: "../Images/MessageBox.png"
+        source: "../../Images/MessageBox.png"
         anchors.centerIn: parent
     }
 
@@ -34,9 +34,9 @@ Rectangle {
     Image {
         id: validateButton
         source: if (messageBox.error)
-                    "../Images/CancelButton.png"
+                    "../../Images/CancelButton.png"
                 else
-                    "../Images/ValidateButton.png"
+                    "../../Images/ValidateButton.png"
         y: box.y + box.height - height
         x: box.x + box.width/2
         MouseArea {

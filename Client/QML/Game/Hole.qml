@@ -45,7 +45,7 @@ Item {
         width: parent.width*2
         height: width
         anchors.centerIn: parent
-        source: "../Images/Hole.png"
+        source: "../../Images/Hole.png"
 
         Stone {
             id: stones
