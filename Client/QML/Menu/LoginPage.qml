@@ -28,7 +28,7 @@ Page {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                webSocket.sendMessage("connect|" + loginField.value());
+                webSocket.sendMessage("connectClient|" + loginField.value() + "|" + passField.value());
             }
         }
         Separator {}

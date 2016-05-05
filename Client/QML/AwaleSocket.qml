@@ -9,7 +9,7 @@ Item {
     WebSocket {
         id: socket
         url: "ws://" + serverAddres
-        onTextMessageReceived: messageBox.showMessage("Received message:\n" + message)
+        onTextMessageReceived: processMessage(message)
         onStatusChanged: if (socket.status == WebSocket.Error) {
                              errorReceived(socket.errorString);
                          } else if (socket.status == WebSocket.Open) {
@@ -21,6 +21,25 @@ Item {
         active: false
     }
 
+    function beginsWith(stringMessage, stringBegin) {
+        var beginsOrNot = true;
+        for (var i = 0; i < stringBegin.length; i++) {
+            if (stringMessage.charAt(i) != stringBegin.charAt(i)) {
+                beginsOrNot = false;
+            }
+        }
+        return beginsOrNot;
+    }
+
+
+    function removeFirstLetters(stringMessage, lengthToRemove) {
+        var returnedString = "";
+        for (var i = lengthToRemove; i < stringMessage.length; i++) {
+            returnedString += stringMessage.charAt(i);
+        }
+        return returnedString;
+    }
+
     function connect() {
         socket.active = false;
         socket.active = true;
@@ -28,6 +47,14 @@ Item {
 
     function sendMessage(message) {
         socket.sendTextMessage(message);
+    }
+
+    function processMessage(message) {
+        if (beginsWith(message,"Error|")) {
+            errorReceived(removeFirstLetters(message, 6));
+        } else {
+            messageBox.showMessage("Received message:\n" + message)
+        }
     }
 
     function errorReceived(message) {
