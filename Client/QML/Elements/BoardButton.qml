@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: boardButton
+    anchors.margins: 10
     anchors.right: parent.right
     width: main.width / 11
     height: width
@@ -17,12 +18,4 @@ Item {
         source: parent.source
         width: boardButton.width
     }
-/*
-    SequentialAnimation {
-        running: true
-        loops: Animation.Infinite
-        PauseAnimation { duration: 4500 }
-        NumberAnimation { target: buttonPict; property: "width"; from: height; to: height + 8; easing.type: Easing.InElastic; duration: 400 }
-        NumberAnimation { target: buttonPict; property: "width"; from: height + 8; to: height; easing.type: Easing.OutElastic; duration: 600 }
-    }*/
 }

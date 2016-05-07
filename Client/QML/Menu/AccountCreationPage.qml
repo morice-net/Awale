@@ -18,11 +18,19 @@ Page {
         anchors.margins: 20
     }
 
+
+    Image {
+        id: faceBorder
+        source: "../../Images/FaceBorder.png"
+        anchors.centerIn: pictChooser
+    }
+
     PictureChooser {
         id: pictChooser
         anchors.top: passField.bottom
-        anchors.margins: 20
+        anchors.margins: 60
     }
+
 
     MenuButton {
         id: validateAccountCreation

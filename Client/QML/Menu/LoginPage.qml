@@ -29,6 +29,7 @@ Page {
             anchors.fill: parent
             onClicked: {
                 webSocket.sendMessage("connectClient|" + loginField.value() + "|" + passField.value());
+                fadeEffect.start();
             }
         }
         Separator {}

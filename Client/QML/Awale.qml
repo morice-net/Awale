@@ -44,8 +44,19 @@ Rectangle {
         id: board
     }
 
+
+    BoardMenu {
+        id: boardMenu
+    }
+
     MenuBackground {
         id: menu
+    }
+
+    BoardButton {
+        id: settingsButton
+        source: "../../Images/SettingsButton.png"
+        anchors.bottom: parent.bottom
     }
 
     WinPage {
@@ -86,10 +97,6 @@ Rectangle {
     function rules() {
         console.log(" * Rules Called");
     }
-
-    /*Component.onCompleted: {
-        load.close();
-    }*/
 
     onWinnerChanged: {
         if (winner == -1) {

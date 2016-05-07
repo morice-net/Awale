@@ -16,8 +16,8 @@
         <file>Images/Title.png</file>
         <file>Images/ValidateButton.png</file>
         <file>Images/TextBackground.png</file>
-        <file>Images/CancelButton.png</file>        
-	<file>main.qml</file>
+        <file>Images/CancelButton.png</file>
+        <file>main.qml</file>
         <file>QML/Awale.qml</file>
         <file>QML/AwaleSocket.qml</file>
         <file>QML/Elements/BoardButton.qml</file>
@@ -29,17 +29,19 @@
         <file>QML/Elements/PictureChooser.qml</file>
         <file>QML/Elements/Separator.qml</file>
         <file>QML/Elements/TextField.qml</file>
-	<file>QML/Menu/ConfirmPage.qml</file>
+        <file>QML/Menu/ConfirmPage.qml</file>
         <file>QML/Menu/AccountCreationPage.qml</file>
         <file>QML/Menu/LoginPage.qml</file>
         <file>QML/Menu/StartPage.qml</file>
-	<file>QML/Game/Halve.qml</file>
+        <file>QML/Game/Halve.qml</file>
         <file>QML/Game/Hole.qml</file>
         <file>QML/Game/Receipe.qml</file>
-	<file>QML/Game/Board.qml</file>
+        <file>QML/Game/Board.qml</file>
         <file>QML/Game/Stone.qml</file>
         <file>QML/Game/StoneParticles.qml</file>
         <file>QML/Game/WinPage.qml</file>
         <file>QML/Game/LaunchGamePage.qml</file>
+        <file>Images/FaceBorder.png</file>
+        <file>QML/Game/BoardMenu.qml</file>
     </qresource>
 </RCC>

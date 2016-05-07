@@ -19,7 +19,6 @@ Item {
             anchors.centerIn: parent
             player: 2
         }
-
     }
 
     Item {
@@ -64,24 +63,6 @@ Item {
 
     StoneParticles {
         id: particles
-    }
-
-
-    BoardButton {
-        id: revertButton
-        source: "../../Images/RevertButton.png"
-        anchors.top: parent.top
-
-        MouseArea {
-            anchors.fill: parent
-            onPressed: main.revert()
-        }
-    }
-
-    BoardButton {
-        id: settingsButton
-        source: "../../Images/SettingsButton.png"
-        anchors.bottom: parent.bottom
     }
 
     function resetAnimation() {
