@@ -45,6 +45,6 @@ Item {
     }
 
     function value() {
-        return inputValue.displayText;
+        return inputValue.getText(0,inputValue.displayText.length);
     }
 }
