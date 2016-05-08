@@ -43,5 +43,9 @@
         <file>QML/Game/LaunchGamePage.qml</file>
         <file>Images/FaceBorder.png</file>
         <file>QML/Game/BoardMenu.qml</file>
+        <file>Images/BoardBackMenu.png</file>
+        <file>Images/BoardBackButton.png</file>
+        <file>Images/GamesListButton.png</file>
+        <file>Images/HomeButton.png</file>
     </qresource>
 </RCC>
