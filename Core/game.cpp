@@ -227,10 +227,11 @@ QString Game::stateOfTheWorld() const
 	}
 
 	QString result;
-	result.append(QString("<Game>%1</Game>").arg(m_id));
+    result.append(QString("<Game id=%1>").arg(m_id));
 	result.append(m_player1->xmlState());
 	result.append(m_player2->xmlState());
 	result.append(m_awales.last()->xmlState());
+    result.append(QString("</Game>"));
 	return result;
 }
 

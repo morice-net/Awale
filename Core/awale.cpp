@@ -193,6 +193,7 @@ QString Awale::xmlState()
 {
 	QStringList xmlCurrentState;
 	XmlTools tool;
+    xmlCurrentState << "<Awale>";
 	xmlCurrentState << tool.xmlFromValue("playerScore1",m_playerScore1);
 	xmlCurrentState << tool.xmlFromValue("playerScore2",m_playerScore2);
 
@@ -203,6 +204,7 @@ QString Awale::xmlState()
 	xmlCurrentState << tool.xmlFromValue("playerTurn",m_playerTurn);
 	xmlCurrentState << tool.xmlFromValue("playables",m_playables);
 	xmlCurrentState << tool.xmlFromValue("lastPlayed",m_lastPlayed);
+    xmlCurrentState << "</Awale>";
 
 	return xmlCurrentState.join("");
 }

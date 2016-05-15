@@ -22,13 +22,14 @@ void Account::sendStateMessage()
 
 QString Account::xmlState()
 {
-	QString fullXml;
+    QString fullXml("<Account>");
 	XmlTools tool;
 
 	for (int i = 1; i < metaObject()->propertyCount(); ++i) {
 		QMetaProperty propertyi = metaObject()->property(i);
 		fullXml.append(tool.xmlFromValue(propertyi.name(),propertyi.read(this).toString()));
 	}
+    fullXml.append("</Account>");
 
 	return fullXml;
 }
