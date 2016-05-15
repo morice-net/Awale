@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick websockets
+QT += qml quick websockets xml
 
 SOURCES += main.cpp
 

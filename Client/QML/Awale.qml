@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
+import QtQuick.XmlListModel 2.0
 
 //import "QML/JavaScript/Palette.js" as Palette
 import "Menu"
@@ -15,6 +16,12 @@ Rectangle {
     // height:800
     anchors.fill: parent
 
+    property string login: accountXmlModel.get(0).login
+    property string faceIcon: accountXmlModel.get(0).iconUrl
+    property int wins: accountXmlModel.get(0).wins
+    property int games: accountXmlModel.get(0).games
+    property int elo: accountXmlModel.get(0).elo
+
     property int winner: 0
     property int playerScore1: 0
     property int playerScore2: 0
@@ -28,6 +35,16 @@ Rectangle {
     signal start(int mode)
     signal takeHole(int player,int index)
     signal revert()
+
+    XmlListModel {
+        id: accountXmlModel
+        query: "/Account"
+        XmlRole { name: "login"; query: "login/string()" }
+        XmlRole { name: "iconUrl"; query: "iconUrl/string()" }
+        XmlRole { name: "wins"; query: "wins/number()" }
+        XmlRole { name: "games"; query: "games/number()" }
+        XmlRole { name: "elo"; query: "elo/number()" }
+    }
 
     FontLoader {
         id: candyFont
@@ -108,4 +125,5 @@ Rectangle {
     }
 
     onPlayerTurnChanged: board.resetAnimation()
+
 }

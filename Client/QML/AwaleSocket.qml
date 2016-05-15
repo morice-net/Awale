@@ -50,8 +50,11 @@ Item {
     }
 
     function processMessage(message) {
+        console.log(message);
         if (beginsWith(message,"Error|")) {
             errorReceived(removeFirstLetters(message, 6));
+        } else if (beginsWith(message,"<Account>")) {
+            accountXmlModel.xml = message;
         } else {
             messageBox.showMessage("Received message:\n" + message)
         }
