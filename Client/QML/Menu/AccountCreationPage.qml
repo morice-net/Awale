@@ -34,7 +34,7 @@ Page {
 
     MenuButton {
         id: validateAccountCreation
-        text: qsTr("Validate");
+        text: qsTr("Create the account");
         anchors.top: pictChooser.bottom
         anchors.margins: 55
         MouseArea {

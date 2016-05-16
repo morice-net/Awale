@@ -16,11 +16,11 @@ Rectangle {
     // height:800
     anchors.fill: parent
 
-    property string login: accountXmlModel.get(0).login
-    property string faceIcon: accountXmlModel.get(0).iconUrl
-    property int wins: accountXmlModel.get(0).wins
-    property int games: accountXmlModel.get(0).games
-    property int elo: accountXmlModel.get(0).elo
+    property string login
+    property string faceIcon
+    property int wins
+    property int games
+    property int elo
 
     property int winner: 0
     property int playerScore1: 0
@@ -44,6 +44,16 @@ Rectangle {
         XmlRole { name: "wins"; query: "wins/number()" }
         XmlRole { name: "games"; query: "games/number()" }
         XmlRole { name: "elo"; query: "elo/number()" }
+
+        onStatusChanged: {
+            if (status == XmlListModel.Ready) {
+                main.login = get(0).login;
+                main.faceIcon = get(0).iconUrl;
+                main.wins = get(0).wins;
+                main.games = get(0).games;
+                main.elo = get(0).elo;
+            }
+        }
     }
 
     FontLoader {
@@ -60,7 +70,6 @@ Rectangle {
     Board {
         id: board
     }
-
 
     BoardMenu {
         id: boardMenu
@@ -125,5 +134,5 @@ Rectangle {
     }
 
     onPlayerTurnChanged: board.resetAnimation()
-
+    onLoginChanged: console.log(login)
 }

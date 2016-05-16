@@ -53,7 +53,7 @@ Item {
         console.log(message);
         if (beginsWith(message,"Error|")) {
             errorReceived(removeFirstLetters(message, 6));
-        } else if (beginsWith(message,"<Account>")) {
+        } else if (beginsWith(message,"<?xml")) {
             accountXmlModel.xml = message;
         } else {
             messageBox.showMessage("Received message:\n" + message)
@@ -61,13 +61,11 @@ Item {
     }
 
     function errorReceived(message) {
-
         if (message == "Host unreachable" || message == "Connection refused" || message == "Socket closed") {
             menu.setStartPage();
         }
 
         messageBox.showError("Error: " + message)
-
     }
 }
 

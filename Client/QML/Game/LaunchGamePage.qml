@@ -1,6 +1,10 @@
 import QtQuick 2.4
 
-Page {
+import "../Elements"
+
+Item {
+    id: launchGamePage
+
     // Button 1 player
     MenuButton {
         id: button1player
