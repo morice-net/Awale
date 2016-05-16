@@ -28,7 +28,12 @@ QString XmlTools::xmlFromValue(const QString &name, const QVector<int> &values)
 		value << QString::number(i);
 	}
 
-	return xml.arg(name).arg(value.join(","));
+    return xml.arg(name).arg(value.join(","));
+}
+
+QString XmlTools::header()
+{
+    return QString("<?xml version='1.0' encoding='utf-8'?>");
 }
 
 

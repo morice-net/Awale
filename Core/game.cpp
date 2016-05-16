@@ -9,6 +9,7 @@
 
 // Awale
 #include "graphbuilder.h"
+#include "xmltools.h"
 
 static int gameNumber;
 Game::Game(QObject *parent) :
@@ -62,11 +63,12 @@ void Game::abort(Account *account)
 
 void Game::sendStateOfTheWorld()
 {
+    XmlTools tool;
 	const QString& state = stateOfTheWorld();
 	// Player1 cannot be NULL because game would not exists
 	QWebSocket* socket1 = m_player1->client();
 	if (socket1 != NULL) {
-		socket1->sendTextMessage(state);
+        socket1->sendTextMessage(tool.header() + state);
 	}
 	// If the player plays alone against the AI
 	if (m_player2 == NULL) {
@@ -74,7 +76,7 @@ void Game::sendStateOfTheWorld()
 	}
 	QWebSocket* socket2 = m_player2->client();
 	if (socket2 != NULL) {
-		socket2->sendTextMessage(state);
+        socket2->sendTextMessage(tool.header() + state);
 	}
 }
 
