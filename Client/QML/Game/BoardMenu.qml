@@ -16,25 +16,25 @@ Rectangle {
 
     state: "in"
 
-    x: state == "in" ? -435 : 0
+    x: state == "in" ? -440 : 0
     y: 0
     width: 600
     height: 1000
-    color: state == "in" ? "#00000000" : "#33000000"
+    color: x == 0 ? "#33000000" : "#00000000"
 
     Image {
         x: 435
         y: 90
-        width: 85
-        height: 85
+        width: 65
+        height: 70
         source: "../../Images/BoardBackButton.png"
     }
 
     Image {
         x: 435
-        y: 180
-        width: 85
-        height: 85
+        y: 160
+        width: 65
+        height: 70
         source: "../../Images/BoardBackButton.png"
     }
 
@@ -42,7 +42,7 @@ Rectangle {
         id: internShadow
         anchors.fill: parent
         color: "#33000000"
-        visible: parent.state != "in"
+        visible: parent.x == 0
 
         MouseArea {
             anchors.fill: parent
@@ -53,14 +53,24 @@ Rectangle {
     Image {
         source: "../../Images/BoardBackMenu.png"
         anchors.fill: parent
+
+        LaunchGamePage {
+            id: launchGamePage
+            visible: parent.parent.state == 'gamelist'
+        }
+
+        AccountPage {
+            id: accountPage
+            visible: parent.parent.state == 'home'
+        }
     }
 
     Image {
         id: homeBack
         x: 435
         y: 90
-        width: 85
-        height: 85
+        width: 65
+        height: 70
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'gamelist'
     }
@@ -68,9 +78,9 @@ Rectangle {
     Image {
         id: gamesBack
         x: 435
-        y: 180
-        width: 85
-        height: 85
+        y: 160
+        width: 65
+        height: 70
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'home'
     }
@@ -97,6 +107,10 @@ Rectangle {
             anchors.fill: parent
             onClicked: parent.parent.state = 'gamelist'
         }
+    }
+
+    Behavior on x {
+        NumberAnimation { duration: 400 }
     }
 }
 
