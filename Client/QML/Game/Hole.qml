@@ -79,6 +79,8 @@ Item {
         }
     }
 
+    transform: Rotation { origin.x: width/2 ; origin.y: height/2; angle: halve.player == 1 ? 0 : 180 }
+
     onPlayerChanged: {
         alreadyPlayed = false;
     }

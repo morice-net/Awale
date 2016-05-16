@@ -25,8 +25,6 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
     }
 
-    transform: Rotation { origin.x: width/2 ; origin.y: height/2; angle: player == 1 ? 0 + animRotation : 180 + animRotation }
-
     SequentialAnimation {
         running: player == main.playerTurn
         loops: Animation.Infinite
