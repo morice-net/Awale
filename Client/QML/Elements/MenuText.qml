@@ -4,7 +4,6 @@ import "../Elements"
 
 Text {
     anchors.margins: 100
-    anchors.top: face.bottom
     anchors.horizontalCenter: parent.horizontalCenter
     
     color: "#935925"
