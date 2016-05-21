@@ -1,21 +1,18 @@
 import QtQuick 2.0
 
+import QtQuick.XmlListModel 2.0
+
 Item {
     width: 363
     height: 105
     anchors.horizontalCenter: parent.horizontalCenter
 
-    ListModel {
+    XmlListModel {
         id: faces
-        ListElement {
-            sourceUrl: "http://icons.iconarchive.com/icons/hopstarter/face-avatars/256/Female-Face-FE-4-blonde-icon.png"
-        }
-        ListElement {
-            sourceUrl: "http://icons.iconarchive.com/icons/hopstarter/face-avatars/256/Male-Face-E1-icon.png"
-        }
-        ListElement {
-            sourceUrl: "http://icons.iconarchive.com/icons/hopstarter/face-avatars/256/Male-Face-F5-icon.png"
-        }
+        source: "http://artaud.g.free.fr/Awale/Faces/Faces.xml"
+        query: "/FacesList/Face"
+
+        XmlRole { name: "sourceUrl"; query: "@name/string()" }
     }
 
     ListView {
@@ -27,7 +24,7 @@ Item {
         model: faces
         orientation: ListView.Horizontal
         delegate: Rectangle {
-            property string source: sourceUrl
+            property string source: { "http://artaud.g.free.fr/Awale/Faces/" + sourceUrl }
             width: 105
             height: 105
             border.width: 1

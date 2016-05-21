@@ -4,27 +4,22 @@ import "../Elements"
 
 Item {
     id: accountPage
-    anchors.fill: parent
+    height: parent.height
+    width: height * 0.42
 
     Image {
         id: face
         source: main.faceIcon
+
+        anchors.margins: 100
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+
     }
 
-    Text {
+    MenuText {
         id: login
-        anchors.fill: parent
         text: main.login
-        /*
-        anchors.margins: 100
         anchors.top: face.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        */
-        color: "#935925"
-        font.family: candyFont.name
-        font.pointSize: parent.height * 0.06
-
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
     }
 }
