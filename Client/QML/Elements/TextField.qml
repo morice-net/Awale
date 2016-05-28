@@ -8,9 +8,16 @@ Item {
     property string label
     property bool hideText: false
 
-    Image {
+    Rectangle {
         anchors.fill: parent
-        source: "../../Images/TextBackground.png"
+        color: "#935925"
+        radius: height/6
+        Rectangle {
+            color: "#f8e8b0"
+            anchors.fill: parent
+            anchors.margins: 5
+            radius: height/5
+        }
 
         TextInput {
             id: inputValue
@@ -18,7 +25,7 @@ Item {
             anchors.margins: 25
             font.family: candyFont.name
             font.pointSize: 25
-            color: "#ded7bd"
+            color: "#d5a771"
             text: label
             echoMode: hideText ? TextInput.Password : TextInput.Normal
 
@@ -29,7 +36,7 @@ Item {
                 }
 
                 if (text == label) {
-                    color = "#ded7bd";
+                    color = "#d5a771";
                 }
             }
 
@@ -40,8 +47,16 @@ Item {
                 } else if (text == "") {
                     text = label;
                 }
-            }
+            }        
         }
+    }
+
+    SequentialAnimation {
+        running: inputValue.text == label
+        loops: Animation.Infinite
+        NumberAnimation { target: inputValue; property: "opacity"; to: 0.3; duration: 800 }
+        NumberAnimation { target: inputValue; property: "opacity"; to: 1; duration: 700 }
+        PauseAnimation { duration: 2500 }
     }
 
     function value() {

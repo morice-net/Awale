@@ -8,7 +8,7 @@ Page {
     TextField {
         id: loginField
         label: qsTr("Choose a login")
-        y: parent.height/2 + parent.height*0.06
+        y: parent.height/2 - height
     }
 
     TextField {
@@ -16,6 +16,7 @@ Page {
         label: qsTr("Password")
         hideText: true
         anchors.top: loginField.bottom
+        anchors.margins: parent.height * 0.1
     }
 
     // Button connect
@@ -24,6 +25,7 @@ Page {
         text: qsTr("Connect");
 
         anchors.top: passField.bottom
+        anchors.margins: parent.height * 0.2
         
         MouseArea {
             anchors.fill: parent
@@ -40,7 +42,8 @@ Page {
         id: createAccountButton
         text: qsTr("Create account");
         anchors.top: connectButton.bottom
-        font.pointSize: parent.height * 0.015
+        anchors.margins: parent.height * 0.2
+        font.pointSize: parent.height * 0.02
         MouseArea {
             anchors.fill: parent
             onClicked: {

@@ -7,7 +7,7 @@ Text {
     color: "#935925"
     font.family: candyFont.name
     font.bold: true
-    font.pointSize: parent.height * 0.03
+    font.pointSize: parent.height * 0.04
 
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
