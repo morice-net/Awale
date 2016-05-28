@@ -48,5 +48,6 @@
         <file>Images/GamesListButton.png</file>
         <file>Images/HomeButton.png</file>
         <file>QML/Game/AccountPage.qml</file>
+        <file>QML/Elements/MenuText.qml</file>
     </qresource>
 </RCC>
