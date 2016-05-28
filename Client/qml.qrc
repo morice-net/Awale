@@ -15,7 +15,6 @@
         <file>Images/Stone.png</file>
         <file>Images/Title.png</file>
         <file>Images/ValidateButton.png</file>
-        <file>Images/TextBackground.png</file>
         <file>Images/CancelButton.png</file>
         <file>main.qml</file>
         <file>QML/Awale.qml</file>
@@ -41,7 +40,6 @@
         <file>QML/Game/StoneParticles.qml</file>
         <file>QML/Game/WinPage.qml</file>
         <file>QML/Game/LaunchGamePage.qml</file>
-        <file>Images/FaceBorder.png</file>
         <file>QML/Game/BoardMenu.qml</file>
         <file>Images/BoardBackMenu.png</file>
         <file>Images/BoardBackButton.png</file>
