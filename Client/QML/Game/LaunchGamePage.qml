@@ -15,10 +15,7 @@ Item {
         anchors.bottom: buttonLadder.top
         MouseArea {
             anchors.fill: parent
-            onClicked: {
-                main.start(1);
-                fadeEffect.start()
-            }
+            onClicked: main.start(1)
         }
         Separator {}
 

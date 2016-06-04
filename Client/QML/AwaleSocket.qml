@@ -54,7 +54,7 @@ Item {
         if (beginsWith(message,"Error|")) {
             errorReceived(removeFirstLetters(message, 6));
         } else if (beginsWith(message,"<?xml")) {
-            accountXmlModel.xml = message;
+            xmlModel.xml = message;
         } else {
             messageBox.showMessage("Received message:\n" + message)
         }
