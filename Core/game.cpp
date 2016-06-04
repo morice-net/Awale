@@ -68,7 +68,7 @@ void Game::sendStateOfTheWorld()
 	// Player1 cannot be NULL because game would not exists
 	QWebSocket* socket1 = m_player1->client();
 	if (socket1 != NULL) {
-        socket1->sendTextMessage(tool.header() + state);
+        socket1->sendTextMessage(tool.header() + state + tool.footer());
 	}
 	// If the player plays alone against the AI
 	if (m_player2 == NULL) {
@@ -76,7 +76,7 @@ void Game::sendStateOfTheWorld()
 	}
 	QWebSocket* socket2 = m_player2->client();
 	if (socket2 != NULL) {
-        socket2->sendTextMessage(tool.header() + state);
+        socket2->sendTextMessage(tool.header() + state + tool.footer());
 	}
 }
 
@@ -229,9 +229,11 @@ QString Game::stateOfTheWorld() const
 	}
 
 	QString result;
-    result.append(QString("<Game id=%1>").arg(m_id));
 	result.append(m_player1->xmlState());
-	result.append(m_player2->xmlState());
+    if (m_player2 != NULL) {
+        result.append(m_player2->xmlState());
+    }
+    result.append(QString("<Game id='%1'>").arg(m_id));
 	result.append(m_awales.last()->xmlState());
     result.append(QString("</Game>"));
 	return result;

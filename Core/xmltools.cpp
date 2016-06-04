@@ -33,7 +33,13 @@ QString XmlTools::xmlFromValue(const QString &name, const QVector<int> &values)
 
 QString XmlTools::header()
 {
-    return QString("<?xml version='1.0' encoding='utf-8'?>");
+    return QString("<?xml version='1.0' encoding='utf-8'?><State>");
 }
+
+QString XmlTools::footer()
+{
+    return QString("</State>");
+}
+
 
 

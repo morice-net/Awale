@@ -18,7 +18,7 @@ void Account::sendStateMessage()
 	}
 
     XmlTools tool;
-    m_client->sendTextMessage(tool.header() + xmlState());
+    m_client->sendTextMessage(tool.header() + xmlState() + tool.footer());
 }
 
 QString Account::xmlState()

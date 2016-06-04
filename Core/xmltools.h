@@ -13,6 +13,7 @@ public:
 	QString xmlFromValue(const QString &name, int value);
 	QString xmlFromValue(const QString &name, const QVector<int> &values);
     QString header();
+    QString footer();
 };
 
 #endif // XMLTOOLS_H
