@@ -44,6 +44,7 @@ Item {
                 if (focus && text == label) {
                     text = "";
                     color = "white";
+                    opacity = 1;
                 } else if (text == "") {
                     text = label;
                 }

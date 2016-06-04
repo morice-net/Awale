@@ -3,13 +3,16 @@ import QtQuick 2.4
 import "../Elements"
 
 Item {
-    id: launchGamePage
+    id: accountPage
+    height: parent.height
+    width: height * 0.42
+
 
     // Button 1 player
     MenuButton {
         id: button1player
-        text: qsTr("1 player");
-        anchors.bottom: button2players.top
+        text: qsTr("Fight the machine");
+        anchors.bottom: buttonLadder.top
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -21,11 +24,11 @@ Item {
 
     }
 
-    // Button 2 players
+    // Button ladder
     MenuButton {
-        id: button2players
-        text: qsTr("2 players");
-        anchors.bottom: buttonRules.top
+        id: buttonLadder
+        text: qsTr("Run the ladder");
+        anchors.bottom: buttonChallenge.top
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -36,10 +39,10 @@ Item {
         Separator {}
     }
 
-    // Button Rules
+    // Button Challenge
     MenuButton {
-        id: buttonRules
-        text: qsTr("Rules");
+        id: buttonChallenge
+        text: qsTr("Challenge a friend");
         y: parent.height * 0.8
         MouseArea {
             anchors.fill: parent

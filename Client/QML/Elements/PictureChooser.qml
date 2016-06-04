@@ -51,7 +51,9 @@ Item {
     }
 
     function value() {
-        console.log(list.currentItem.source);
+        if (list.currentItem == null) {
+            return "NoPicture";
+        }
         return list.currentItem.source;
     }
 }

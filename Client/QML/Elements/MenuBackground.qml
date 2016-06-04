@@ -72,6 +72,7 @@ Item  {
     }
 
     function init() {
+        fadeEffect.stop();
         opacity = 1;
     }
 

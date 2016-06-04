@@ -61,6 +61,7 @@ Item {
     }
 
     function errorReceived(message) {
+        menu.init();
         if (message == "Host unreachable" || message == "Connection refused" || message == "Socket closed") {
             menu.setStartPage();
         }

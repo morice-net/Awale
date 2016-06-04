@@ -19,10 +19,17 @@ Page {
     }
 
 
-    Image {
+    Rectangle {
         id: faceBorder
-        source: "../../Images/FaceBorder.png"
-        anchors.centerIn: pictChooser
+        anchors.fill: pictChooser
+        color: "#935925"
+        radius: height/6
+        Rectangle {
+            color: "#f8e8b0"
+            anchors.fill: parent
+            anchors.margins: 5
+            radius: height/5
+        }
     }
 
     PictureChooser {
