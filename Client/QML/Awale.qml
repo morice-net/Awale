@@ -32,6 +32,8 @@ Rectangle {
     property var playable: [0,0,0,0,0,0,0,0,0,0,0,0]
     property int playerTurn: 0 // 1 or 2 when initialized and playing
 
+    property string xmlText
+
 
     signal takeHole(int player,int index)
     signal revert()
@@ -39,6 +41,7 @@ Rectangle {
     XmlListModel {
         id: xmlModel
         query: "/State/Account"
+        xml: xmlText
         XmlRole { name: "login"; query: "login/string()" }
         XmlRole { name: "iconUrl"; query: "iconUrl/string()" }
         XmlRole { name: "wins"; query: "wins/number()" }
