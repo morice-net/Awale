@@ -30,7 +30,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 main.start(2);
-                fadeEffect.start()
+                // fadeEffect.start()
             }
         }
         Separator {}
