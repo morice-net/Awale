@@ -39,7 +39,7 @@ Rectangle {
     signal revert()
 
     XmlListModel {
-        id: xmlModel
+        id: xmlAccountModel
         query: "/State/Account"
         xml: xmlText
         XmlRole { name: "login"; query: "login/string()" }
@@ -55,6 +55,33 @@ Rectangle {
                 main.wins = get(0).wins;
                 main.games = get(0).games;
                 main.elo = get(0).elo;
+            }
+        }
+    }
+
+    XmlListModel {
+        id: xmlGameModel
+        query: "/State/Game/Awale"
+        xml: xmlText
+        XmlRole { name: "playerScore1"; query: "playerScore1/number()" }
+        XmlRole { name: "playerScore2"; query: "playerScore2/number()" }
+        XmlRole { name: "playerHalve1"; query: "playerHalve1/string()" }
+        XmlRole { name: "playerHalve2"; query: "playerHalve2/string()" }
+        XmlRole { name: "takenHole"; query: "takenHole/number()" }
+        XmlRole { name: "playerTurn"; query: "playerTurn/number()" }
+        XmlRole { name: "playables"; query: "playables/string()" }
+        XmlRole { name: "lastPlayed"; query: "lastPlayed/number()" }
+
+        onStatusChanged: {
+            if (status == XmlListModel.Ready) {
+                main.playerScore1 = get(0).playerScore1;
+                main.playerScore2 = get(0).playerScore2;
+                main.playerHalve1 = getArrayFromString(get(0).playerHalve1);
+                main.playerHalve2 = getArrayFromString(get(0).playerHalve2);
+                main.takenHole = get(0).takenHole;
+                main.playerTurn = get(0).playerTurn;
+                main.playable = getArrayFromString(get(0).playables);
+                main.lastPlayed = get(0).lastPlayed;
             }
         }
     }
@@ -144,4 +171,8 @@ Rectangle {
 
     onPlayerTurnChanged: board.resetAnimation()
     onLoginChanged: console.log(login)
+
+    function getArrayFromString(myString) {
+        return myString.split(",");
+    }
 }
