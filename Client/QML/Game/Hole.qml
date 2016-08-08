@@ -74,7 +74,7 @@ Item {
             }
 
             if (numberOfStone > 0) {
-                main.takeHole(player,index);
+                main.takeHole(index);
             }
         }
     }

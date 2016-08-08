@@ -20,6 +20,7 @@ Rectangle {
     property string faceIcon
     property int wins
     property int games
+    property int gameId
     property int elo
 
     property int winner: 0
@@ -35,7 +36,6 @@ Rectangle {
     property string xmlText
 
 
-    signal takeHole(int player,int index)
     signal revert()
 
     XmlListModel {
@@ -61,16 +61,17 @@ Rectangle {
 
     XmlListModel {
         id: xmlGameModel
-        query: "/State/Game/Awale"
+        query: "/State/Game"
         xml: xmlText
-        XmlRole { name: "playerScore1"; query: "playerScore1/number()" }
-        XmlRole { name: "playerScore2"; query: "playerScore2/number()" }
-        XmlRole { name: "playerHalve1"; query: "playerHalve1/string()" }
-        XmlRole { name: "playerHalve2"; query: "playerHalve2/string()" }
-        XmlRole { name: "takenHole"; query: "takenHole/number()" }
-        XmlRole { name: "playerTurn"; query: "playerTurn/number()" }
-        XmlRole { name: "playables"; query: "playables/string()" }
-        XmlRole { name: "lastPlayed"; query: "lastPlayed/number()" }
+        XmlRole { name: "playerScore1"; query: "Awale/playerScore1/number()" }
+        XmlRole { name: "playerScore2"; query: "Awale/playerScore2/number()" }
+        XmlRole { name: "playerHalve1"; query: "Awale/playerHalve1/string()" }
+        XmlRole { name: "playerHalve2"; query: "Awale/playerHalve2/string()" }
+        XmlRole { name: "takenHole"; query: "Awale/takenHole/number()" }
+        XmlRole { name: "playerTurn"; query: "Awale/playerTurn/number()" }
+        XmlRole { name: "playables"; query: "Awale/playables/string()" }
+        XmlRole { name: "lastPlayed"; query: "Awale/lastPlayed/number()" }
+        XmlRole { name: "gameId"; query: "@id/number()" }
 
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
@@ -82,6 +83,7 @@ Rectangle {
                 main.playerTurn = get(0).playerTurn;
                 main.playable = getArrayFromString(get(0).playables);
                 main.lastPlayed = get(0).lastPlayed;
+                main.gameId = get(0).gameId;
             }
         }
     }
@@ -160,6 +162,14 @@ Rectangle {
         console.log(" * Rules Called");
     }
 
+    function getArrayFromString(myString) {
+        return myString.split(",");
+    }
+
+    function takeHole(index) {
+        webSocket.sendMessage("takeHole|"+main.gameId+"|"+main.login+"|"+index);
+    }
+
     onWinnerChanged: {
         if (winner == -1) {
             return;
@@ -171,8 +181,4 @@ Rectangle {
 
     onPlayerTurnChanged: board.resetAnimation()
     onLoginChanged: console.log(login)
-
-    function getArrayFromString(myString) {
-        return myString.split(",");
-    }
 }
