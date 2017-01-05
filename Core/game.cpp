@@ -88,10 +88,10 @@ void Game::takeHole(Account *account, int holeNumber)
 	} else if (account == m_player2) {
 		player = 2;
 	}
-	takeHole(player, holeNumber);
+    takePlayerHole(player, holeNumber);
 }
 
-void Game::takeHole(int player, int holeNumber)
+void Game::takePlayerHole(int player, int holeNumber)
 {
 	if (m_awales.isEmpty()) {
 		return;
@@ -118,7 +118,7 @@ void Game::takeHole(int player, int holeNumber)
 		emit gameDone();
 	} else if (newTurn->playerTurn() == 2 && m_mode == Solo) {
 		sendStateOfTheWorld();
-		QTimer::singleShot( 500, this, SLOT(onCPUTakeHole()) );
+        QTimer::singleShot( 3000, this, SLOT(onCPUTakeHole()) );
 	}
 	sendStateOfTheWorld();
 }
@@ -130,7 +130,7 @@ void Game::onCPUTakeHole()
 	}
 
 	GraphBuilder solution(m_awales.last(), GraphBuilder::Random, this);
-	takeHole(m_awales.last()->playerTurn(),solution.selectBestHole());
+    takePlayerHole(m_awales.last()->playerTurn(),solution.selectBestHole());
 }
 
 void Game::onRevert()

@@ -56,7 +56,7 @@ void GameMaker::takeHole(int id, Account *account, int hole)
 		return;
 	}
 
-	game->takeHole(account, hole);
+    game->takeHole(account, hole);
 }
 
 QVector<Game *> GameMaker::accountGames(Account *account)

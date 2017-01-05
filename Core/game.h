@@ -23,8 +23,8 @@ public:
 	void abort(Account* account);
     void playRandom();
 	void sendStateOfTheWorld();
-	void takeHole(Account* account, int holeNumber);
-	void takeHole(int player, int holeNumber);
+    void takeHole(Account* account, int holeNumber);
+    void takePlayerHole(int player, int holeNumber);
 
 	Account *player1() const;
 	void setPlayer1(Account *player1);
