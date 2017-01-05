@@ -93,6 +93,11 @@ Rectangle {
         source: "../Ressources/CANDY.TTF"
     }
 
+    FontLoader {
+        id: africanFont
+        source: "../Ressources/TribecaRegular.ttf"
+    }
+
     Image {
         id: background
         source: "../Images/Background.png"

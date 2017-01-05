@@ -16,25 +16,25 @@ Rectangle {
 
     state: "in"
 
-    x: state == "in" ? -440 : 0
+    x: state == "in" ? -width*0.75 : 0
     y: 0
-    width: 600
-    height: 1000
+    width: main.width
+    height: main.height
     color: x == 0 ? "#33000000" : "#00000000"
 
     Image {
-        x: 435
+        x: parent.width * 437 / 600
         y: 90
-        width: 65
-        height: 70
+        width: Math.min(main.width, main.height)/11
+        height: width
         source: "../../Images/BoardBackButton.png"
     }
 
     Image {
-        x: 435
-        y: 160
-        width: 65
-        height: 70
+        x: parent.width * 437 / 600
+        y: 170
+        width: Math.min(main.width, main.height)/11
+        height: width
         source: "../../Images/BoardBackButton.png"
     }
 
@@ -67,27 +67,27 @@ Rectangle {
 
     Image {
         id: homeBack
-        x: 435
+        x: parent.width * 437 / 600
         y: 90
-        width: 65
-        height: 70
+        width: Math.min(main.width, main.height)/10
+        height: width
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'gamelist'
     }
 
     Image {
         id: gamesBack
-        x: 435
-        y: 160
-        width: 65
-        height: 70
+        x: parent.width * 437 / 600
+        y: 170
+        width: Math.min(main.width, main.height)/10
+        height: width
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'home'
     }
 
     Image {
         anchors.centerIn: homeBack
-        width: main.width/11
+        width: Math.min(main.width, main.height)/10
         height: width
         source: "../../Images/HomeButton.png"
 
@@ -99,7 +99,7 @@ Rectangle {
 
     Image {
         anchors.centerIn: gamesBack
-        width: main.width/11
+        width: Math.min(main.width, main.height)/10
         height: width
         source: "../../Images/GamesListButton.png"
 

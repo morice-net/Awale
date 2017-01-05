@@ -3,9 +3,25 @@ import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
 
 Item {
-    width: 363
-    height: 105
+    id: pictChooser
+    width: 110
+    height: 110
     anchors.horizontalCenter: parent.horizontalCenter
+    clip: true
+
+    Rectangle {
+        id: faceBorder
+        anchors.fill: parent
+        color: "#935925"
+        radius: height/6
+
+        Rectangle {
+            color: "#f8e8b0"
+            anchors.fill: parent
+            anchors.margins: 5
+            radius: height/5
+        }
+    }
 
     XmlListModel {
         id: faces
@@ -17,23 +33,19 @@ Item {
 
     ListView {
         id: list
-        height: parent.height
-        width: height
-        anchors.centerIn: parent
-        spacing: 100
+        anchors.fill: faceBorder
+        anchors.margins: 10
+        spacing: 60
         model: faces
         orientation: ListView.Horizontal
-        delegate: Rectangle {
+        delegate: Item {
             property string source: { "http://artaud.g.free.fr/Awale/Faces/" + sourceUrl }
-            width: 105
-            height: 105
-            border.width: 1
-            border.color: "#FFFFFF99"
+            height: pictChooser.height - 20
+            width: height
+
             Image {
                 anchors.fill: parent
                 source: parent.source
-                fillMode: Image.PreserveAspectFit
-
             }
 
             MouseArea {
@@ -49,6 +61,7 @@ Item {
         highlightFollowsCurrentItem: true
         focus: true
     }
+
 
     function value() {
         if (list.currentItem == null) {

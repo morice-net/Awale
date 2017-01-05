@@ -18,25 +18,12 @@ Page {
         anchors.margins: 20
     }
 
-
-    Rectangle {
-        id: faceBorder
-        anchors.fill: pictChooser
-        color: "#935925"
-        radius: height/6
-        Rectangle {
-            color: "#f8e8b0"
-            anchors.fill: parent
-            anchors.margins: 5
-            radius: height/5
-        }
-    }
-
     PictureChooser {
         id: pictChooser
         anchors.top: passField.bottom
-        anchors.margins: 60
+        anchors.margins: 30
     }
+
 
 
     MenuButton {

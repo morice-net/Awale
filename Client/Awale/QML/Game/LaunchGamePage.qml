@@ -11,7 +11,7 @@ Item {
     // Button 1 player
     MenuButton {
         id: button1player
-        text: qsTr("Fight the machine");
+        text: qsTr("Fight the\nmachine");
         anchors.bottom: buttonLadder.top
         MouseArea {
             anchors.fill: parent
@@ -24,7 +24,7 @@ Item {
     // Button ladder
     MenuButton {
         id: buttonLadder
-        text: qsTr("Run the ladder");
+        text: qsTr("Run the\nladder");
         anchors.bottom: buttonChallenge.top
         MouseArea {
             anchors.fill: parent
@@ -39,7 +39,7 @@ Item {
     // Button Challenge
     MenuButton {
         id: buttonChallenge
-        text: qsTr("Challenge a friend");
+        text: qsTr("Challenge a\nfriend");
         y: parent.height * 0.8
         MouseArea {
             anchors.fill: parent

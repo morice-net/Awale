@@ -47,5 +47,6 @@
         <file>Images/HomeButton.png</file>
         <file>QML/Game/AccountPage.qml</file>
         <file>QML/Elements/MenuText.qml</file>
+        <file>Ressources/TribecaRegular.ttf</file>
     </qresource>
 </RCC>
