@@ -25,7 +25,7 @@ Rectangle {
     Image {
         x: parent.width * 437 / 600
         y: 90
-        width: Math.min(main.width, main.height)/11
+        width: Math.min(main.width, main.height)/9
         height: width
         source: "../../Images/BoardBackButton.png"
     }
@@ -33,7 +33,7 @@ Rectangle {
     Image {
         x: parent.width * 437 / 600
         y: 170
-        width: Math.min(main.width, main.height)/11
+        width: Math.min(main.width, main.height)/9
         height: width
         source: "../../Images/BoardBackButton.png"
     }
@@ -69,7 +69,7 @@ Rectangle {
         id: homeBack
         x: parent.width * 437 / 600
         y: 90
-        width: Math.min(main.width, main.height)/10
+        width: Math.min(main.width, main.height)/9
         height: width
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'gamelist'
@@ -79,7 +79,7 @@ Rectangle {
         id: gamesBack
         x: parent.width * 437 / 600
         y: 170
-        width: Math.min(main.width, main.height)/10
+        width: Math.min(main.width, main.height)/9
         height: width
         source: "../../Images/BoardBackButton.png"
         visible: parent.state != 'home'
@@ -87,7 +87,7 @@ Rectangle {
 
     Image {
         anchors.centerIn: homeBack
-        width: Math.min(main.width, main.height)/10
+        width: Math.min(main.width, main.height)/11
         height: width
         source: "../../Images/HomeButton.png"
 
@@ -99,7 +99,7 @@ Rectangle {
 
     Image {
         anchors.centerIn: gamesBack
-        width: Math.min(main.width, main.height)/10
+        width: Math.min(main.width, main.height)/11
         height: width
         source: "../../Images/GamesListButton.png"
 
