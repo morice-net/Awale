@@ -161,6 +161,9 @@ Rectangle {
         if (mode == 1) {
             webSocket.sendMessage("launchGame|"+login);
         }
+        if (mode == 2) {
+            webSocket.sendMessage("createGame|"+login);
+        }
     }
 
     function rules() {

@@ -6,7 +6,7 @@ Text {
 
     color: "#935925"
     font.family: africanFont.name
-    font.pointSize: parent.height * 0.035
+    font.pointSize: parent.height * 0.03
 
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter

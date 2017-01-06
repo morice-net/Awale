@@ -7,33 +7,22 @@ Item {
     height: parent.height
     width: height * 0.42
 
+    // Game list
+    GameList {
+        Separator {}
+    }
 
     // Button 1 player
     MenuButton {
         id: button1player
         text: qsTr("Fight the\nmachine");
-        anchors.bottom: buttonLadder.top
+        anchors.bottom: buttonChallenge.top
         MouseArea {
             anchors.fill: parent
             onClicked: main.start(1)
         }
         Separator {}
 
-    }
-
-    // Button ladder
-    MenuButton {
-        id: buttonLadder
-        text: qsTr("Run the\nladder");
-        anchors.bottom: buttonChallenge.top
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                main.start(2);
-                // fadeEffect.start()
-            }
-        }
-        Separator {}
     }
 
     // Button Challenge
@@ -44,7 +33,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                main.rules();
+                main.start(2);
             }
         }
     }
