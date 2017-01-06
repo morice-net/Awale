@@ -31,6 +31,7 @@ public:
 	void resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, QVector<int> &halve2);
 	Winner draw(int playerNumber, int holeNumber);
 	void computePlayable();
+    bool isHungry(int hole);
 	QString xmlState();
 
     // Getter and Setters
