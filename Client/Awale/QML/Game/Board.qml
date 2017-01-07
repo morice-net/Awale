@@ -81,9 +81,6 @@ Item {
     }
 
     function side() {
-        console.log("loginPlayer1 " + loginPlayer1)
-        console.log("loginPlayer2 " + loginPlayer2)
-        console.log("main.login " + main.login)
         if (loginPlayer1 == main.login) {
             return 1;
         }

@@ -64,20 +64,15 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            var side = board.side()
-            console.log("main.playerTurn " + main.playerTurn)
-            console.log("main.mode " + main.mode)
-            console.log("board.side " + side)
-            console.log("player " + player)
 
             // CPU turn
             if (main.playerTurn == 2 && main.mode == 1)
                 return;
 
             // 1v1
+            var side = board.side()
             if (main.playerTurn != side && main.mode == 2)
                 return;
-
             if (side != player)
                 return
 
@@ -93,6 +88,4 @@ Item {
     onPlayerChanged: {
         alreadyPlayed = false;
     }
-
-    onEnlightModeChanged: console.log("EnlightModeChanged: " + enlightMode + " - realIndex: " + realIndex)
 }

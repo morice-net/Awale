@@ -50,13 +50,8 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: {
-                    console.log(index);
-                    list.currentIndex = index;
-                }
+                onClicked: list.currentIndex = index;
             }
-
-            Component.onCompleted: console.log(source)
         }
         highlightFollowsCurrentItem: true
         focus: true
