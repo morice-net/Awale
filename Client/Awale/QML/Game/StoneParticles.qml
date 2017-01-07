@@ -32,7 +32,7 @@ ParticleSystem {
        onTriggered: {
            if (next.length !== 0) {
                var item = next.shift();
-               var obj = mapFromItem(item);
+               var obj = mapFromItem(item,item.width/2,item.height/2);
                var rotation;
                if (obj.y > main.height/2)
                    rotation = 1;

@@ -9,6 +9,11 @@ Item {
     anchors.fill: parent
     anchors.margins: 5
 
+    property string loginPlayer1
+    property string faceIconPlayer1
+    property string loginPlayer2
+    property string faceIconPlayer2
+
     Item {
         anchors.top: parent.top
         anchors.left: parent.left
@@ -75,4 +80,16 @@ Item {
         }
     }
 
+    function side() {
+        console.log("loginPlayer1 " + loginPlayer1)
+        console.log("loginPlayer2 " + loginPlayer2)
+        console.log("main.login " + main.login)
+        if (loginPlayer1 == main.login) {
+            return 1;
+        }
+        if (loginPlayer2 == main.login) {
+            return 2;
+        }
+        return 0;
+    }
 }

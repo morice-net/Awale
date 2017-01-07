@@ -7,7 +7,7 @@ Page  {
     // Play button
     MenuButton {
         id: playButton
-        text: qsTr("Play !");
+        text: qsTr("Play");
         anchors.centerIn: parent
         anchors.margins: parent.height * 0.2
         font.pointSize: parent.height * 0.05

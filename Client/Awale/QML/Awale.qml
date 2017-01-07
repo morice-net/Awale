@@ -32,8 +32,10 @@ Rectangle {
     property var playerHalve2: [0,0,0,0,0,0]
     property var playable: [0,0,0,0,0,0,0,0,0,0,0,0]
     property int playerTurn: 0 // 1 or 2 when initialized and playing
+    property int lastPlayed: -1
 
     property string xmlText
+    property bool connected: false
 
 
     signal revert()
@@ -50,11 +52,19 @@ Rectangle {
 
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
-                main.login = get(0).login;
-                main.faceIcon = get(0).iconUrl;
-                main.wins = get(0).wins;
-                main.games = get(0).games;
-                main.elo = get(0).elo;
+                if (!connected) {
+                    connected = true;
+                    main.login = get(0).login;
+                    main.faceIcon = get(0).iconUrl;
+                    main.wins = get(0).wins;
+                    main.games = get(0).games;
+                    main.elo = get(0).elo;
+                } else {
+                    board.loginPlayer1 = get(0).login;
+                    board.faceIconPlayer1 = get(0).iconUrl;
+                    board.loginPlayer2 = get(1).login;
+                    board.faceIconPlayer2 = get(1).iconUrl;
+                }
             }
         }
     }
@@ -158,6 +168,7 @@ Rectangle {
     }
 
     function start(mode) {
+        main.mode = mode
         if (mode == 1) {
             webSocket.sendMessage("launchGame|"+login);
         }

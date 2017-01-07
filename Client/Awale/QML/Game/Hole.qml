@@ -64,18 +64,27 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            // Not your turn to play dude, wait for me
-            if (main.playerTurn != halve.player) {
-                return;
-            }
-            // CPU turn
-            if (main.playerTurn == 2 && main.mode == 1) {
-                return;
-            }
+            var side = board.side()
+            console.log("main.playerTurn " + main.playerTurn)
+            console.log("main.mode " + main.mode)
+            console.log("board.side " + side)
+            console.log("player " + player)
 
-            if (numberOfStone > 0) {
+            // CPU turn
+            if (main.playerTurn == 2 && main.mode == 1)
+                return;
+
+            // 1v1
+            if (main.playerTurn != side && main.mode == 2)
+                return;
+
+            if (side != player)
+                return
+
+            // No blocker, you can take the hole
+            if (numberOfStone > 0)
                 main.takeHole(index);
-            }
+
         }
     }
 
