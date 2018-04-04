@@ -28,7 +28,7 @@ public:
 	Awale(QObject* parent = 0);
     void initialize();
     void takeHole(int playerNumber, int holeNumber);
-	void resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, QVector<int> &halve2);
+    void resetHole(int halveNumber, int holeNumber, QVector<int> &halve1, QVector<int> &halve2);
 	Winner draw(int playerNumber, int holeNumber);
 	void computePlayable();
     bool isHungry(int hole);

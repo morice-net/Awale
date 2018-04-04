@@ -59,7 +59,7 @@ void Awale::takeHole(int playerNumber, int holeNumber)
  * \param halve2
  * \param holeNumber
  */
-void Awale::resetHole(int &halveNumber, int &holeNumber, QVector<int> &halve1, QVector<int> &halve2)
+void Awale::resetHole(int halveNumber, int holeNumber, QVector<int> &halve1, QVector<int> &halve2)
 {
     if (halveNumber == 1) {
         halve1[holeNumber] = 0;
@@ -171,12 +171,12 @@ void Awale::computePlayable()
         }
     }
     if (m_playerTurn == 2) {
-        for (int k = 6; k < 12; ++k) {
+        for (int k = 0; k < 6; ++k) {
             if (isHungry(k)) {
                 continue;
             }
             //TODO hungry check
-            if (m_playerHalve2.at(k-6) != 0) {
+            if (m_playerHalve2.at(k) != 0) {
                 playableVector[k] = 1;
             }
         }

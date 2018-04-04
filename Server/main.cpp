@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <QCommandLineParser>
 #include <QDebug>
+#include <QWebSocket>
 
 
 // Shark
@@ -33,7 +34,19 @@ int main(int argc, char *argv[])
 	GameMaker *gameMaker = new GameMaker(server);
 	MessageListener* messageListener = new MessageListener(server);
 
-	QObject::connect(server, SIGNAL(newMessageReceived(QWebSocket*,QString)), messageListener, SLOT(onMessageReceived(QWebSocket*,QString)), Qt::QueuedConnection);
+
+    // DEBUG //
+    /*
+    QWebSocket* client = new QWebSocket;
+    messageListener->onMessageReceived(client, "createAccount|Morice|moroce|http://artaud.g.free.fr/Awale/Faces/A02.png");
+    messageListener->onMessageReceived(client, "createAccount|Login|Password|http://artaud.g.free.fr/Awale/Faces/A01.png");
+    messageListener->onMessageReceived(client, "createGame|Login");
+    messageListener->onMessageReceived(client, "createGame|Morice");
+    messageListener->onMessageReceived(client, "takeHole|0|Login|1");
+    */
+    // DEBUG ///
+
+    QObject::connect(server, SIGNAL(newMessageReceived(QWebSocket*,QString)), messageListener, SLOT(onMessageReceived(QWebSocket*,QString)), Qt::QueuedConnection);
 
 	qDebug() << "Server started";
 

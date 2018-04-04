@@ -51,6 +51,7 @@ void GameMaker::abortGame(int gameId, Account *account)
 
 void GameMaker::takeHole(int id, Account *account, int hole)
 {
+    qDebug() << "Id" << id << "Account" << account->login() << "HoleNumber" << hole;
 	Game *game = m_games.value(id);
 	if (game == NULL) {
 		return;

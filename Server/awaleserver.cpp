@@ -16,7 +16,9 @@ AwaleServer::AwaleServer(quint16 port, QObject *parent) :
 		connect(m_pWebSocketServer, &QWebSocketServer::newConnection,
 				this, &AwaleServer::onNewConnection);
 		connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &AwaleServer::closed);
-	}
+    } else {
+        qDebug() << "AwaleServer error on connexion" << port;
+    }
 }
 
 
