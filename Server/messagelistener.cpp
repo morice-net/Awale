@@ -6,9 +6,9 @@
 // Server
 #include "gamemaker.h"
 
-MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this), m_gameMaker(this)
+MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this), m_gameMaker(this), m_storage(this)
 {
-
+    QObject::connect(&m_accountCreator, SIGNAL(accountCreated(Account*)), &m_storage, SLOT(onAccountCreated(Account*)));
 }
 
 void MessageListener::onMessageReceived(QWebSocket *client, QString message)

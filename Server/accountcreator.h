@@ -13,7 +13,9 @@ public:
 	explicit AccountCreator(QObject *parent = 0);
 	void createAccount(const QString &login, const QString &password, const QString &iconUrl, QWebSocket *client);
 	void connectClient(const QString &login, const QString &password, QWebSocket *client);
-	Account *accountFromLogin(const QString& login);
+    Account *accountFromLogin(const QString& login);
+signals:
+    void accountCreated(Account* account);
 };
 
 #endif // ACCOUNTCREATOR_H

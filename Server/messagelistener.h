@@ -8,6 +8,7 @@ QT_FORWARD_DECLARE_CLASS(QWebSocket)
 
 #include "gamemaker.h"
 #include "accountcreator.h"
+#include "sqlitestorage.h"
 
 class MessageListener : public QObject
 {
@@ -29,6 +30,7 @@ protected:
     QStringList m_messages;
 	AccountCreator m_accountCreator;
 	GameMaker m_gameMaker;
+    SQLiteStorage m_storage;
 };
 
 #endif // MESSAGELISTENER_H

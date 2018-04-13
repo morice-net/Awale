@@ -30,6 +30,8 @@ void AccountCreator::createAccount(const QString &login, const QString &password
 	newPlayer->setIconUrl(iconUrl);
 	newPlayer->setClient(client);
 	newPlayer->sendStateMessage();
+
+    emit accountCreated(newPlayer);
 }
 
 void AccountCreator::connectClient(const QString &login, const QString &password, QWebSocket *client)

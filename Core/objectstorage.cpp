@@ -1,4 +1,5 @@
 #include "objectstorage.h"
+#include "objectstorage.h"
 
 #include <QMetaObject>
 #include <QMetaProperty>
@@ -54,20 +55,17 @@ bool ObjectStorage::createTableFromObject(QObject *dataRow)
 {
 	QString name = dataRow->objectName();
 	QVector<QString> columnNames;
-	QVector<QString> columnValues;
+    QVector<QString> columnTypes;
 	qDebug() << "Table" << name;
 	for (int i = 1; i < dataRow->metaObject()->propertyCount(); ++i) {
+        columnNames << dataRow->metaObject()->property(i).name();
+        columnTypes << stringFromType(dataRow->metaObject()->property(i).type());
 		qDebug() << "\tRow" << dataRow->metaObject()->property(i).name() << dataRow->metaObject()->property(i).type();
-		qDebug() << dataRow->metaObject()->property(i).name();
-		if (dataRow->metaObject()->property(i).type() == QVariant::Int) {
-			qDebug() << dataRow->metaObject()->property(i).read(dataRow).toInt();
-		}
 	}
-	if (createTable(name,columnNames,columnValues)) {
+    if (createTable(name,columnNames,columnTypes)) {
 		m_tableNames << name;
 		return true;
 	}
 	return false;
 }
-
 

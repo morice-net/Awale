@@ -14,15 +14,15 @@ public:
 
 	virtual bool readDatabase() = 0;
 	virtual bool createObject(QString tableName, QVector<QString> columnNames, QVector<QString> columnValues) = 0;
-	virtual bool createTable(QString tableName, QVector<QString> columnNames, QVector<QString> columnTypes) = 0;
-	virtual QString getStringFromType(QVariant::Type type) = 0;
+    virtual bool createTable(QString tableName, QVector<QString> columnNames, QVector<QString> columnTypes) = 0;
+    virtual QString stringFromType(QVariant::Type type) const = 0;
 
-	bool createTableFromObject(QObject* dataRow);
 	bool insertObject(QObject* dataRow);
+    bool createTableFromObject(QObject* dataRow);
 
 	QVector<QObject *> dataTableObjects(const QString& tableName) const;
 	QVector<QObject *> dataObjects() const;
-	QVector<QString> tableNames() const;
+    QVector<QString> tableNames() const;
 
 protected:
 	/**

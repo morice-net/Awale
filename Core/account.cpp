@@ -9,6 +9,7 @@
 Account::Account(QObject *parent) :
 	QObject(parent), m_login(), m_password(), m_iconUrl(), m_wins(0), m_games(0), m_elo(2000), m_client(NULL)
 {
+    setObjectName("account");
 }
 
 void Account::sendStateMessage()
