@@ -42,7 +42,6 @@ bool SQLiteStorage::readDatabase()
        }
     }
 
-
     return true;
 }
 
