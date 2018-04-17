@@ -1,8 +1,8 @@
 #include "sqlitestorage.h"
 
 #include <QCoreApplication>
-#include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QSqlError>
 #include <QDebug>
 
@@ -11,19 +11,38 @@
 SQLiteStorage::SQLiteStorage(QObject *parent) : ObjectStorage(parent)
 {
     QString path = "./AwaleDatabase.db";
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(path);
-    if (! db.open()) {
-        qDebug() << db.lastError().text();
+    m_database = QSqlDatabase::addDatabase("QSQLITE");
+    m_database.setDatabaseName(path);
+    if (! m_database.open()) {
+        qDebug() << m_database.lastError().text();
 
         qDebug() << QCoreApplication::libraryPaths();
         QCoreApplication::exit(-1);
     }
 
+    readDatabase();
 }
 
 bool SQLiteStorage::readDatabase()
 {
+    qDebug() << "Reading database to reload most of things.";
+    QSqlQuery query;
+    query.exec("SELECT name FROM sqlite_master WHERE type='table'");
+    int idName = query.record().indexOf("name");
+    while (query.next())
+    {
+       QString tablename = query.value(idName).toString();
+       qDebug() << tablename;
+       QSqlQuery select;
+       select.exec("SELECT * FROM " + tablename);
+       while (select.next())
+       {
+           for (int i = 0; i < select.record().count(); i++)
+                qDebug() << "\t" << select.value(i).toString();
+       }
+    }
+
+
     return true;
 }
 

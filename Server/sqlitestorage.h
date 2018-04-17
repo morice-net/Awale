@@ -3,6 +3,8 @@
 
 #include "objectstorage.h"
 
+#include <QSqlDatabase>
+
 class Account;
 
 class SQLiteStorage : public ObjectStorage
@@ -18,6 +20,9 @@ public:
 
 public slots:
     void onAccountCreated(Account * account);
+
+private:
+    QSqlDatabase m_database;
 
 };
 
