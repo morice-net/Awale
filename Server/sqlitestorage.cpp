@@ -49,7 +49,7 @@ bool SQLiteStorage::readDatabase()
 bool SQLiteStorage::createObject(QString tableName, QVector<QString> columnNames, QVector<QString> columnValues)
 {
     QString queryCommand;
-    queryCommand += "insert into " + tableName + " ( ";
+    queryCommand += "INSERT INTO " + tableName + " ( ";
     for(int i = 0; i < columnNames.size(); i++) {
         queryCommand += columnNames[i];
         if (i == (columnNames.size() - 1))
@@ -59,7 +59,7 @@ bool SQLiteStorage::createObject(QString tableName, QVector<QString> columnNames
     }
     queryCommand += "VALUES (";
     for(int i = 0; i < columnValues.size(); i++) {
-        queryCommand += columnValues[i] ;
+        queryCommand += "\"" + columnValues[i] + "\"";
         if (i == (columnValues.size() - 1))
             queryCommand += " );";
         else
@@ -67,13 +67,16 @@ bool SQLiteStorage::createObject(QString tableName, QVector<QString> columnNames
     }
 
     QSqlQuery query;
-    return query.exec(queryCommand);
+    query.exec(queryCommand);
+    qDebug() << queryCommand;
+    qDebug() << query.lastError().text();
+    return true;
 }
 
 bool SQLiteStorage::createTable(QString tableName, QVector<QString> columnNames, QVector<QString> columnTypes)
 {
     QString queryCommand;
-    queryCommand += "create table " + tableName + " ( ";
+    queryCommand += "CREATE TABLE IF NOT EXISTS " + tableName + " ( ";
     for(int i = 0; i < columnNames.size(); i++) {
         queryCommand += columnNames[i] + " " + columnTypes[i];
         if (i == (columnNames.size() - 1))
