@@ -16,6 +16,8 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::addLibraryPath("/home/morice/Qt/5.10.0/gcc_64/plugins/");
+
     QCoreApplication app(argc, argv);
 
 	QCommandLineParser parser;
@@ -36,10 +38,10 @@ int main(int argc, char *argv[])
 
 
     // DEBUG //
-    /*
     QWebSocket* client = new QWebSocket;
     messageListener->onMessageReceived(client, "createAccount|Morice|moroce|http://artaud.g.free.fr/Awale/Faces/A02.png");
     messageListener->onMessageReceived(client, "createAccount|Login|Password|http://artaud.g.free.fr/Awale/Faces/A01.png");
+    /*
     messageListener->onMessageReceived(client, "createGame|Login");
     messageListener->onMessageReceived(client, "createGame|Morice");
     messageListener->onMessageReceived(client, "takeHole|0|Login|1");

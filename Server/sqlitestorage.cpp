@@ -1,16 +1,24 @@
 #include "sqlitestorage.h"
 
+#include <QCoreApplication>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 #include "account.h"
 
 SQLiteStorage::SQLiteStorage(QObject *parent) : ObjectStorage(parent)
 {
-    QString path = "AwaleDatabase";
+    QString path = "./AwaleDatabase.db";
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
-    db.open();
+    if (! db.open()) {
+        qDebug() << db.lastError().text();
+
+        qDebug() << QCoreApplication::libraryPaths();
+        QCoreApplication::exit(-1);
+    }
 
 }
 
