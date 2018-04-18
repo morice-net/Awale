@@ -34,6 +34,17 @@ void AccountCreator::createAccount(const QString &login, const QString &password
     emit accountCreated(newPlayer);
 }
 
+void AccountCreator::onLoadAccount(const QString &login, const QString &password, const QString &iconUrl, int wins, int games, int elo)
+{
+    Account* newPlayer = new Account(this);
+    newPlayer->setLogin(login);
+    newPlayer->setPassword(password);
+    newPlayer->setIconUrl(iconUrl);
+    newPlayer->setWins(wins);
+    newPlayer->setGames(games);
+    newPlayer->setElo(elo);
+}
+
 void AccountCreator::connectClient(const QString &login, const QString &password, QWebSocket *client)
 {
 	for (QObject *accountObj: children()) {

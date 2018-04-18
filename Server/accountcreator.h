@@ -14,6 +14,10 @@ public:
 	void createAccount(const QString &login, const QString &password, const QString &iconUrl, QWebSocket *client);
 	void connectClient(const QString &login, const QString &password, QWebSocket *client);
     Account *accountFromLogin(const QString& login);
+
+public slots:
+    void onLoadAccount(const QString &login, const QString &password, const QString &iconUrl, int wins, int games, int elo);
+
 signals:
     void accountCreated(Account* account);
 };

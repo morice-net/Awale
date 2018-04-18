@@ -39,10 +39,10 @@ int main(int argc, char *argv[])
 
     // DEBUG //
     //!TODO  CREATE UNIQUE INDEX AccountPrimaryKeyLogin ON account(login);
+    /*
     QWebSocket* client = new QWebSocket;
     messageListener->onMessageReceived(client, "createAccount|Morice|morice|http://artaud.g.free.fr/Awale/Faces/A02.png");
     messageListener->onMessageReceived(client, "createAccount|Login|PassPass|http://artaud.g.free.fr/Awale/Faces/A01.png");
-    /*
     messageListener->onMessageReceived(client, "createGame|Login");
     messageListener->onMessageReceived(client, "createGame|Morice");
     messageListener->onMessageReceived(client, "takeHole|0|Login|1");

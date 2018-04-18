@@ -19,8 +19,6 @@ SQLiteStorage::SQLiteStorage(QObject *parent) : ObjectStorage(parent)
         qDebug() << QCoreApplication::libraryPaths();
         QCoreApplication::exit(-1);
     }
-
-    readDatabase();
 }
 
 bool SQLiteStorage::readDatabase()
@@ -37,8 +35,9 @@ bool SQLiteStorage::readDatabase()
        select.exec("SELECT * FROM " + tablename);
        while (select.next())
        {
-           for (int i = 0; i < select.record().count(); i++)
-                qDebug() << "\t" << select.value(i).toString();
+           if (tablename.toLower() == "account") {
+               emit loadAccount(select.value(0).toString(),select.value(1).toString(),select.value(2).toString(),select.value(3).toInt(),select.value(4).toInt(),select.value(5).toInt());
+           }
        }
     }
 

@@ -21,6 +21,9 @@ public:
 public slots:
     void onAccountCreated(Account * account);
 
+signals:
+    void loadAccount(const QString &login, const QString &password, const QString &iconUrl, int wins, int games, int elo);
+
 private:
     QSqlDatabase m_database;
 

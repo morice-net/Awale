@@ -9,6 +9,9 @@
 MessageListener::MessageListener(QObject *parent) : QObject(parent), m_accountCreator(this), m_gameMaker(this), m_storage(this)
 {
     QObject::connect(&m_accountCreator, SIGNAL(accountCreated(Account*)), &m_storage, SLOT(onAccountCreated(Account*)));
+    QObject::connect(&m_storage, SIGNAL(loadAccount(QString,QString,QString,int,int,int)), &m_accountCreator, SLOT(onLoadAccount(QString,QString,QString,int,int,int)));
+
+    m_storage.readDatabase();
 }
 
 void MessageListener::onMessageReceived(QWebSocket *client, QString message)
