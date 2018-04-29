@@ -59,6 +59,7 @@ Rectangle {
                     main.wins = get(0).wins;
                     main.games = get(0).games;
                     main.elo = get(0).elo;
+                    menu.setLaunchGamePage();
                 } else {
                     board.loginPlayer1 = get(0).login;
                     board.faceIconPlayer1 = get(0).iconUrl;
@@ -94,6 +95,7 @@ Rectangle {
                 main.playable = getArrayFromString(get(0).playables);
                 main.lastPlayed = get(0).lastPlayed;
                 main.gameId = get(0).gameId;
+                menu.hide();
             }
         }
     }
@@ -116,10 +118,6 @@ Rectangle {
 
     Board {
         id: board
-    }
-
-    BoardMenu {
-        id: boardMenu
     }
 
     MenuBackground {

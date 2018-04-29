@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 import "../Elements"
 
 Page  {
-    // Play button
+    // connect button
     MenuButton {
         id: playButton
         text: qsTr("Play");

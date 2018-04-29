@@ -29,10 +29,7 @@ Page {
         
         MouseArea {
             anchors.fill: parent
-            onClicked: {
-                webSocket.sendMessage("connectClient|" + loginField.value() + "|" + passField.value());
-                fadeEffect.start();
-            }
+            onClicked: webSocket.sendMessage("connectClient|" + loginField.value() + "|" + passField.value())
         }
         Separator {}
     }

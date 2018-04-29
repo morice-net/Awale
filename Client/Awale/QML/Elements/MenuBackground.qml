@@ -50,9 +50,15 @@ Item  {
         AccountCreationPage {
             id: accountCreationPage
         }
+
+        LaunchGamePage {
+            id: launchGamePage
+        }
     }
 
-
+    function hide() {
+        fadeEffect.start()
+    }
 
 
     function isStartPage() {
@@ -62,13 +68,23 @@ Item  {
     function setStartPage() {
         loginPage.close();
         accountCreationPage.close();
+        launchGamePage.close();
         startPage.init();
     }
 
     function setLoginPage() {
         startPage.close();
         accountCreationPage.close();
+        launchGamePage.close();
         loginPage.init();
+    }
+
+    function setLaunchGamePage() {
+        init();
+        startPage.close();
+        accountCreationPage.close();
+        loginPage.close();
+        launchGamePage.init();
     }
 
     function init() {

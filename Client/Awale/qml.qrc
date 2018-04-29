@@ -39,8 +39,6 @@
         <file>QML/Game/Stone.qml</file>
         <file>QML/Game/StoneParticles.qml</file>
         <file>QML/Game/WinPage.qml</file>
-        <file>QML/Game/LaunchGamePage.qml</file>
-        <file>QML/Game/BoardMenu.qml</file>
         <file>Images/BoardBackMenu.png</file>
         <file>Images/BoardBackButton.png</file>
         <file>Images/GamesListButton.png</file>
@@ -48,6 +46,6 @@
         <file>QML/Game/AccountPage.qml</file>
         <file>QML/Elements/MenuText.qml</file>
         <file>Ressources/TribecaRegular.ttf</file>
-        <file>QML/Elements/GameList.qml</file>
+        <file>QML/Menu/LaunchGamePage.qml</file>
     </qresource>
 </RCC>

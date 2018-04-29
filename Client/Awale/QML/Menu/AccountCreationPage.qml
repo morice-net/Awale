@@ -33,10 +33,7 @@ Page {
         anchors.margins: 55
         MouseArea {
             anchors.fill: parent
-            onClicked: {
-                webSocket.sendMessage("createAccount|"+loginField.value()+"|"+passField.value()+"|"+pictChooser.value())
-                fadeEffect.start()
-            }
+            onClicked: webSocket.sendMessage("createAccount|"+loginField.value()+"|"+passField.value()+"|"+pictChooser.value())
         }
     }
 }
