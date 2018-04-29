@@ -160,24 +160,22 @@ void Awale::computePlayable()
 
     // Feed the playables
     if (m_playerTurn == 1) {
-        for (int j = 0; j < 6; ++j) {
-            //TODO hungry check
-            if (isHungry(j)) {
+        for (int i = 0; i < 6; ++i) {
+            if (isHungry(i)) {
                 continue;
             }
-            if (m_playerHalve1.at(j) != 0) {
-                playableVector[j] = 1;
+            if (m_playerHalve1.at(i) != 0) {
+                playableVector[i] = 1;
             }
         }
     }
     if (m_playerTurn == 2) {
-        for (int k = 0; k < 6; ++k) {
-            if (isHungry(k)) {
+        for (int i = 0; i < 6; ++i) {
+            if (isHungry(i)) {
                 continue;
             }
-            //TODO hungry check
-            if (m_playerHalve2.at(k) != 0) {
-                playableVector[k] = 1;
+            if (m_playerHalve2.at(i) != 0) {
+                playableVector[i+6] = 1;
             }
         }
     }
